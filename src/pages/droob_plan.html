@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خطة نقطتين للتسويق عبر Google Ads – دروب البيئة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #0e6e4a;
+    --green-light: #e8f5ef;
+    --green-mid: #1a8f61;
+    --cyan: #00aeef;
+    --cyan-light: #e3f6fd;
+    --gold: #f59e0b;
+    --gold-light: #fef3c7;
+    --text: #1a2b22;
+    --text-muted: #5a7a6a;
+    --border: #d4e8dd;
+    --bg: #f7fbf9;
+    --white: #ffffff;
+    --shadow: 0 2px 12px rgba(14,110,74,0.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0e6e4a 0%, #1a8f61 60%, #0a9ecf 100%);
+    padding: 48px 32px 40px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content:'';
+    position:absolute;
+    width:400px; height:400px;
+    border-radius:50%;
+    background: rgba(255,255,255,0.04);
+    top:-100px; left:-80px;
+  }
+  .hero::after {
+    content:'';
+    position:absolute;
+    width:300px; height:300px;
+    border-radius:50%;
+    background: rgba(255,255,255,0.05);
+    bottom:-80px; right:-60px;
+  }
+  .hero-inner { max-width: 960px; margin: 0 auto; position:relative; z-index:1; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+  .hero h1 { font-size: 32px; font-weight: 900; margin-bottom: 8px; }
+  .hero h1 span { color: #7fe8c4; }
+  .hero p { font-size: 16px; opacity: 0.85; margin-bottom: 28px; }
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat .num { font-size: 28px; font-weight: 900; color: #7fe8c4; }
+  .hero-stat .lbl { font-size: 12px; opacity: 0.75; }
+
+  /* NAV TABS */
+  .tabs-wrap {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .tabs {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 16px 22px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--green); }
+  .tab-btn.active {
+    color: var(--green);
+    border-bottom-color: var(--green);
+  }
+  .tab-icon { margin-left: 6px; font-size: 16px; }
+
+  /* CONTENT */
+  .content { max-width: 960px; margin: 0 auto; padding: 32px 16px 64px; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-title .icon {
+    width: 32px; height: 32px;
+    background: var(--green-light);
+    border-radius: 8px;
+    display: flex; align-items:center; justify-content:center;
+    font-size: 16px;
+  }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media(max-width:640px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 22px; }
+  }
+
+  /* METRIC CARDS */
+  .metric {
+    background: var(--green-light);
+    border: 1px solid #b8dcc9;
+    border-radius: 12px;
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .metric .m-num { font-size: 26px; font-weight: 900; color: var(--green); }
+  .metric .m-lbl { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+  .metric.cyan {
+    background: var(--cyan-light);
+    border-color: #b3def4;
+  }
+  .metric.cyan .m-num { color: #0077aa; }
+
+  .metric.gold {
+    background: var(--gold-light);
+    border-color: #fcd34d;
+  }
+  .metric.gold .m-num { color: #b45309; }
+
+  /* KEYWORD TABLE */
+  .kw-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .kw-table th {
+    background: var(--green);
+    color: white;
+    padding: 10px 14px;
+    text-align: right;
+    font-weight: 600;
+  }
+  .kw-table th:first-child { border-radius: 0 8px 0 0; }
+  .kw-table th:last-child { border-radius: 8px 0 0 0; }
+  .kw-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .kw-table tr:hover td { background: var(--green-light); }
+
+  /* BADGES */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .badge-green { background: var(--green-light); color: var(--green); border: 1px solid #b8dcc9; }
+  .badge-cyan { background: var(--cyan-light); color: #0077aa; border: 1px solid #b3def4; }
+  .badge-gold { background: var(--gold-light); color: #b45309; border: 1px solid #fcd34d; }
+  .badge-red { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; }
+
+  /* CAMPAIGN CARDS */
+  .campaign-card {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .campaign-header {
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .campaign-header.search { background: linear-gradient(90deg, #0e6e4a, #1a8f61); color: white; }
+  .campaign-header.display { background: linear-gradient(90deg, #0077aa, #00aeef); color: white; }
+  .campaign-header.pmax { background: linear-gradient(90deg, #7c3aed, #a855f7); color: white; }
+  .campaign-header h3 { font-size: 16px; font-weight: 700; }
+  .campaign-header p { font-size: 13px; opacity: 0.85; margin-top: 2px; }
+  .campaign-body { padding: 20px 22px; background: white; }
+  .kw-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .kw-chip {
+    background: var(--green-light);
+    color: var(--green);
+    border: 1px solid #b8dcc9;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+  .kw-chip.blue { background: var(--cyan-light); color: #0077aa; border-color: #b3def4; }
+  .kw-chip.purple { background: #f5f3ff; color: #6d28d9; border-color: #c4b5fd; }
+
+  /* BUDGET SLIDER */
+  .budget-slider-wrap { margin: 16px 0; }
+  .slider-row { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .slider-label { font-size:13px; color:var(--text-muted); min-width:100px; }
+  input[type=range] {
+    flex:1;
+    accent-color: var(--green);
+    height: 6px;
+  }
+  .slider-val {
+    font-size:14px;
+    font-weight:700;
+    color:var(--green);
+    min-width:70px;
+    text-align:left;
+  }
+
+  /* FINANCIAL TABLE */
+  .fin-table { width:100%; border-collapse: collapse; }
+  .fin-table th {
+    background: #f0faf5;
+    color: var(--green);
+    padding: 10px 14px;
+    text-align:right;
+    font-size:13px;
+    font-weight:700;
+    border-bottom: 2px solid var(--border);
+  }
+  .fin-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size:14px;
+  }
+  .fin-table tr.total td {
+    background: var(--green-light);
+    font-weight:700;
+    color: var(--green);
+    font-size:15px;
+    border-top: 2px solid var(--green);
+  }
+  .fin-table tr.highlight td { background: #f7fbf9; }
+
+  /* ROI RESULT */
+  .roi-box {
+    background: linear-gradient(135deg, var(--green), var(--green-mid));
+    color: white;
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-top: 20px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    text-align:center;
+  }
+  .roi-box .r-num { font-size:28px; font-weight:900; color:#7fe8c4; }
+  .roi-box .r-lbl { font-size:13px; opacity:0.8; margin-top:4px; }
+
+  /* TIMELINE */
+  .timeline { position:relative; padding-right:24px; }
+  .timeline::before {
+    content:'';
+    position:absolute;
+    right:7px; top:8px; bottom:8px;
+    width:2px;
+    background: var(--border);
+  }
+  .tl-item { position:relative; margin-bottom:24px; }
+  .tl-dot {
+    position:absolute;
+    right:-24px;
+    top:4px;
+    width:16px; height:16px;
+    border-radius:50%;
+    background: var(--green);
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--green);
+  }
+  .tl-month { font-size:13px; font-weight:700; color:var(--green); margin-bottom:4px; }
+  .tl-text { font-size:14px; color:var(--text-muted); }
+
+  /* AUDIENCE */
+  .audience-card {
+    border: 1px solid var(--border);
+    border-radius:12px;
+    padding:16px 18px;
+    background: white;
+  }
+  .audience-card h4 { font-weight:700; font-size:15px; margin-bottom:8px; color:var(--green); }
+  .audience-card p { font-size:13px; color:var(--text-muted); line-height:1.6; }
+
+  /* LIST */
+  ul.check-list { list-style:none; }
+  ul.check-list li {
+    padding: 7px 0;
+    padding-right: 24px;
+    position:relative;
+    font-size:14px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+  ul.check-list li:last-child { border-bottom:none; }
+  ul.check-list li::before {
+    content:'✓';
+    position:absolute;
+    right:0;
+    color: var(--green);
+    font-weight:700;
+  }
+
+  /* DIVIDER */
+  .divider { height:1px; background:var(--border); margin: 24px 0; }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size:22px;
+    font-weight:900;
+    color:var(--green);
+    margin-bottom:24px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .section-title::after {
+    content:'';
+    flex:1;
+    height:2px;
+    background: linear-gradient(90deg, var(--green), transparent);
+    border-radius:2px;
+  }
+
+  /* PRINT */
+  @media print {
+    .tabs-wrap { display:none; }
+    .section { display:block !important; page-break-inside:avoid; }
+    .hero { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🌿 خطة نقطتين للتسويق عبر</div>
+    <h1> <span>Google Ads</span> – دروب البيئة</h1>
+    <p>استراتيجية إعلانية مخصصة للاستشارات والخدمات البيئية في السوق السعودي والمصري</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">4</div><div class="lbl">حملات مقترحة</div></div>
+      <div class="hero-stat"><div class="num">3</div><div class="lbl">أشهر تجريبية</div></div>
+      <div class="hero-stat"><div class="num">+250%</div><div class="lbl">ROI متوقع</div></div>
+      <div class="hero-stat"><div class="num">2</div><div class="lbl">سوق مستهدف</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('analysis')"><span class="tab-icon">📊</span> تحليل الشركة</button>
+    <button class="tab-btn" onclick="showTab('strategy')"><span class="tab-icon">🎯</span> الاستراتيجية</button>
+    <button class="tab-btn" onclick="showTab('campaigns')"><span class="tab-icon">📢</span> الحملات والكلمات</button>
+    <button class="tab-btn" onclick="showTab('audience')"><span class="tab-icon">👥</span> الجمهور المستهدف</button>
+    <button class="tab-btn" onclick="showTab('financial')"><span class="tab-icon">💰</span> العرض المالي</button>
+    <button class="tab-btn" onclick="showTab('timeline')"><span class="tab-icon">📅</span> خطة التنفيذ</button>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- =================== TAB 1: ANALYSIS =================== -->
+  <div class="section active" id="analysis">
+    <div class="section-title">📊 تحليل شركة دروب البيئة</div>
+
+    <div class="grid-3" style="margin-bottom:20px;">
+      <div class="metric">
+        <div class="m-num">+15 سنة</div>
+        <div class="m-lbl">خبرة تراكمية في القطاع البيئي</div>
+      </div>
+      <div class="metric cyan">
+        <div class="m-num">سعودية + مصر</div>
+        <div class="m-lbl">سوقان إقليميان نشطان</div>
+      </div>
+      <div class="metric gold">
+        <div class="m-num">100%</div>
+        <div class="m-lbl">التزام بالمعايير التنظيمية</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">💡</div> نقاط القوة التسويقية</div>
+      <div class="grid-2">
+        <ul class="check-list">
+          <li>خبرة 15+ عاماً تُبنى عليها ثقة العملاء</li>
+          <li>فريق أكاديمي (دكتوراه وماجستير) في الكيمياء والفيزياء والأحياء</li>
+          <li>ضمان قبول الدراسات من المرة الأولى</li>
+          <li>حضور في الرياض والقاهرة والإسكندرية والجبيل</li>
+        </ul>
+        <ul class="check-list">
+          <li>خدمات متكاملة: EIA، EMP، معالجة، نفايات</li>
+          <li>التزام بجداول زمنية محددة – وعد مقدس</li>
+          <li>حلول مخصصة لكل مشروع وبيئة جغرافية</li>
+          <li>دعم رؤية 2030 والتنمية المستدامة</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🏗️</div> القطاعات المستهدفة وفرصها الإعلانية</div>
+      <table class="kw-table">
+        <thead>
+          <tr>
+            <th>القطاع</th>
+            <th>الخدمة الأبرز</th>
+            <th>الفرصة الإعلانية</th>
+            <th>الأولوية</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>الطاقة</strong> (محطات ومتجددة)</td>
+            <td>دراسة الأثر البيئي EIA</td>
+            <td>كلمات "تصاريح بيئية طاقة شمسية"</td>
+            <td><span class="badge badge-red">عالية جداً</span></td>
+          </tr>
+          <tr>
+            <td><strong>الصناعة</strong> (مصانع – مدن)</td>
+            <td>EMP + تدقيق بيئي</td>
+            <td>استهداف المدن الصناعية</td>
+            <td><span class="badge badge-red">عالية جداً</span></td>
+          </tr>
+          <tr>
+            <td><strong>المقاولات</strong> (بنية تحتية)</td>
+            <td>استخراج التصاريح البيئية</td>
+            <td>كلمات "تصريح بيئي مشروع"</td>
+            <td><span class="badge badge-gold">عالية</span></td>
+          </tr>
+          <tr>
+            <td><strong>الصحة</strong> (مستشفيات)</td>
+            <td>إدارة النفايات الطبية الخطرة</td>
+            <td>استهداف مديري المستشفيات</td>
+            <td><span class="badge badge-gold">عالية</span></td>
+          </tr>
+          <tr>
+            <td><strong>العقارات</strong> (مشاريع كبرى)</td>
+            <td>دراسات الأثر البيئي + معايير</td>
+            <td>كلمات "اشتراطات بيئية مشاريع"</td>
+            <td><span class="badge badge-cyan">متوسطة</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">⚡</div> المزايا التنافسية للإبراز في الإعلانات</div>
+      <div class="grid-3">
+        <div style="background:var(--green-light); border-radius:10px; padding:14px; text-align:center;">
+          <div style="font-size:22px; margin-bottom:6px;">🏆</div>
+          <strong style="color:var(--green);">ضمان القبول</strong>
+          <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">قبول دراساتك من المرة الأولى</p>
+        </div>
+        <div style="background:var(--cyan-light); border-radius:10px; padding:14px; text-align:center;">
+          <div style="font-size:22px; margin-bottom:6px;">⚡</div>
+          <strong style="color:#0077aa;">سرعة التنفيذ</strong>
+          <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">جداول زمنية ملزمة ومضمونة</p>
+        </div>
+        <div style="background:var(--gold-light); border-radius:10px; padding:14px; text-align:center;">
+          <div style="font-size:22px; margin-bottom:6px;">🔬</div>
+          <strong style="color:#b45309;">فريق علمي</strong>
+          <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">خبراء دكتوراه وماجستير</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== TAB 2: STRATEGY =================== -->
+  <div class="section" id="strategy">
+    <div class="section-title">🎯 الاستراتيجية الإعلانية</div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🗺️</div> نهج الاستهداف الجغرافي</div>
+      <div class="grid-2">
+        <div>
+          <p style="font-weight:700; color:var(--green); margin-bottom:10px;">🇸🇦 المملكة العربية السعودية</p>
+          <ul class="check-list">
+            <li>الرياض – المركز التجاري والصناعي</li>
+            <li>الجبيل الصناعية – عملاء الطاقة والصناعة</li>
+            <li>جدة – مشاريع البنية التحتية والعقارات</li>
+            <li>الدمام والمنطقة الشرقية – النفط والغاز</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:700; color: #0077aa; margin-bottom:10px;">🇪🇬 جمهورية مصر العربية</p>
+          <ul class="check-list">
+            <li>القاهرة الكبرى – المشاريع الحكومية والخاصة</li>
+            <li>الإسكندرية – الصناعات والمصانع الساحلية</li>
+            <li>العاصمة الإدارية الجديدة – مشاريع ضخمة</li>
+            <li>مناطق التنمية الاقتصادية والمدن الصناعية</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🔭</div> أهداف الحملة الرئيسية</div>
+      <div class="grid-3">
+        <div class="metric">
+          <div class="m-num">الوعي</div>
+          <div class="m-lbl">بناء البراند كمرجع في الاستشارات البيئية</div>
+        </div>
+        <div class="metric cyan">
+          <div class="m-num">العملاء المحتملون</div>
+          <div class="m-lbl">توليد استفسارات من صانعي القرار</div>
+        </div>
+        <div class="metric gold">
+          <div class="m-num">التحويل</div>
+          <div class="m-lbl">تحويل الزوار لعروض أسعار وعقود</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">📝</div> أمثلة على نصوص الإعلانات المقترحة</div>
+
+      <div style="border: 1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:14px; background:#f8fdfa;">
+        <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">إعلان بحثي – حملة دراسات الأثر البيئي</div>
+        <div style="color:#1a0dab; font-size:15px; font-weight:700;">دروب البيئة | دراسة الأثر البيئي EIA معتمدة</div>
+        <div style="color:var(--green); font-size:13px;">www.droob-env.com</div>
+        <div style="font-size:14px; margin-top:6px; color:#333;">+15 عاماً خبرة • قبول مضمون من الجهات الرسمية • فريق علمي متخصص. احصل على دراستك البيئية بسرعة قياسية — تواصل الآن!</div>
+      </div>
+
+      <div style="border: 1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:14px; background:#f8fdfa;">
+        <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">إعلان بحثي – حملة التصاريح البيئية</div>
+        <div style="color:#1a0dab; font-size:15px; font-weight:700;">تصريح بيئي لمشروعك – معتمد ومضمون</div>
+        <div style="color:var(--green); font-size:13px;">www.droob-env.com</div>
+        <div style="font-size:14px; margin-top:6px; color:#333;">لا تتأخر في تصاريحك البيئية — التأخير يعني خسائر مالية. دروب البيئة تُنجز دراستك وتضمن موافقة الجهات الرقابية.</div>
+      </div>
+
+      <div style="border: 1px solid var(--border); border-radius:10px; padding:16px; background:#f8fdfa;">
+        <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">إعلان شبكة الإعراض – الوعي بالبراند</div>
+        <div style="color:#1a0dab; font-size:15px; font-weight:700;">شريككم البيئي الاستراتيجي | دروب البيئة</div>
+        <div style="color:var(--green); font-size:13px;">www.droob-env.com</div>
+        <div style="font-size:14px; margin-top:6px; color:#333;">ندعم مشاريعكم لتحقيق الامتثال البيئي الكامل وفق رؤية 2030. استشارة مجانية لمشروعك اليوم.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== TAB 3: CAMPAIGNS =================== -->
+  <div class="section" id="campaigns">
+    <div class="section-title">📢 هيكل الحملات والكلمات المفتاحية</div>
+
+    <!-- Campaign 1 -->
+    <div class="campaign-card">
+      <div class="campaign-header search">
+        <div>
+          <h3>الحملة 1 – شبكة البحث | الطلب المباشر</h3>
+          <p>استهداف من يبحث مباشرةً عن خدمات EIA والتصاريح البيئية</p>
+        </div>
+        <span class="badge" style="background:rgba(255,255,255,0.2); color:white; border-color:rgba(255,255,255,0.3);">الأعلى أولوية</span>
+      </div>
+      <div class="campaign-body">
+        <div class="grid-2">
+          <div>
+            <p style="font-size:13px; font-weight:700; color:var(--text-muted); margin-bottom:8px;">🇸🇦 كلمات سعودية</p>
+            <div class="kw-chips">
+              <span class="kw-chip">دراسة الأثر البيئي</span>
+              <span class="kw-chip">EIA السعودية</span>
+              <span class="kw-chip">تصريح بيئي</span>
+              <span class="kw-chip">اشتراطات بيئية مشروع</span>
+              <span class="kw-chip">استشارات بيئية الرياض</span>
+              <span class="kw-chip">دراسة بيئية مصنع</span>
+              <span class="kw-chip">EMP خطة إدارة بيئية</span>
+              <span class="kw-chip">شركة بيئية جبيل</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:13px; font-weight:700; color:var(--text-muted); margin-bottom:8px;">🇪🇬 كلمات مصرية</p>
+            <div class="kw-chips">
+              <span class="kw-chip blue">دراسة تقييم الأثر البيئي مصر</span>
+              <span class="kw-chip blue">هيئة البيئة المصرية</span>
+              <span class="kw-chip blue">استشارات بيئية القاهرة</span>
+              <span class="kw-chip blue">موافقة بيئية مشروع</span>
+              <span class="kw-chip blue">تقرير EEAA</span>
+              <span class="kw-chip blue">شركة استشارات بيئية مصر</span>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-3">
+          <div><strong style="font-size:13px;">نوع المطابقة:</strong><br><span style="font-size:13px; color:var(--text-muted);">Exact + Phrase Match</span></div>
+          <div><strong style="font-size:13px;">العرض اليومي:</strong><br><span style="font-size:13px; color:var(--text-muted);">200–350 ريال / يوم</span></div>
+          <div><strong style="font-size:13px;">استراتيجية العروض:</strong><br><span style="font-size:13px; color:var(--text-muted);">Target CPA / Maximize Leads</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Campaign 2 -->
+    <div class="campaign-card">
+      <div class="campaign-header display">
+        <div>
+          <h3>الحملة 2 – شبكة الإعراض | الوعي بالبراند</h3>
+          <p>الوصول لصانعي القرار في الشركات الصناعية والمقاولات</p>
+        </div>
+        <span class="badge" style="background:rgba(255,255,255,0.2); color:white; border-color:rgba(255,255,255,0.3);">وعي ومتابعة</span>
+      </div>
+      <div class="campaign-body">
+        <div class="grid-2">
+          <div>
+            <p style="font-size:13px; font-weight:700; color:var(--text-muted); margin-bottom:8px;">استهداف الجمهور</p>
+            <ul class="check-list">
+              <li>مديرو المشاريع والمصانع</li>
+              <li>أصحاب شركات المقاولات</li>
+              <li>مدراء الامتثال والجودة</li>
+              <li>المستثمرون في الطاقة المتجددة</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-size:13px; font-weight:700; color:var(--text-muted); margin-bottom:8px;">مواقع الاستهداف</p>
+            <div class="kw-chips">
+              <span class="kw-chip blue">مواقع هندسية وصناعية</span>
+              <span class="kw-chip blue">بوابات الطاقة المتجددة</span>
+              <span class="kw-chip blue">مجلات البناء والمقاولات</span>
+              <span class="kw-chip blue">الصحف الاقتصادية</span>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-3">
+          <div><strong style="font-size:13px;">تنسيق الإعلان:</strong><br><span style="font-size:13px; color:var(--text-muted);">Responsive Display Ads</span></div>
+          <div><strong style="font-size:13px;">العرض اليومي:</strong><br><span style="font-size:13px; color:var(--text-muted);">80–120 ريال / يوم</span></div>
+          <div><strong style="font-size:13px;">الهدف:</strong><br><span style="font-size:13px; color:var(--text-muted);">CPM / Maximize Impressions</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Campaign 3 -->
+    <div class="campaign-card">
+      <div class="campaign-header pmax">
+        <div>
+          <h3>الحملة 3 – Performance Max | الاستهداف الذكي</h3>
+          <p>الاستفادة من ذكاء Google لاستهداف العملاء المثاليين عبر جميع القنوات</p>
+        </div>
+        <span class="badge" style="background:rgba(255,255,255,0.2); color:white; border-color:rgba(255,255,255,0.3);">ذكاء اصطناعي</span>
+      </div>
+      <div class="campaign-body">
+        <p style="font-size:14px; color:var(--text-muted); margin-bottom:14px;">تعمل P.Max على Search + Display + YouTube + Gmail معاً بشكل موحد وذكي</p>
+        <div class="grid-2">
+          <div>
+            <p style="font-size:13px; font-weight:700; color:var(--text-muted); margin-bottom:8px;">Asset Groups المقترحة</p>
+            <ul class="check-list">
+              <li>مجموعة: دراسات الأثر البيئي EIA</li>
+              <li>مجموعة: إدارة النفايات الخطرة</li>
+              <li>مجموعة: معالجة وإعادة تأهيل الأراضي</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-size:13px; font-weight:700; color:var(--text-muted); margin-bottom:8px;">Audience Signals</p>
+            <div class="kw-chips">
+              <span class="kw-chip purple">قائمة زوار الموقع</span>
+              <span class="kw-chip purple">قوائم العملاء الحاليين</span>
+              <span class="kw-chip purple">Custom Intent Audiences</span>
+              <span class="kw-chip purple">Similar Audiences</span>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-3">
+          <div><strong style="font-size:13px;">الاستراتيجية:</strong><br><span style="font-size:13px; color:var(--text-muted);">Maximize Conversion Value</span></div>
+          <div><strong style="font-size:13px;">العرض اليومي:</strong><br><span style="font-size:13px; color:var(--text-muted);">150–250 ريال / يوم</span></div>
+          <div><strong style="font-size:13px;">مدة التعلم:</strong><br><span style="font-size:13px; color:var(--text-muted);">6–8 أسابيع أولى</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🔑</div> الكلمات السلبية الأساسية (Negative Keywords)</div>
+      <p style="font-size:14px; color:var(--text-muted); margin-bottom:12px;">يجب إضافتها لتجنب الإنفاق على بحث غير ذي صلة:</p>
+      <div class="kw-chips">
+        <span class="kw-chip" style="background:#fef2f2; color:#b91c1c; border-color:#fca5a5;">وظائف بيئية</span>
+        <span class="kw-chip" style="background:#fef2f2; color:#b91c1c; border-color:#fca5a5;">دراسة علوم بيئة</span>
+        <span class="kw-chip" style="background:#fef2f2; color:#b91c1c; border-color:#fca5a5;">تعليم بيئي</span>
+        <span class="kw-chip" style="background:#fef2f2; color:#b91c1c; border-color:#fca5a5;">أبحاث بيئة</span>
+        <span class="kw-chip" style="background:#fef2f2; color:#b91c1c; border-color:#fca5a5;">مجانية</span>
+        <span class="kw-chip" style="background:#fef2f2; color:#b91c1c; border-color:#fca5a5;">تدريب بيئي</span>
+        <span class="kw-chip" style="background:#fef2f2; color:#b91c1c; border-color:#fca5a5;">كورس</span>
+        <span class="kw-chip" style="background:#fef2f2; color:#b91c1c; border-color:#fca5a5;">جامعة</span>
+        <span class="kw-chip" style="background:#fef2f2; color:#b91c1c; border-color:#fca5a5;">نباتات</span>
+        <span class="kw-chip" style="background:#fef2f2; color:#b91c1c; border-color:#fca5a5;">حيوانات</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== TAB 4: AUDIENCE =================== -->
+  <div class="section" id="audience">
+    <div class="section-title">👥 الجمهور المستهدف</div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🧑‍💼</div> صانعو القرار – الشخصيات المستهدفة (Buyer Personas)</div>
+      <div class="grid-2">
+        <div class="audience-card">
+          <h4>🏭 مدير المصنع أو المنشأة الصناعية</h4>
+          <p><strong>تحدياته:</strong> الحصول على تصاريح بيئية سريعة، تجنب الغرامات، الاستمرارية الإنتاجية.</p>
+          <p style="margin-top:8px;"><strong>رسالتنا:</strong> "ضمن امتثالك البيئي واستمر في الإنتاج دون انقطاع."</p>
+          <div style="margin-top:10px;">
+            <span class="badge badge-green">LinkedIn</span>
+            <span class="badge badge-cyan">Google Search</span>
+          </div>
+        </div>
+        <div class="audience-card">
+          <h4>🏗️ مدير مشروع في شركة مقاولات</h4>
+          <p><strong>تحدياته:</strong> الالتزام بالجدول الزمني، استخراج اشتراطات البيئة لمشروع ضخم.</p>
+          <p style="margin-top:8px;"><strong>رسالتنا:</strong> "التأخير في التصاريح = خسائر. نُنجز دراستك في الوقت المحدد."</p>
+          <div style="margin-top:10px;">
+            <span class="badge badge-green">Google Search</span>
+            <span class="badge badge-gold">Display</span>
+          </div>
+        </div>
+        <div class="audience-card">
+          <h4>💡 مستثمر في مشاريع الطاقة المتجددة</h4>
+          <p><strong>تحدياته:</strong> التوافق مع متطلبات رؤية 2030، الحصول على موافقات سريعة.</p>
+          <p style="margin-top:8px;"><strong>رسالتنا:</strong> "شريككم نحو مستقبل أخضر ومستدام وفق رؤية 2030."</p>
+          <div style="margin-top:10px;">
+            <span class="badge badge-cyan">P.Max</span>
+            <span class="badge badge-green">Search</span>
+          </div>
+        </div>
+        <div class="audience-card">
+          <h4>🏥 مدير بيئة في مستشفى أو مجموعة صحية</h4>
+          <p><strong>تحدياته:</strong> إدارة النفايات الطبية الخطرة وفق البروتوكولات العالمية.</p>
+          <p style="margin-top:8px;"><strong>رسالتنا:</strong> "إدارة نفاياتك الطبية بأعلى معايير السلامة الدولية."</p>
+          <div style="margin-top:10px;">
+            <span class="badge badge-gold">Display</span>
+            <span class="badge badge-green">Search</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">⚙️</div> إعدادات الاستهداف التقني المقترحة</div>
+      <div class="grid-2">
+        <div>
+          <p style="font-weight:700; margin-bottom:10px; font-size:14px;">In-Market Audiences (Google)</p>
+          <ul class="check-list">
+            <li>B2B – Industrial Services & Consulting</li>
+            <li>Construction Equipment & Services</li>
+            <li>Environmental Services</li>
+            <li>Business & Industrial Machinery</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:700; margin-bottom:10px; font-size:14px;">Custom Intent Audiences</p>
+          <ul class="check-list">
+            <li>زوار مواقع منافسين محددين</li>
+            <li>باحثون عن: EIA، EEAA، هيئة البيئة</li>
+            <li>مستخدمو تطبيقات هندسية وصناعية</li>
+            <li>قراء بوابات الطاقة المتجددة</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== TAB 5: FINANCIAL =================== -->
+  <div class="section" id="financial">
+    <div class="section-title">💰 العرض المالي التفصيلي</div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🧮</div> حاسبة الميزانية التفاعلية</div>
+      <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">اضبط الميزانية الشهرية لترى التوقعات المحتملة:</p>
+
+      <div class="budget-slider-wrap">
+        <div class="slider-row">
+          <span class="slider-label">ميزانية الإعلانات (شهري)</span>
+          <input type="range" id="adBudget" min="5000" max="50000" step="1000" value="15000" oninput="calcROI()">
+          <span class="slider-val" id="adBudgetVal">15,000 ر.س</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-label">متوسط قيمة العقد</span>
+          <input type="range" id="dealVal" min="10000" max="300000" step="5000" value="50000" oninput="calcROI()">
+          <span class="slider-val" id="dealValOut">50,000 ر.س</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-label">معدل التحويل المتوقع</span>
+          <input type="range" id="convRate" min="1" max="10" step="1" value="3" oninput="calcROI()">
+          <span class="slider-val" id="convRateOut">3%</span>
+        </div>
+      </div>
+
+      <div class="roi-box" id="roiBox">
+        <div><div class="r-num" id="leadsCount">45</div><div class="r-lbl">استفسار شهري متوقع</div></div>
+        <div><div class="r-num" id="dealsCount">1.4</div><div class="r-lbl">عقد محتمل / شهر</div></div>
+        <div><div class="r-num" id="roiVal">+150%</div><div class="r-lbl">عائد الاستثمار ROI</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">📋</div> جدول الأسعار – باقات إدارة الحملات</div>
+
+      <div class="grid-3" style="margin-bottom:24px;">
+        <!-- Basic -->
+        <div style="border:1px solid var(--border); border-radius:14px; padding:22px; background:white;">
+          <div style="font-size:13px; color:var(--text-muted); margin-bottom:6px;">باقة</div>
+          <div style="font-size:20px; font-weight:900; color:var(--text);">التأسيس</div>
+          <div style="font-size:26px; font-weight:900; color:var(--green); margin:12px 0;">3,500 <span style="font-size:14px; font-weight:400;">ر.س/شهر</span></div>
+          <ul class="check-list" style="font-size:13px;">
+            <li>حملة بحثية واحدة</li>
+            <li>50 كلمة مفتاحية</li>
+            <li>إعداد وإطلاق الحملة</li>
+            <li>تقرير شهري</li>
+            <li>ميزانية إعلانات: 5–10 آلاف</li>
+          </ul>
+          <div style="margin-top:14px; font-size:12px; color:var(--text-muted);">رسوم لمرة واحدة للإعداد: 2,000 ر.س</div>
+        </div>
+
+        <!-- Pro -->
+        <div style="border:2px solid var(--green); border-radius:14px; padding:22px; background:var(--green-light); position:relative;">
+          <div style="position:absolute; top:-12px; right:50%; transform:translateX(50%); background:var(--green); color:white; font-size:11px; font-weight:700; padding:4px 14px; border-radius:20px;">الأكثر طلباً</div>
+          <div style="font-size:13px; color:var(--text-muted); margin-bottom:6px;">باقة</div>
+          <div style="font-size:20px; font-weight:900; color:var(--text);">النمو</div>
+          <div style="font-size:26px; font-weight:900; color:var(--green); margin:12px 0;">6,500 <span style="font-size:14px; font-weight:400;">ر.س/شهر</span></div>
+          <ul class="check-list" style="font-size:13px;">
+            <li>3 حملات (بحث + إعراض + P.Max)</li>
+            <li>150+ كلمة مفتاحية</li>
+            <li>إدارة ومتابعة أسبوعية</li>
+            <li>تقارير أسبوعية وشهرية</li>
+            <li>تحسين مستمر للإعلانات</li>
+            <li>ميزانية إعلانات: 15–30 آلاف</li>
+          </ul>
+          <div style="margin-top:14px; font-size:12px; color:var(--text-muted);">رسوم لمرة واحدة للإعداد: 3,500 ر.س</div>
+        </div>
+
+        <!-- Enterprise -->
+        <div style="border:1px solid var(--border); border-radius:14px; padding:22px; background:white;">
+          <div style="font-size:13px; color:var(--text-muted); margin-bottom:6px;">باقة</div>
+          <div style="font-size:20px; font-weight:900; color:var(--text);">الريادة</div>
+          <div style="font-size:26px; font-weight:900; color:var(--green); margin:12px 0;">12,000 <span style="font-size:14px; font-weight:400;">ر.س/شهر</span></div>
+          <ul class="check-list" style="font-size:13px;">
+            <li>حملات غير محدودة – سوقان</li>
+            <li>300+ كلمة مفتاحية</li>
+            <li>مدير حساب مخصص</li>
+            <li>تقارير يومية + dashboard</li>
+            <li>A/B testing مستمر</li>
+            <li>تصميم صفحات هبوط (Landing Pages)</li>
+            <li>ميزانية إعلانات: 30–50 آلاف</li>
+          </ul>
+          <div style="margin-top:14px; font-size:12px; color:var(--text-muted);">رسوم لمرة واحدة للإعداد: 5,000 ر.س</div>
+        </div>
+      </div>
+
+      <table class="fin-table">
+        <thead>
+          <tr>
+            <th>البند</th>
+            <th>التأسيس</th>
+            <th>النمو ⭐</th>
+            <th>الريادة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight"><td>إعداد الحساب وبنية الحملات</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>بحث الكلمات المفتاحية</td><td>أساسي</td><td>متقدم</td><td>شامل</td></tr>
+          <tr class="highlight"><td>كتابة نصوص الإعلانات</td><td>✓</td><td>✓</td><td>✓ + A/B</td></tr>
+          <tr><td>إعداد تتبع التحويلات</td><td>—</td><td>✓</td><td>✓ محدث</td></tr>
+          <tr class="highlight"><td>تقارير الأداء</td><td>شهري</td><td>أسبوعي</td><td>يومي + Dashboard</td></tr>
+          <tr><td>تحسين عروض الأسعار</td><td>شهري</td><td>أسبوعي</td><td>يومي</td></tr>
+          <tr class="highlight"><td>استهداف سوقين (SA + EG)</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>صفحات هبوط Landing Pages</td><td>—</td><td>—</td><td>✓ (3 صفحات)</td></tr>
+          <tr><td>تقرير المنافسين</td><td>—</td><td>ربع سنوي</td><td>شهري</td></tr>
+          <tr class="total"><td><strong>الإجمالي الشهري (إدارة فقط)</strong></td><td><strong>3,500 ر.س</strong></td><td><strong>6,500 ر.س</strong></td><td><strong>12,000 ر.س</strong></td></tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:14px; padding:12px 16px; background:var(--gold-light); border-radius:10px; border:1px solid #fcd34d;">
+        <strong style="color:#b45309; font-size:13px;">📌 ملاحظة:</strong>
+        <span style="font-size:13px; color:#92400e;"> الأسعار أعلاه هي رسوم إدارة الحملة فقط، لا تشمل ميزانية الإعلانات التي تُدفع مباشرةً لـ Google. يُنصح بتخصيص ميزانية لا تقل عن 3× رسوم الإدارة.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🤝</div> شروط العمل والضمانات</div>
+      <div class="grid-2">
+        <ul class="check-list">
+          <li>عقد 3 أشهر كحد أدنى للمرحلة التجريبية</li>
+          <li>تقارير شفافة كاملة لكل ريال يُنفق</li>
+          <li>ملكية كاملة لحساب Google Ads للعميل</li>
+          <li>إمكانية الإلغاء بعد 3 أشهر بإشعار 30 يوم</li>
+        </ul>
+        <ul class="check-list">
+          <li>اجتماع شهري لمراجعة الأداء والأهداف</li>
+          <li>خصم 10% عند الدفع ربع السنوي</li>
+          <li>خصم 15% عند الدفع نصف سنوي</li>
+          <li>تجربة مجانية 2 أسبوع (الإعداد + الإطلاق)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== TAB 6: TIMELINE =================== -->
+  <div class="section" id="timeline">
+    <div class="section-title">📅 خطة التنفيذ التفصيلية</div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🗓️</div> الجدول الزمني – 6 أشهر</div>
+      <div class="grid-2">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-month">الأسبوع 1–2 | التأسيس والإعداد</div>
+            <div class="tl-text">تدقيق الموقع – بحث الكلمات المفتاحية – إعداد حساب Google Ads – بنية الحملات – كتابة الإعلانات – إعداد تتبع التحويلات.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-month">الأسبوع 3–6 | الإطلاق والمراقبة</div>
+            <div class="tl-text">إطلاق الحملات البحثية أولاً – مراقبة يومية لمعدلات النقر والتحويل – تعديل عروض الأسعار – إيقاف الكلمات غير المحققة.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-month">الشهر 2 | التوسع التدريجي</div>
+            <div class="tl-text">إطلاق حملات الإعراض – بدء P.Max – إضافة الكلمات المفتاحية الناجحة – استبعاد الكلمات السلبية المكتشفة.</div>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-month">الشهر 3 | التحسين والتقرير الأول</div>
+            <div class="tl-text">مراجعة شاملة للأداء – تقرير الشهر الأول – A/B testing للإعلانات – تعديل الاستهداف الجغرافي وفق النتائج.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-month">الشهر 4–5 | النضج والتوسع</div>
+            <div class="tl-text">زيادة الميزانية في القنوات الناجحة – استهداف كلمات منافسين – Landing Pages متخصصة لكل قطاع.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-month">الشهر 6 | مراجعة الاستراتيجية</div>
+            <div class="tl-text">تقرير ROI شامل – خطة الـ 6 أشهر القادمة – مقترحات إضافة YouTube Ads وcampaigns موسمية.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">📏</div> مؤشرات الأداء الرئيسية KPIs</div>
+      <table class="kw-table">
+        <thead>
+          <tr>
+            <th>المؤشر</th>
+            <th>الهدف (شهر 1–2)</th>
+            <th>الهدف (شهر 3–6)</th>
+            <th>الأداة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Click-Through Rate (CTR)</td>
+            <td>3–5%</td>
+            <td>6–10%</td>
+            <td>Google Ads</td>
+          </tr>
+          <tr>
+            <td>Cost Per Lead (CPL)</td>
+            <td>200–400 ر.س</td>
+            <td>100–200 ر.س</td>
+            <td>Google Ads + CRM</td>
+          </tr>
+          <tr>
+            <td>Conversion Rate</td>
+            <td>2–4%</td>
+            <td>4–8%</td>
+            <td>Google Analytics 4</td>
+          </tr>
+          <tr>
+            <td>Quality Score (متوسط)</td>
+            <td>5–6</td>
+            <td>7–9</td>
+            <td>Google Ads</td>
+          </tr>
+          <tr>
+            <td>Impression Share</td>
+            <td>40–55%</td>
+            <td>60–80%</td>
+            <td>Google Ads</td>
+          </tr>
+          <tr>
+            <td>Return on Ad Spend (ROAS)</td>
+            <td>200–300%</td>
+            <td>400–700%</td>
+            <td>تتبع مخصص</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">💼</div> الخطوة القادمة</div>
+      <div style="text-align:center; padding:20px;">
+        <p style="font-size:16px; color:var(--text-muted); margin-bottom:20px;">هل أنت مستعد لإطلاق حملتك الإعلانية وجذب عملاء جدد؟</p>
+        <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+          <a href="/Contact" style="background:var(--green); color:white; padding:14px 28px; border-radius:10px; font-weight:700; font-size:15px; text-decoration:none; display:inline-block;">
+            📞 احجز استشارة مجانية
+          </a>
+          <a href="/Contact?intent=quote" style="border:2px solid var(--green); color:var(--green); padding:14px 28px; border-radius:10px; font-weight:700; font-size:15px; text-decoration:none; display:inline-block;">
+            📄 طلب عرض سعر رسمي
+          </a>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:16px;">info@noqtatain.com | www.noqtatain.com</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function calcROI() {
+  const budget = parseInt(document.getElementById('adBudget').value);
+  const dealVal = parseInt(document.getElementById('dealVal').value);
+  const rate = parseInt(document.getElementById('convRate').value) / 100;
+  const cpc = 12;
+  const clicks = Math.round(budget / cpc);
+  const leads = Math.round(clicks * 0.04);
+  const deals = (leads * rate).toFixed(1);
+  const revenue = parseFloat(deals) * dealVal;
+  const roi = Math.round(((revenue - budget) / budget) * 100);
+
+  document.getElementById('adBudgetVal').textContent = budget.toLocaleString('ar-SA') + ' ر.س';
+  document.getElementById('dealValOut').textContent = dealVal.toLocaleString('ar-SA') + ' ر.س';
+  document.getElementById('convRateOut').textContent = (rate * 100).toFixed(0) + '%';
+  document.getElementById('leadsCount').textContent = leads;
+  document.getElementById('dealsCount').textContent = deals;
+  document.getElementById('roiVal').textContent = '+' + roi + '%';
+}
+
+calcROI();
+</script>
+</body>
+</html>

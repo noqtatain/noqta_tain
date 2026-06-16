@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="/">
+<title>العرض التقني – مكيول</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#18181A;
+  --ink2:#2C2C30;
+  --ink3:#3E3E44;
+  --mist:#F5F3EE;
+  --mist2:#EDEAE3;
+  --mist3:#E2DDD5;
+  --salmon:#D4624A;
+  --salmon-l:#E8836A;
+  --salmon-xl:#F5C4B6;
+  --green:#3A8A5C;
+  --green-l:#EBF5EF;
+  --gold:#B8892E;
+  --gold-l:#FBF3E1;
+  --blue:#2563B0;
+  --blue-l:#EBF2FB;
+  --red-l:#FBF0EE;
+  --border:#DDD9D1;
+  --text:#18181A;
+  --text2:#5A5A62;
+  --text3:#9A9AA8;
+}
+
+body{
+  font-family:'Cairo',sans-serif;
+  background:var(--mist);
+  color:var(--text);
+  line-height:1.7;
+  font-size:15px;
+}
+
+/* ── COVER ── */
+.cover{
+  background:var(--ink);
+  color:white;
+  padding:80px 60px 70px;
+  position:relative;
+  overflow:hidden;
+}
+.cover-grid{
+  max-width:860px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:40px;
+  align-items:center;
+}
+.cover-eyebrow{
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--salmon-l);
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+.cover-title{
+  font-size:48px;
+  font-weight:900;
+  line-height:1.1;
+  margin-bottom:10px;
+}
+.cover-title span{color:var(--salmon-l);}
+.cover-sub{
+  font-size:17px;
+  color:rgba(255,255,255,0.55);
+  margin-bottom:36px;
+  font-weight:400;
+}
+.cover-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.chip{
+  font-size:12px;
+  font-weight:600;
+  padding:5px 14px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.12);
+  color:rgba(255,255,255,0.7);
+}
+.cover-logo{
+  text-align:center;
+}
+.logo-circle{
+  width:110px;height:110px;
+  border-radius:50%;
+  border:2px solid rgba(212,98,74,0.5);
+  display:flex;align-items:center;justify-content:center;
+  font-size:42px;
+  margin:0 auto 12px;
+}
+.logo-name{
+  font-size:22px;font-weight:900;
+  color:white;
+}
+.logo-tag{
+  font-size:11px;color:var(--salmon-l);
+  margin-top:2px;
+}
+.cover-strip{
+  background:var(--salmon);
+  padding:14px 60px;
+  display:flex;
+  gap:60px;
+  max-width:100%;
+}
+.strip-item{font-size:12px;color:rgba(255,255,255,0.8);}
+.strip-item strong{display:block;font-size:14px;color:white;font-weight:700;}
+
+/* ── PAGE ── */
+.page{max-width:860px;margin:0 auto;padding:60px 40px;}
+
+/* ── SERVICE BLOCK ── */
+.service-block{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  margin-bottom:32px;
+}
+.service-head{
+  padding:28px 32px 24px;
+  border-bottom:1px solid var(--border);
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:20px;
+  align-items:center;
+}
+.svc-icon{
+  width:52px;height:52px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;
+  flex-shrink:0;
+}
+.svc-icon.google{background:#EBF2FB;}
+.svc-icon.ads{background:var(--gold-l);}
+.svc-icon.menu{background:var(--green-l);}
+.svc-icon.photo{background:var(--red-l);}
+
+.svc-title{
+  font-size:21px;
+  font-weight:800;
+  color:var(--ink);
+}
+.svc-subtitle{
+  font-size:13px;
+  color:var(--text3);
+  margin-top:2px;
+}
+.price-box{
+  text-align:left;
+  white-space:nowrap;
+}
+.price-once{
+  font-size:11px;
+  color:var(--text3);
+  text-align:center;
+  margin-bottom:4px;
+}
+.price-val{
+  font-size:22px;
+  font-weight:900;
+  color:var(--salmon);
+  display:block;
+  text-align:center;
+}
+.price-val small{font-size:13px;font-weight:500;color:var(--text3);}
+.price-monthly{
+  margin-top:8px;
+  background:var(--mist);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:6px 12px;
+  text-align:center;
+}
+.price-monthly .lbl{font-size:10px;color:var(--text3);}
+.price-monthly .val{font-size:16px;font-weight:800;color:var(--blue);display:block;}
+
+/* ── SERVICE BODY ── */
+.service-body{padding:28px 32px;}
+
+.section-label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  color:var(--text3);
+  text-transform:uppercase;
+  margin-bottom:14px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--mist3);
+}
+
+/* overview */
+.overview-text{
+  font-size:14px;
+  color:var(--text2);
+  line-height:1.75;
+  margin-bottom:24px;
+}
+
+/* deliverables grid */
+.deliverables{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:28px;
+}
+.deliv{
+  background:var(--mist);
+  border:1px solid var(--mist3);
+  border-radius:10px;
+  padding:14px 16px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.deliv-check{
+  width:20px;height:20px;
+  border-radius:50%;
+  background:var(--green-l);
+  color:var(--green);
+  font-size:11px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+  flex-shrink:0;
+  margin-top:1px;
+}
+.deliv-text{
+  font-size:13px;
+  color:var(--ink);
+  font-weight:500;
+  line-height:1.5;
+}
+.deliv-sub{
+  font-size:11px;
+  color:var(--text3);
+  margin-top:2px;
+  font-weight:400;
+}
+
+/* tech stack */
+.tech-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:28px;
+}
+.tech-badge{
+  font-size:12px;
+  font-weight:600;
+  padding:5px 14px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  color:var(--text2);
+  background:white;
+}
+
+/* what we need from client */
+.needs-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-bottom:24px;
+}
+.needs-list li{
+  font-size:13px;
+  color:var(--text2);
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+.needs-list li::before{
+  content:'→';
+  color:var(--salmon);
+  font-weight:700;
+  flex-shrink:0;
+}
+
+/* timeline chips */
+.tl-row{
+  display:flex;
+  gap:0;
+  margin-bottom:24px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+}
+.tl-item{
+  flex:1;
+  padding:12px 14px;
+  border-left:1px solid var(--border);
+  text-align:center;
+}
+.tl-item:last-child{border-left:none;}
+.tl-phase{font-size:10px;color:var(--text3);font-weight:600;letter-spacing:1px;}
+.tl-action{font-size:12px;font-weight:700;color:var(--ink);margin-top:3px;}
+
+/* kpi table */
+.kpi-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:24px;
+}
+.kpi-card{
+  background:var(--mist);
+  border:1px solid var(--mist3);
+  border-radius:10px;
+  padding:14px;
+  text-align:center;
+}
+.kpi-val{
+  font-size:20px;
+  font-weight:900;
+  color:var(--salmon);
+  display:block;
+}
+.kpi-lbl{
+  font-size:11px;
+  color:var(--text3);
+  margin-top:3px;
+}
+
+/* note box */
+.note-box{
+  background:var(--gold-l);
+  border:1px solid rgba(184,137,46,0.25);
+  border-right:3px solid var(--gold);
+  border-radius:8px;
+  padding:12px 16px;
+  font-size:13px;
+  color:var(--ink2);
+  line-height:1.6;
+}
+.note-box.blue{
+  background:var(--blue-l);
+  border-color:rgba(37,99,176,0.2);
+  border-right-color:var(--blue);
+}
+.note-box.green{
+  background:var(--green-l);
+  border-color:rgba(58,138,92,0.2);
+  border-right-color:var(--green);
+}
+
+/* ── SUMMARY TABLE ── */
+.summary-wrap{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  margin-bottom:32px;
+}
+.summary-head{
+  background:var(--ink);
+  color:white;
+  padding:20px 28px;
+  font-size:17px;
+  font-weight:800;
+}
+table.summary{width:100%;border-collapse:collapse;}
+table.summary th{
+  text-align:right;
+  padding:12px 24px;
+  font-size:12px;
+  font-weight:700;
+  color:var(--text3);
+  border-bottom:1px solid var(--mist3);
+  letter-spacing:0.5px;
+}
+table.summary th.num{text-align:center;}
+table.summary td{
+  padding:16px 24px;
+  font-size:14px;
+  color:var(--ink);
+  border-bottom:1px solid var(--mist2);
+  vertical-align:middle;
+}
+table.summary td.num{text-align:center;}
+table.summary td.once{
+  font-weight:700;
+  color:var(--salmon);
+  text-align:center;
+  white-space:nowrap;
+}
+table.summary td.monthly{
+  font-weight:700;
+  color:var(--blue);
+  text-align:center;
+  white-space:nowrap;
+}
+table.summary td.dash{color:var(--text3);text-align:center;}
+table.summary tr:last-child td{border-bottom:none;}
+table.summary .total-row td{
+  background:var(--mist);
+  font-size:15px;
+  font-weight:800;
+  border-top:2px solid var(--border);
+}
+.svc-name-cell{font-weight:600;}
+.svc-name-cell small{display:block;font-size:11px;color:var(--text3);font-weight:400;margin-top:2px;}
+
+.grand-total{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:32px;
+}
+.total-card{
+  border-radius:14px;
+  padding:24px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.total-card.once-card{
+  background:rgba(212,98,74,0.07);
+  border:1px solid rgba(212,98,74,0.2);
+}
+.total-card.monthly-card{
+  background:var(--blue-l);
+  border:1px solid rgba(37,99,176,0.2);
+}
+.tc-label{font-size:13px;font-weight:600;color:var(--text2);}
+.tc-note{font-size:11px;color:var(--text3);margin-top:3px;}
+.tc-val{font-size:28px;font-weight:900;}
+.tc-val.s{color:var(--salmon);}
+.tc-val.b{color:var(--blue);}
+
+/* ── TERMS ── */
+.terms-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:32px;
+}
+.term-item{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px 18px;
+  display:flex;gap:12px;align-items:flex-start;
+}
+.term-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.term-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.term-body{font-size:12px;color:var(--text2);line-height:1.55;}
+
+/* footer */
+.footer{
+  background:var(--ink);
+  padding:36px 60px;
+  text-align:center;
+  color:rgba(255,255,255,0.4);
+  font-size:12px;
+}
+.footer strong{color:var(--salmon-l);}
+
+@media(max-width:680px){
+  .cover{padding:50px 24px 0;}
+  .cover-grid{grid-template-columns:1fr;gap:24px;}
+  .cover-strip{padding:14px 24px;gap:24px;flex-wrap:wrap;}
+  .page{padding:36px 20px;}
+  .service-head{grid-template-columns:auto 1fr;gap:14px;}
+  .price-box{grid-column:1/-1;}
+  .deliverables,.kpi-grid{grid-template-columns:1fr;}
+  .tl-row{flex-direction:column;}
+  .tl-item{border-left:none;border-bottom:1px solid var(--border);}
+  .grand-total,.terms-grid{grid-template-columns:1fr;}
+  .service-body{padding:20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-grid">
+    <div>
+      <div class="cover-eyebrow">العرض التقني والمالي التفصيلي</div>
+      <div class="cover-title">حضور رقمي محلي<br><span>يُحوّل البحث إلى زبائن</span></div>
+      <div class="cover-sub">مبني على Google Maps · Google Ads · منيو إلكتروني · تصوير احترافي</div>
+      <div class="cover-chips">
+        <span class="chip">🔍 Google Ads</span>
+        <span class="chip">🍽️ Online Menu + Payment</span>
+        <span class="chip">📸 Monthly Photo Session</span>
+      </div>
+    </div>
+    <div class="cover-logo">
+      <div class="logo-circle" style="overflow:hidden;padding:0;">
+        <img src="/makyol-logo.webp" alt="مكيول" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+      </div>
+      <div class="logo-name">مكيول</div>
+      <div class="logo-tag">Makyol · الرياض</div>
+    </div>
+  </div>
+</div>
+<div class="cover-strip">
+  <div class="strip-item"><strong>مكيول — مطعم مشاوي</strong>النسيم الشرقي، الرياض</div>
+  <div class="strip-item"><strong>3 خدمات رئيسية</strong>تقنية + تسويق + تصوير</div>
+  <div class="strip-item"><strong>تاريخ العرض</strong>مايو 2026</div>
+  <div class="strip-item"><strong>صالح لمدة</strong>30 يوم</div>
+</div>
+<div class="page">
+
+<!-- ══════════════════════════════════════════ -->
+<!--  SERVICE 2 — GOOGLE ADS                   -->
+<!-- ══════════════════════════════════════════ -->
+
+<div class="service-block">
+  <div class="service-head">
+    <div class="svc-icon ads">🔍</div>
+    <div>
+      <div class="svc-title">إدارة Google Ads — حملات بحثية وخرائط</div>
+      <div class="svc-subtitle">الظهور الأول عند كل عميل يبحث عن مطعم في الرياض</div>
+    </div>
+    <div class="price-box">
+      <div class="price-once">إعداد لمرة واحدة</div>
+      <span class="price-val">2,200 <small>ريال</small></span>
+      <div class="price-monthly">
+        <span class="lbl">إدارة شهرية</span>
+        <span class="val">1,800 <small style="font-size:11px;font-weight:500;">ريال/شهر</small></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-body">
+
+    <div class="overview-text">
+      نُطلق حملتين متكاملتين: <strong>Search Ads</strong> لاصطياد من يبحث بكلمات مفتاحية مباشرة مثل "مشاوي الرياض" و"فطور شامي"، و<strong>Local Campaigns</strong> التي تُظهر مكيول في Maps أعلى المنافسين مع زر "اتجاهات" مباشر. الميزانية الإعلانية يحددها العميل وتُدار بشكل مستقل عن رسوم الإدارة.
+    </div>
+
+    <div class="section-label">إعداد الحملات (مرة واحدة)</div>
+    <div class="deliverables">
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">بحث الكلمات المفتاحية</div><div class="deliv-sub">80+ كلمة مفتاحية عربية وإنجليزية</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">إعداد حملة Search Ads</div><div class="deliv-sub">3 Ad Groups: فطور / مشاوي / فرن وعرايس</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">إعداد Local Campaign (Maps)</div><div class="deliv-sub">ظهور على الخريطة + CTA مباشرة</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">كتابة 15+ نص إعلاني</div><div class="deliv-sub">Headlines + Descriptions + Extensions</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">إعداد Conversion Tracking</div><div class="deliv-sub">تتبع المكالمات، النقرات، الاتجاهات</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">استهداف جغرافي دقيق</div><div class="deliv-sub">دائرة 5 كم + أحياء محددة</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">إعداد جداول زمنية</div><div class="deliv-sub">تكثيف الإعلان أوقات الفطور والعشاء</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">ربط Google Analytics</div><div class="deliv-sub">GA4 + Google Tag Manager</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">الإدارة الشهرية المستمرة</div>
+    <div class="deliverables">
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">مراقبة يومية للحملات</div><div class="deliv-sub">رصد CPC، CTR، الإنفاق اليومي</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">تحسين مستوى الجودة</div><div class="deliv-sub">Quality Score لخفض تكلفة النقرة</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">إضافة Negative Keywords</div><div class="deliv-sub">تصفية نقرات غير ذات صلة أسبوعياً</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">A/B Testing للإعلانات</div><div class="deliv-sub">اختبار مستمر لأفضل النصوص</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">تقرير أداء شهري مفصل</div><div class="deliv-sub">Impressions, Clicks, Conversions, ROAS</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">تعديل حملات المواسم</div><div class="deliv-sub">رمضان، العيد، الوطني، الصيف</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">بنية الحملات المقترحة</div>
+    <div class="tl-row">
+      <div class="tl-item"><div class="tl-phase">حملة ١</div><div class="tl-action">فطور شامي وسعودي</div></div>
+      <div class="tl-item"><div class="tl-phase">حملة ٢</div><div class="tl-action">مشاوي ولحوم</div></div>
+      <div class="tl-item"><div class="tl-phase">حملة ٣</div><div class="tl-action">فرن وعرايس</div></div>
+      <div class="tl-item"><div class="tl-phase">حملة ٤</div><div class="tl-action">Maps (محلية)</div></div>
+      <div class="tl-item"><div class="tl-phase">حملة ٥</div><div class="tl-action">Remarketing</div></div>
+    </div>
+
+    <div class="section-label">التقنيات المُستخدمة</div>
+    <div class="tech-row">
+      <span class="tech-badge">Google Ads Manager</span>
+      <span class="tech-badge">Google Analytics 4</span>
+      <span class="tech-badge">Google Tag Manager</span>
+      <span class="tech-badge">Keyword Planner</span>
+      <span class="tech-badge">Conversion Tracking</span>
+      <span class="tech-badge">Responsive Search Ads</span>
+      <span class="tech-badge">Call Extensions</span>
+      <span class="tech-badge">Location Extensions</span>
+      <span class="tech-badge">Smart Bidding (Target CPA)</span>
+    </div>
+
+    <div class="note-box blue">
+      💡 <strong>ميزانية الإعلانات:</strong> تُدفع مباشرة لجوجل وهي مستقلة عن رسوم الإدارة. الحد الأدنى الموصى به <strong>3,000 ريال/شهر</strong> لتحقيق نتائج ملموسة. الميزانية المثلى <strong>5,000–8,000 ريال/شهر</strong> للسيطرة على المنطقة.
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  SERVICE 3 — ONLINE MENU + PAYMENT        -->
+<!-- ══════════════════════════════════════════ -->
+
+<div class="service-block">
+  <div class="service-head">
+    <div class="svc-icon menu">🍽️</div>
+    <div>
+      <div class="svc-title">منيو إلكتروني احترافي مع الدفع الإلكتروني</div>
+      <div class="svc-subtitle">من المسح إلى الطلب والدفع في أقل من 60 ثانية</div>
+    </div>
+    <div class="price-box">
+      <div class="price-once">تطوير لمرة واحدة</div>
+      <span class="price-val">5,500 <small>ريال</small></span>
+      <div class="price-monthly">
+        <span class="lbl">صيانة واستضافة</span>
+        <span class="val">100 <small style="font-size:11px;font-weight:500;">ريال/شهر</small></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-body">
+
+    <div class="overview-text">
+      منيو رقمي متكامل يُفتح بمسح QR Code بدون تحميل أي تطبيق. يعرض الأطباق بصور عالية الجودة مع وصف ومكونات، ويتيح للعميل تحديد الطلب وإتمام الدفع إلكترونياً عبر مدى أو فيزا أو آبل باي — مباشرة من الطاولة أو عن بُعد للتوصيل.
+    </div>
+
+    <div class="section-label">ما يشمله التطوير (مرة واحدة)</div>
+    <div class="deliverables">
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">تصميم واجهة مطابقة لهوية مكيول</div><div class="deliv-sub">ألوان، خطوط، لوغو — بالعربية والإنجليزية</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">رفع المنيو الكامل (14 فئة)</div><div class="deliv-sub">فطور شامي، سعودي، فول حجازي، مشاوي، فرن، عرايس، مقبلات، سندويشات، معصوب، فطائر، بيتزا، عصائر...</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">صفحة لكل طبق</div><div class="deliv-sub">صورة، وصف، المكونات، الأحجام والأسعار</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">بوابة دفع إلكتروني متكاملة</div><div class="deliv-sub">مدى، Visa/MC، Apple Pay، STC Pay</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">نظام طلبات داخلي (Dashboard)</div><div class="deliv-sub">استقبال الطلبات، حالة الطلب، الإشعارات</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">QR Code قابل للطباعة</div><div class="deliv-sub">للطاولات + بطاقات التوصيل + ستيكر المدخل</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">لوحة تحكم لتعديل الأسعار</div><div class="deliv-sub">تحديث فوري بدون الحاجة لمطور</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">ربط بـ Google Business</div><div class="deliv-sub">زر "اطلب الآن" من صفحة جوجل</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">الصيانة الشهرية تشمل</div>
+    <div class="deliverables">
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">استضافة وأمان (SSL)</div><div class="deliv-sub">uptime 99.9%، نسخ احتياطي يومي</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">تحديثات الأطباق والأسعار</div><div class="deliv-sub">حتى 10 تعديلات شهرياً</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">دعم تقني فوري</div><div class="deliv-sub">خلال 4 ساعات عمل</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">تقرير المبيعات الإلكترونية</div><div class="deliv-sub">أكثر الأطباق طلباً، أوقات الذروة</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">رحلة العميل</div>
+    <div class="tl-row">
+      <div class="tl-item"><div class="tl-phase">١</div><div class="tl-action">يمسح QR</div></div>
+      <div class="tl-item"><div class="tl-phase">٢</div><div class="tl-action">يتصفح المنيو</div></div>
+      <div class="tl-item"><div class="tl-phase">٣</div><div class="tl-action">يضيف للسلة</div></div>
+      <div class="tl-item"><div class="tl-phase">٤</div><div class="tl-action">يختار الطاولة/التوصيل</div></div>
+      <div class="tl-item"><div class="tl-phase">٥</div><div class="tl-action">يدفع إلكترونياً</div></div>
+    </div>
+
+    <div class="section-label">التقنيات المستخدمة</div>
+    <div class="tech-row">
+      <span class="tech-badge">Next.js (PWA)</span>
+      <span class="tech-badge">Arabic RTL First</span>
+      <span class="tech-badge">Moyasar / Stripe</span>
+      <span class="tech-badge">Apple Pay API</span>
+      <span class="tech-badge">STC Pay</span>
+      <span class="tech-badge">QR Code Generator</span>
+      <span class="tech-badge">Firebase Realtime DB</span>
+      <span class="tech-badge">Cloud Hosting (KSA)</span>
+    </div>
+
+    <div class="section-label">نحتاج من مكيول</div>
+    <ul class="needs-list">
+      <li>السجل التجاري لفتح بوابة الدفع (Moyasar أو مشابه)</li>
+      <li>قائمة الأطباق كاملة بالأسعار (موجودة في المنيو المرفق)</li>
+      <li>حساب بنكي باسم المطعم لاستقبال المدفوعات</li>
+    </ul>
+
+    <div class="note-box green">
+      ✅ <strong>ميزة تنافسية:</strong> 78% من عملاء المطاعم يفضلون الدفع الإلكتروني على النقد. المنيو الرقمي مع الدفع يزيد متوسط قيمة الطلب بـ 15–25% مقارنة بالطلب الشفهي.
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  SERVICE 4 — MONTHLY PHOTO SESSION        -->
+<!-- ══════════════════════════════════════════ -->
+
+<div class="service-block">
+  <div class="service-head">
+    <div class="svc-icon photo">📸</div>
+    <div>
+      <div class="svc-title">جلسة التصوير الشهرية الاحترافية</div>
+      <div class="svc-subtitle">محتوى بصري يشحذ الشهية ويُقنع قبل أن يُقرأ حرف واحد</div>
+    </div>
+    <div class="price-box">
+      <div class="price-once">&nbsp;</div>
+      <span class="price-val" style="visibility:hidden;">0</span>
+      <div class="price-monthly">
+        <span class="lbl">شهرياً</span>
+        <span class="val">2,200 <small style="font-size:11px;font-weight:500;">ريال/شهر</small></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-body">
+
+    <div class="overview-text">
+      المحتوى البصري هو العمود الفقري للحضور الرقمي. الصور الاحترافية لأطباق مكيول ستُستخدم في Google Business، المنيو الإلكتروني، إعلانات Google، ومنصات التواصل. جلسة شهرية منظمة تضمن تجدد المحتوى وتغطية المواسم والأطباق الجديدة.
+    </div>
+
+    <div class="section-label">ما يشمله كل جلسة شهرية</div>
+    <div class="deliverables">
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">3–4 ساعات تصوير في الموقع</div><div class="deliv-sub">بكاميرا احترافية full-frame</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">20 صورة أطباق نهائية</div><div class="deliv-sub">معالجة احترافية، ألوان دافئة تُحاكي الهوية</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">5 صور بيئة وأجواء</div><div class="deliv-sub">طاولات، أفران، لحظات تقديم الطعام</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">5 فيديوهات قصيرة (Reels)</div><div class="deliv-sub">10–30 ثانية، مناسبة لـ Google + Social</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">تسليم خلال 72 ساعة</div><div class="deliv-sub">بصيغ متعددة: JPEG عالي الدقة + Web مضغوط</div></div>
+      </div>
+      <div class="deliv">
+        <div class="deliv-check">✓</div>
+        <div><div class="deliv-text">توزيع فوري على كل القنوات</div><div class="deliv-sub">Google Business + المنيو + الإعلانات</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">تخطيط المحتوى السنوي</div>
+    <div class="tl-row">
+      <div class="tl-item"><div class="tl-phase">يناير–فبراير</div><div class="tl-action">المنيو الأساسي</div></div>
+      <div class="tl-item"><div class="tl-phase">رمضان</div><div class="tl-action">إفطار وسحور</div></div>
+      <div class="tl-item"><div class="tl-phase">صيف</div><div class="tl-action">مشاوي خارجية</div></div>
+      <div class="tl-item"><div class="tl-phase">وطني</div><div class="tl-action">هوية سعودية</div></div>
+      <div class="tl-item"><div class="tl-phase">شتاء</div><div class="tl-action">أطباق دافئة</div></div>
+    </div>
+
+    <div class="note-box">
+      💡 <strong>لماذا شهرياً وليس لمرة واحدة؟</strong> Google يُفضّل الملفات التجارية التي تُضاف إليها صور جديدة بانتظام — الملفات النشطة بصرياً تحصل على 42% ظهوراً أكثر في Maps مقارنة بالملفات الساكنة.
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  FINANCIAL SUMMARY                        -->
+<!-- ══════════════════════════════════════════ -->
+
+<div style="margin-bottom:12px; font-size:11px; font-weight:700; letter-spacing:2px; color:var(--text3); text-transform:uppercase; padding-top:8px;">الملخص المالي</div>
+
+<div class="summary-wrap">
+  <div class="summary-head">جدول التكاليف التفصيلي</div>
+  <table class="summary">
+    <thead>
+      <tr>
+        <th>الخدمة</th>
+        <th class="num">إعداد (مرة واحدة)</th>
+        <th class="num">اشتراك شهري</th>
+        <th class="num">ملاحظة</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="svc-name-cell">🔍 Google Ads Management<small>بحثي + Maps + Remarketing</small></td>
+        <td class="once">2,200 ريال</td>
+        <td class="monthly">1,800 ريال</td>
+        <td class="dash" style="font-size:12px;color:var(--text2);">ميزانية الإعلانات منفصلة</td>
+      </tr>
+      <tr>
+        <td class="svc-name-cell">🍽️ Online Menu + Payment<small>تطوير + لوحة تحكم + بوابة دفع</small></td>
+        <td class="once">5,500 ريال</td>
+        <td class="monthly">100 ريال</td>
+        <td class="dash" style="font-size:12px;color:var(--text2);">استضافة + صيانة + تحديثات</td>
+      </tr>
+      <tr>
+        <td class="svc-name-cell">📸 جلسة تصوير شهرية<small>20 صورة + 5 فيديوهات</small></td>
+        <td class="dash">—</td>
+        <td class="monthly">2,200 ريال</td>
+        <td class="dash" style="font-size:12px;color:var(--text2);">لا يوجد رسوم إعداد</td>
+      </tr>
+      <tr class="total-row">
+        <td style="font-weight:800;">المجموع</td>
+        <td class="once" style="font-size:18px;">7,700 ريال</td>
+        <td class="monthly" style="font-size:18px;">4,100 ريال</td>
+        <td class="dash">+ ميزانية إعلانات</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="grand-total">
+  <div class="total-card once-card">
+    <div>
+      <div class="tc-label">إجمالي التأسيس والإعداد</div>
+      <div class="tc-note">تُدفع مرة واحدة عند البدء</div>
+    </div>
+    <div class="tc-val s">7,700 <span style="font-size:16px;font-weight:500;">ريال</span></div>
+  </div>
+  <div class="total-card monthly-card">
+    <div>
+      <div class="tc-label">الاشتراك الشهري الكامل</div>
+      <div class="tc-note">3 خدمات متكاملة — بدون إعلانات</div>
+    </div>
+    <div class="tc-val b">4,100 <span style="font-size:16px;font-weight:500;">ريال</span></div>
+  </div>
+</div>
+
+<div style="background:var(--gold-l);border:1px solid rgba(184,137,46,0.2);border-radius:12px;padding:18px 22px;margin-bottom:32px;">
+  <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:8px;">💰 ميزانية إعلانات Google (تُدفع لجوجل مباشرة)</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+    <div style="background:white;border-radius:8px;padding:12px;text-align:center;border:1px solid var(--border);">
+      <div style="font-size:13px;color:var(--text2);">حد أدنى</div>
+      <div style="font-size:20px;font-weight:800;color:var(--ink);">3,000</div>
+      <div style="font-size:11px;color:var(--text3);">ريال/شهر</div>
+    </div>
+    <div style="background:var(--salmon);border-radius:8px;padding:12px;text-align:center;">
+      <div style="font-size:12px;color:rgba(255,255,255,0.8);">موصى به ⭐</div>
+      <div style="font-size:20px;font-weight:800;color:white;">5,000</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.7);">ريال/شهر</div>
+    </div>
+    <div style="background:white;border-radius:8px;padding:12px;text-align:center;border:1px solid var(--border);">
+      <div style="font-size:13px;color:var(--text2);">سيطرة تامة</div>
+      <div style="font-size:20px;font-weight:800;color:var(--ink);">8,000+</div>
+      <div style="font-size:11px;color:var(--text3);">ريال/شهر</div>
+    </div>
+  </div>
+</div>
+
+<!-- TERMS -->
+<div style="margin-bottom:12px; font-size:11px; font-weight:700; letter-spacing:2px; color:var(--text3); text-transform:uppercase;">شروط وأحكام العرض</div>
+
+<div class="terms-grid">
+  <div class="term-item">
+    <div class="term-icon">📅</div>
+    <div><div class="term-title">مدة العقد</div><div class="term-body">3 أشهر كحد أدنى لضمان ظهور النتائج. التجديد تلقائي ما لم يُلغَ قبل شهر.</div></div>
+  </div>
+  <div class="term-item">
+    <div class="term-icon">💳</div>
+    <div><div class="term-title">شروط الدفع</div><div class="term-body">رسوم الإعداد (7,700 ريال) مقدماً. الاشتراك الشهري في اليوم الأول من كل شهر.</div></div>
+  </div>
+  <div class="term-item">
+    <div class="term-icon">🔐</div>
+    <div><div class="term-title">ملكية الحسابات</div><div class="term-body">جميع الحسابات (Google Ads، Analytics، المنيو) باسم مكيول ويحتفظ بها بعد انتهاء العقد.</div></div>
+  </div>
+  <div class="term-item">
+    <div class="term-icon">📊</div>
+    <div><div class="term-title">التقارير</div><div class="term-body">تقرير مفصل في نهاية كل شهر يشمل الأداء الكامل لجميع الخدمات.</div></div>
+  </div>
+  <div class="term-item">
+    <div class="term-icon">⚡</div>
+    <div><div class="term-title">وقت التسليم</div><div class="term-body">إطلاق Ads خلال 10 أيام. المنيو الإلكتروني خلال 21 يوماً.</div></div>
+  </div>
+  <div class="term-item">
+    <div class="term-icon">📌</div>
+    <div><div class="term-title">صلاحية العرض</div><div class="term-body">هذا العرض صالح لمدة 30 يوماً من تاريخ الإصدار. الأسعار شاملة ضريبة القيمة المضافة.</div></div>
+  </div>
+</div>
+
+</div><!-- end page -->
+
+<div class="footer">
+  <div style="margin-bottom:6px;">هذا العرض حصري وخاص بـ <strong>مطعم مكيول · الرياض</strong></div>
+  <div>جميع الأسعار بالريال السعودي وتشمل ضريبة القيمة المضافة · مايو 2026</div>
+</div>
+
+</body>
+</html>

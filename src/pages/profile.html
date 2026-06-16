@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بروفايل شركة نقطتين 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --navy:    #0D1B2E;
+  --navy2:   #132238;
+  --navy3:   #1a2d47;
+  --purple:  #7B5EA7;
+  --purpleL: #9B7EC8;
+  --purpleD: #5C4080;
+  --white:   #FFFFFF;
+  --offW:    #F5F5F7;
+  --lgray:   #E8E8EE;
+  --muted:   #8A9BB0;
+}
+body { font-family:'Tajawal',sans-serif; background:#111827; direction:rtl; }
+
+/* ── PAGE SHELL ── */
+.page {
+  width:210mm; max-width:100%;
+  min-height:297mm;
+  margin:0 auto 16px;
+  position:relative; overflow:hidden;
+  background:var(--white);
+  page-break-after:always;
+}
+@media print {
+  body { background:#fff; }
+  .page { margin:0; box-shadow:none; }
+}
+
+@media (max-width: 768px) {
+  body {
+    background:#0f172a;
+    overflow-x:hidden;
+  }
+
+  .page {
+    width:100%;
+    min-height:auto;
+    margin:0 auto 12px;
+  }
+
+  .floating-actions {
+    right:12px;
+    left:12px;
+    bottom:12px;
+  }
+
+  .fab {
+    width:100%;
+    padding:12px 14px;
+  }
+
+  /* Avoid spaced-out Arabic glyphs on compact screens. */
+  .cover-badge,
+  .sec-label,
+  .vsec-lbl,
+  .vals-title,
+  .svc-ov-hdr .lbl {
+    letter-spacing:normal !important;
+    text-transform:none !important;
+  }
+}
+
+/* ── SHARED COMPONENTS ── */
+.ph {
+  padding:16px 40px;
+  display:flex; align-items:center; gap:12px;
+  border-bottom:1px solid var(--lgray);
+  background:#fff;
+}
+.ph img { width:50px; }
+.ph .pt { font-size:10px; font-weight:700; color:var(--purple); letter-spacing:2px; text-transform:uppercase; flex:1; }
+.ph .pg { font-size:10px; color:var(--muted); letter-spacing:2px; }
+
+.pf {
+  padding:12px 40px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:1px solid var(--lgray);
+  background:#fff;
+}
+.pf-dark {
+  padding:12px 40px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.brand { font-size:9px; font-weight:700; color:var(--muted); letter-spacing:3px; }
+.dots { display:flex; gap:6px; align-items:center; }
+.dots .dw { width:14px; height:14px; border-radius:50%; background:var(--navy); }
+.dots .dp { width:14px; height:14px; border-radius:50%; background:var(--purple); }
+.sec-label { font-size:9px; font-weight:700; letter-spacing:4px; color:var(--purpleL); text-transform:uppercase; }
+
+/* ══════════════════════════════════════
+   PAGE 1 — COVER
+══════════════════════════════════════ */
+.cover {
+  background:var(--navy);
+  min-height:297mm;
+  display:flex; flex-direction:column;
+  position:relative; overflow:hidden;
+}
+.cover-img {
+  position:absolute; inset:0;
+  background:url('sa-office-riyadh.jpg') center/cover no-repeat;
+  opacity:.15; filter:grayscale(60%);
+}
+.cover-grad {
+  position:absolute; inset:0;
+  background:linear-gradient(160deg,rgba(13,27,46,.97) 0%,rgba(13,27,46,.82) 55%,rgba(92,64,128,.35) 100%);
+}
+.cover-c1 { position:absolute;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,94,167,.22) 0%,transparent 70%);
+  top:-120px;left:-120px; }
+.cover-c2 { position:absolute;width:220px;height:220px;border-radius:50%;
+  border:1px solid rgba(123,94,167,.18);bottom:160px;right:50px; }
+.cover-c3 { position:absolute;width:80px;height:80px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.07);bottom:260px;left:70px; }
+
+.cover-top {
+  padding:36px 46px 0; position:relative;z-index:3;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.cover-top img { width:90px; }
+.cover-top .year { font-size:10px;color:rgba(255,255,255,.28);letter-spacing:3px; }
+
+.cover-mid {
+  flex:1; display:flex;flex-direction:column;
+  justify-content:center; padding:0 46px;
+  position:relative;z-index:3;
+}
+.cover-badge {
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:10px;font-weight:700;letter-spacing:4px;
+  color:var(--purpleL);text-transform:uppercase;margin-bottom:20px;
+}
+.cover-badge::before { content:'';width:28px;height:2px;background:var(--purpleL); }
+.cover-name { font-size:64px;font-weight:900;color:#fff;line-height:1;margin-bottom:6px;letter-spacing:-1px; }
+.cover-name-en { font-size:24px;font-weight:300;color:rgba(255,255,255,.4);letter-spacing:8px;margin-bottom:32px; }
+.cover-tagline {
+  font-size:16px;color:rgba(255,255,255,.68);line-height:1.9;
+  max-width:360px;margin-bottom:40px;
+  border-right:3px solid var(--purple);padding-right:16px;
+}
+.cover-tags { display:flex;gap:8px;flex-wrap:wrap; }
+.cover-tag {
+  background:rgba(123,94,167,.18);border:1px solid rgba(123,94,167,.35);
+  color:var(--purpleL);font-size:10px;font-weight:500;
+  padding:5px 13px;border-radius:20px;
+}
+
+.cover-bot {
+  padding:22px 46px;position:relative;z-index:3;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.cover-bot .web { font-size:10px;color:rgba(255,255,255,.28);letter-spacing:2px; }
+.cover-dots { display:flex;gap:8px; }
+.cover-dots .dw { width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.85); }
+.cover-dots .dp { width:16px;height:16px;border-radius:50%;background:var(--purple); }
+
+/* ══════════════════════════════════════
+   PAGE 2 — WELCOME
+══════════════════════════════════════ */
+.welcome { min-height:297mm;display:flex;flex-direction:column;background:#fff; }
+.welcome-img {
+  height:230px;position:relative;overflow:hidden;flex-shrink:0;
+}
+.welcome-img img { width:100%;height:100%;object-fit:cover;object-position:center 30%; }
+.welcome-img-text {
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(13,27,46,.75),rgba(123,94,167,.4));
+  display:flex;align-items:flex-end;padding:24px 40px;
+}
+.welcome-img-text h2 { font-size:34px;font-weight:900;color:#fff;line-height:1.25; }
+.welcome-body { flex:1;padding:28px 40px; display:flex;flex-direction:column;gap:18px; }
+.welcome-text { font-size:14px;color:#4a5a6e;line-height:2.1;max-width:520px; }
+.welcome-box {
+  background:linear-gradient(135deg,rgba(123,94,167,.08),rgba(13,27,46,.04));
+  border:1px solid rgba(123,94,167,.2);border-radius:14px;
+  padding:20px 22px;display:flex;align-items:flex-start;gap:14px;
+}
+.welcome-box .ic {
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--purple),var(--purpleD));
+  display:flex;align-items:center;justify-content:center;
+}
+.welcome-box p { font-size:13px;color:#3a4a5c;line-height:1.9; }
+.welcome-stats {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:2px;
+}
+.w-stat {
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#ffffff 0%,#f4efff 55%,#ebe3ff 100%);
+  border:1px solid rgba(123,94,167,.22);
+  border-radius:18px;
+  padding:13px 8px 11px;
+  text-align:center;
+  box-shadow:0 8px 18px rgba(13,27,46,.08);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+  min-width:80px;
+}
+.w-stat::after {
+  content:'';
+  position:absolute;
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  top:-24px;
+  left:-24px;
+  background:radial-gradient(circle,rgba(123,94,167,.18),transparent 70%);
+}
+.w-stat .wn {
+  font-size:25px;
+  font-weight:900;
+  color:var(--navy);
+  margin-bottom:0;
+  line-height:1.1;
+}
+.w-stat .wl {
+  font-size:11px;
+  color:#5f517c;
+  font-weight:700;
+  margin-top:0;
+  letter-spacing:.4px;
+}
+
+/* ══════════════════════════════════════
+   PAGE 3 — ABOUT
+══════════════════════════════════════ */
+.about { min-height:297mm;display:flex;flex-direction:column;background:#fff; }
+.about-grid {
+  flex:1;display:grid;grid-template-columns:1fr 1fr;gap:0;
+}
+.about-left { padding:32px 40px;display:flex;flex-direction:column;justify-content:center;gap:18px; }
+.about-title { font-size:32px;font-weight:900;color:var(--navy);line-height:1.25; }
+.about-title span { color:var(--purple); }
+.about-desc { font-size:13px;color:#4a5a6e;line-height:2; }
+.feat-list { display:flex;flex-direction:column;gap:12px; }
+.feat { display:flex;align-items:center;gap:12px; }
+.feat-ic {
+  width:34px;height:34px;border-radius:9px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--purple),var(--purpleD));
+  display:flex;align-items:center;justify-content:center;
+}
+.feat-tx { font-size:13px;color:#3a4a5c;font-weight:500; }
+.about-right { position:relative;overflow:hidden; }
+.about-right img { width:100%;height:100%;object-fit:cover; }
+.about-right::after {
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(13,27,46,.3),rgba(123,94,167,.15));
+}
+.about-badge {
+  position:absolute;bottom:24px;left:24px;z-index:2;
+  background:var(--purple);border-radius:12px;padding:14px 20px;text-align:center;
+}
+.about-badge .n { font-size:28px;font-weight:900;color:#fff; }
+.about-badge .l { font-size:10px;color:rgba(255,255,255,.7);margin-top:2px; }
+
+/* ══════════════════════════════════════
+   PAGE 4 — VISION / MISSION / VALUES
+══════════════════════════════════════ */
+.vision {
+  min-height:297mm;display:flex;flex-direction:column;
+  background:var(--navy);position:relative;overflow:hidden;
+}
+.vision-bg1 { position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,94,167,.18),transparent 70%);
+  top:-100px;right:-100px; }
+.vision-bg2 { position:absolute;width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,94,167,.1),transparent 70%);
+  bottom:60px;left:-60px; }
+.vision-body { flex:1;padding:28px 40px;display:flex;flex-direction:column;gap:22px;position:relative;z-index:2; }
+.vsec-lbl { font-size:9px;font-weight:700;letter-spacing:4px;color:var(--purpleL);text-transform:uppercase; }
+.vm-row { display:grid;grid-template-columns:1fr 1fr;gap:14px; }
+.vm-card {
+  border-radius:16px;padding:24px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.vm-mission { background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08); }
+.vm-vision { background:linear-gradient(135deg,rgba(123,94,167,.25),rgba(92,64,128,.2));border:1px solid rgba(123,94,167,.3); }
+.vm-card h3 { font-size:16px;font-weight:800;color:#fff; }
+.vm-card p { font-size:12px;color:rgba(255,255,255,.62);line-height:1.85; }
+.vals-title { font-size:9px;font-weight:700;letter-spacing:4px;color:var(--purpleL);text-transform:uppercase; }
+.vals-grid { display:grid;grid-template-columns:repeat(5,1fr);gap:10px; }
+.val {
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;padding:16px 10px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.val .vi { display:flex;align-items:center;justify-content:center; }
+.val .vl { font-size:11px;font-weight:600;color:rgba(255,255,255,.75); }
+.pf-dark {
+  padding:12px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.07);
+  position:relative;z-index:2;
+}
+
+/* ══════════════════════════════════════
+   PAGE 5 — SERVICES OVERVIEW
+══════════════════════════════════════ */
+.svc-ov { min-height:297mm;display:flex;flex-direction:column;background:#fff; }
+.svc-ov-hdr {
+  background:linear-gradient(135deg,var(--navy),var(--navy3));
+  padding:30px 40px;position:relative;overflow:hidden;
+}
+.svc-ov-hdr::after {
+  content:'';position:absolute;width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,94,167,.22),transparent 70%);
+  top:-80px;left:-60px;
+}
+.svc-ov-hdr .logo { width:55px;position:relative;z-index:2;margin-bottom:14px; }
+.svc-ov-hdr .lbl { font-size:9px;font-weight:700;letter-spacing:4px;color:var(--purpleL);text-transform:uppercase;position:relative;z-index:2;margin-bottom:8px; }
+.svc-ov-hdr h2 { font-size:30px;font-weight:900;color:#fff;line-height:1.25;position:relative;z-index:2;margin-bottom:8px; }
+.svc-ov-hdr p { font-size:12px;color:rgba(255,255,255,.55);position:relative;z-index:2;max-width:360px;line-height:1.8; }
+.svc-grid { flex:1;padding:22px 40px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start; }
+.svc-card {
+  background:var(--offW);border:1px solid var(--lgray);
+  border-radius:14px;padding:18px;
+  display:flex;align-items:flex-start;gap:14px;
+  position:relative;overflow:hidden;
+}
+.svc-card::before {
+  content:'';position:absolute;top:0;right:0;width:3px;height:100%;
+  background:var(--purple);border-radius:0 14px 14px 0;
+}
+.svc-ic {
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--purple),var(--purpleD));
+  display:flex;align-items:center;justify-content:center;
+}
+.svc-tx h4 { font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px; }
+.svc-tx p { font-size:11px;color:#6a7a8e;line-height:1.65; }
+
+/* ══════════════════════════════════════
+   PAGES 6–7 — SERVICE DETAIL (3-4 per page)
+══════════════════════════════════════ */
+.svc-page { min-height:297mm;display:flex;flex-direction:column;background:#fff; }
+
+.svc-hero {
+  height:155px;position:relative;overflow:hidden;flex-shrink:0;
+}
+.svc-hero img { width:100%;height:100%;object-fit:cover; }
+.svc-hero-ov {
+  position:absolute;inset:0;display:flex;align-items:flex-end;padding:18px 40px;
+}
+.svc-hero-ov .snum { font-size:9px;font-weight:700;letter-spacing:4px;color:rgba(255,255,255,.5);margin-bottom:4px; }
+.svc-hero-ov h2 { font-size:22px;font-weight:800;color:#fff;line-height:1.2; }
+.svc-hero-ov .ssub { font-size:12px;color:rgba(255,255,255,.68);margin-top:3px; }
+
+/* 4-service grid (2×2) */
+.svc-quad {
+
+  flex:1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:18px;
+}
+.svc-cell {
+  background:var(--offW);
+  border-radius:18px;
+  box-shadow:0 2px 12px rgba(123,94,167,0.07);
+  padding:28px 24px 22px 24px;
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+  border:none;
+  transition:transform 0.18s;
+}
+.svc-cell:hover {
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 6px 24px rgba(123,94,167,0.13);
+}
+.svc-cell .svc-desc { flex:1; }
+.svc-cell-img {
+  width:100%;
+  height:80px;
+  border-radius:12px;
+  overflow:hidden;
+  margin:10px 0 0 0;
+  box-shadow:0 1px 6px rgba(123,94,167,0.08);
+}
+.svc-cell-img img { width:100%;height:100%;object-fit:cover; }
+
+/* 3-service grid (3 columns) */
+.svc-triple {
+  padding:22px 40px 24px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:18px;
+  align-items:start;
+}
+.svc-col {
+  background:var(--offW);
+  border-radius:18px;
+  box-shadow:0 2px 12px rgba(123,94,167,0.07);
+  padding:28px 18px 22px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+  border:none;
+  transition:transform 0.18s;
+  align-self:start;
+}
+.svc-col:hover {
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 6px 24px rgba(123,94,167,0.13);
+}
+.svc-triple .svc-col .svc-desc { flex:unset; }
+.svc-triple .svc-quote,
+.svc-triple .svc-stats { margin-top:0; }
+
+/* shared cell/col inner elements */
+.svc-cell-hd,.svc-col-hd {
+  display:flex;align-items:center;gap:10px;
+}
+.svc-cell-hd h4,.svc-col-hd h4 {
+  font-size:13px;font-weight:800;color:var(--navy);
+}
+.ic3 {
+  width:32px;height:32px;border-radius:8px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--purple),var(--purpleD));
+  display:flex;align-items:center;justify-content:center;
+}
+.svc-sub { font-size:9px;color:var(--purpleL);font-weight:700;letter-spacing:1.5px; }
+.svc-desc { font-size:11px;color:#4a5a6e;line-height:1.85; }
+.svc-list { display:flex;flex-direction:column;gap:5px; }
+.svc-item {
+  display:flex;align-items:center;gap:7px;font-size:11px;color:#3a4a5c;
+}
+.svc-item::before {
+  content:'';width:5px;height:5px;border-radius:50%;background:var(--purple);flex-shrink:0;
+}
+.svc-stats { display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:auto; }
+.svc-stat {
+  background:linear-gradient(135deg,var(--navy),var(--navy3));
+  border-radius:8px;padding:10px;text-align:center;
+}
+.svc-stat .sn { font-size:15px;font-weight:800;color:var(--purpleL); }
+.svc-stat .sl { font-size:8px;color:rgba(255,255,255,.4);margin-top:2px; }
+.svc-quote {
+  background:linear-gradient(135deg,rgba(123,94,167,.08),rgba(13,27,46,.04));
+  border:1px solid rgba(123,94,167,.18);border-radius:10px;
+  padding:12px 14px;margin-top:auto;
+}
+.svc-quote .sq { font-size:18px;color:var(--purpleL);font-weight:900;line-height:1;margin-bottom:4px; }
+.svc-quote p { font-size:10px;color:#3a4a5c;line-height:1.75;font-style:italic; }
+
+/* ══════════════════════════════════════
+   PAGE 8 — METHODOLOGY
+══════════════════════════════════════ */
+.meth { min-height:297mm;display:flex;flex-direction:column;background:var(--offW); }
+.meth-hdr {
+  background:linear-gradient(135deg,var(--navy),var(--navy3));
+  padding:32px 40px;position:relative;overflow:hidden;
+}
+.meth-hdr::after {
+  content:'';position:absolute;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,94,167,.24),transparent 70%);
+  top:-70px;left:-50px;
+}
+.meth-hdr img { width:55px;position:relative;z-index:2; }
+.meth-hdr h2 { font-size:30px;font-weight:800;color:#fff;margin-top:14px;position:relative;z-index:2; }
+.meth-hdr p { font-size:12px;color:rgba(255,255,255,.55);margin-top:7px;position:relative;z-index:2;max-width:360px;line-height:1.8; }
+.meth-body { flex:1;padding:28px 40px;display:flex;flex-direction:column;justify-content:center;gap:12px; }
+.meth-step {
+  background:#fff;border-radius:14px;padding:18px 22px;
+  display:flex;align-items:flex-start;gap:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);
+  position:relative;
+}
+.meth-step::after {
+  content:'';position:absolute;bottom:-12px;right:44px;
+  width:2px;height:12px;background:var(--lgray);
+}
+.meth-step:last-child::after { display:none; }
+.step-num {
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--purple),var(--purpleD));
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;color:#fff;
+}
+.step-body h4 { font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px; }
+.step-body p { font-size:11px;color:#6a7a8e;line-height:1.7; }
+.step-ico { margin-right:auto;display:flex;align-items:center;opacity:.3; }
+
+/* ══════════════════════════════════════
+   PAGE 9 — WHY US
+══════════════════════════════════════ */
+.why { min-height:297mm;display:flex;flex-direction:column;background:#fff; }
+.why-top { display:grid;grid-template-columns:1fr 1fr;height:170px; }
+.why-tl {
+  background:var(--navy);padding:32px 40px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.why-tl::before {
+  content:'';position:absolute;width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,94,167,.28),transparent 70%);
+  top:-50px;left:-50px;
+}
+.why-tl img { width:55px;margin-bottom:10px;position:relative;z-index:2; }
+.why-tl h2 { font-size:26px;font-weight:800;color:#fff;position:relative;z-index:2;line-height:1.3; }
+.why-tr { position:relative;overflow:hidden; }
+.why-tr img { width:100%;height:100%;object-fit:cover; }
+.why-tr::after {
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(13,27,46,.45),rgba(123,94,167,.2));
+}
+.why-body { flex:1;padding:24px 40px; }
+.why-intro {
+  font-size:13px;color:#4a5a6e;line-height:2;margin-bottom:22px;
+  border-right:3px solid var(--purple);padding-right:14px;
+}
+.why-grid { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+.why-feat {
+  background:var(--offW);border-radius:13px;padding:18px 16px;
+  border:1px solid var(--lgray);position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:8px;
+}
+.why-feat::after {
+  content:'';position:absolute;bottom:0;right:0;
+  width:50px;height:50px;border-radius:50%;background:rgba(123,94,167,.07);
+}
+.why-feat .wic { display:flex;align-items:center;margin-bottom:2px; }
+.why-feat h4 { font-size:12px;font-weight:700;color:var(--navy); }
+.why-feat p { font-size:11px;color:#6a7a8e;line-height:1.65; }
+
+/* ══════════════════════════════════════
+   PAGE 10 — CLIENTS
+══════════════════════════════════════ */
+.clients { min-height:297mm;display:flex;flex-direction:column;background:var(--navy);position:relative;overflow:hidden; }
+.cl-bg { position:absolute;width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,94,167,.12),transparent 70%);
+  top:-100px;right:-100px; }
+.cl-hdr {
+  padding:32px 40px 20px;position:relative;z-index:2;
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.cl-hdr img { width:60px; }
+.cl-hdr-txt h2 { font-size:30px;font-weight:800;color:#fff;line-height:1.3;text-align:right; }
+.cl-hdr-txt p { font-size:11px;color:rgba(255,255,255,.4);margin-top:5px;text-align:right; }
+.cl-body { flex:1;padding:0 40px 32px;position:relative;z-index:2; }
+.cl-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px; }
+.cl-card {
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:18px 12px;text-align:center;position:relative;overflow:hidden;
+}
+.cl-card::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--purple),var(--purpleL));
+}
+.cl-card .cic {
+  width:56px;height:56px;border-radius:12px;background:#fff;
+  margin:0 auto 10px;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(123,94,167,0.08);
+  overflow:hidden;
+}
+.cl-card .cn { font-size:10px;font-weight:700;color:#fff;margin-bottom:2px;line-height:1.4; }
+.cl-card .cc { font-size:9px;color:rgba(255,255,255,.35); }
+.cl-tag {
+  background:rgba(123,94,167,.14);border:1px solid rgba(123,94,167,.22);
+  border-radius:12px;padding:18px 26px;text-align:center;
+  color:rgba(255,255,255,.75);font-size:14px;font-weight:500;line-height:1.7;
+}
+
+/* ══════════════════════════════════════
+   PAGE 11 — TEAM
+══════════════════════════════════════ */
+.team { min-height:297mm;display:flex;flex-direction:column;background:#fff; }
+.team-hdr {
+  background:linear-gradient(135deg,var(--navy),var(--navy3));
+  padding:24px 40px;display:flex;justify-content:space-between;align-items:center;
+}
+.team-hdr img { width:55px; }
+.team-hdr h2 { font-size:22px;font-weight:800;color:#fff; }
+.team-body { flex:1;padding:32px 40px; }
+.team-intro { font-size:13px;color:#4a5a6e;line-height:2;margin-bottom:30px;text-align:center;max-width:460px;margin-left:auto;margin-right:auto; }
+.org { display:flex;flex-direction:column;align-items:center; }
+.org-conn { width:2px;height:22px;background:var(--lgray);margin:0 auto; }
+.org-row { display:flex;justify-content:center;gap:14px; }
+.org-card {
+  background:var(--offW);border:1px solid var(--lgray);
+  border-radius:12px;padding:14px 16px;text-align:center;min-width:110px;
+}
+.org-card.ceo {
+  background:linear-gradient(135deg,var(--navy),var(--navy3));
+  border-color:var(--purple);min-width:140px;
+}
+.org-card.ceo .or { color:var(--purpleL); }
+.org-card.ceo .od { color:rgba(255,255,255,.5); }
+.org-av {
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--purpleD));
+  margin:0 auto 8px;display:flex;align-items:center;justify-content:center;
+}
+.or { font-size:9px;font-weight:700;color:var(--purple);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px; }
+.od { font-size:10px;color:#6a7a8e;line-height:1.4; }
+.org-h-line { width:100%;max-width:520px;height:2px;background:var(--lgray);margin:0 auto; }
+.team-depts { display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:24px; }
+.dept {
+  background:var(--offW);border:1px solid var(--lgray);
+  border-radius:10px;padding:13px;text-align:center;
+}
+.dept .dt { font-size:9px;font-weight:700;color:var(--purple);letter-spacing:1px;margin-bottom:6px; }
+.dept .dd { font-size:10px;color:#6a7a8e;line-height:1.6; }
+
+/* ══════════════════════════════════════
+   PAGE 12 — CONTACT
+══════════════════════════════════════ */
+.contact {
+  min-height:297mm;display:flex;flex-direction:column;
+  background:var(--navy);position:relative;overflow:hidden;
+}
+.ct-bg1 { position:absolute;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,94,167,.18),transparent 70%);
+  bottom:-140px;right:-140px; }
+.ct-bg2 { position:absolute;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,94,167,.09),transparent 70%);
+  top:80px;left:-70px; }
+.ct-body {
+  flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:50px 40px;position:relative;z-index:2;text-align:center;
+}
+.ct-logo { width:85px;margin-bottom:24px; }
+.ct-badge { font-size:9px;font-weight:700;letter-spacing:5px;color:var(--purpleL);text-transform:uppercase;margin-bottom:16px; }
+.ct-title { font-size:48px;font-weight:900;color:#fff;line-height:1.15;margin-bottom:16px; }
+.ct-title span { color:var(--purpleL); }
+.ct-sub { font-size:14px;color:rgba(255,255,255,.55);margin-bottom:40px;max-width:340px;line-height:1.8; }
+.ct-div { width:50px;height:2px;background:var(--purple);margin:0 auto 32px; }
+.ct-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:440px;margin-bottom:40px; }
+.ct-item {
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:13px;padding:20px 16px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.ct-item .cii { display:flex;align-items:center;justify-content:center; }
+.ct-item .cil { font-size:9px;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase; }
+.ct-item .civ { font-size:12px;font-weight:600;color:#fff;direction:ltr; }
+.ct-dots { display:flex;gap:10px;align-items:center;justify-content:center; }
+.ct-dots .dlw { width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.88); }
+.ct-dots .dlp { width:20px;height:20px;border-radius:50%;background:var(--purple); }
+.ct-dots .dlb { font-size:16px;font-weight:800;color:#fff;margin:0 6px; }
+
+/* ── FLOATING ACTION BUTTONS ── */
+.floating-actions {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fab {
+  border: 0;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--purple), var(--purpleD));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(13, 27, 46, .3);
+  transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+}
+.fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(13, 27, 46, .35);
+}
+.fab:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 20px rgba(13, 27, 46, .25);
+}
+@media print {
+  .floating-actions { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     PAGE 1 — COVER
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-img"></div>
+    <div class="cover-grad"></div>
+    <div class="cover-c1"></div>
+    <div class="cover-c2"></div>
+    <div class="cover-c3"></div>
+    <div class="cover-top">
+      <img src="https://noqtatain.com/logo-transparent.png" alt="نقطتين">
+      <span class="year">COMPANY PROFILE 2026</span>
+    </div>
+    <div class="cover-mid">
+      <div class="cover-badge">حيث تتحول الأفكار إلى واقع</div>
+      <div class="cover-name">نقطتين</div>
+      <div class="cover-name-en">NOQTATAIN</div>
+      <div class="cover-tagline">
+        تسويق · أتمتة · نمو<br>
+        نحوّل أفكارك إلى تجارب رقمية مؤثرة
+      </div>
+      <div class="cover-tags">
+        <span class="cover-tag">التسويق الرقمي</span>
+        <span class="cover-tag">الأتمتة</span>
+        <span class="cover-tag">تطوير المواقع</span>
+        <span class="cover-tag">تطبيقات الجوال</span>
+        <span class="cover-tag">UI/UX</span>
+        <span class="cover-tag">الهوية البصرية</span>
+      </div>
+    </div>
+    <div class="cover-bot">
+      <span class="web">www.noqtatain.com</span>
+      <div class="cover-dots"><div class="dw"></div><div class="dp"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 2 — WELCOME
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="welcome">
+    <div class="ph">
+      <img src="https://noqtatain.com/logo-dark.png" alt="فريق عمل عربي">
+      <span class="pt">كلمة ترحيبية</span>
+      <span class="pg">02 / 12</span>
+    </div>
+    <div class="welcome-img">
+      <img src="https://noqtatain.com/noqtatain.png" alt="اجتماع فريق عربي">
+      <div class="welcome-img-text">
+        <h2>مرحبًا بكم<br>في نقطتين</h2>
+      </div>
+    </div>
+    <div class="welcome-body">
+      <div class="sec-label">من نحن</div>
+      <p class="welcome-text">
+        نحوّل الأفكار إلى تجارب رقمية مؤثرة من خلال الدمج بين الإبداع والتقنية والاستراتيجية.
+        نعمل مع عملائنا لبناء حلول رقمية مبتكرة وقابلة للتوسع تلبي احتياجات المستقبل.
+      </p>
+      <div class="welcome-box">
+        <div class="ic">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p>في نقطتين، نؤمن بأن كل فكرة تستحق أن تُحوَّل إلى واقع ملموس. نجمع بين الخبرة التقنية والرؤية الإبداعية لنبني معك مستقبلاً رقمياً أقوى.</p>
+      </div>
+      <div class="welcome-stats">
+        <div class="w-stat"><div class="wn">+50</div><div class="wl">مشروع ناجح</div></div>
+        <div class="w-stat"><div class="wn">+30</div><div class="wl">عميل راضٍ</div></div>
+        <div class="w-stat"><div class="wn">5+</div><div class="wl">سنوات خبرة</div></div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="brand">NOQTATAIN · نقطتين</span>
+      <div class="dots"><span class="dw"></span><span class="dp"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 3 — ABOUT
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="about">
+    <div class="ph">
+      <img src="https://noqtatain.com/logo-dark.png" alt="نقطتين">
+      <span class="pt">من نحن</span>
+      <span class="pg">03 / 12</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-left">
+        <div class="sec-label">نبذة عنا</div>
+        <h2 class="about-title">نقطتين<br><span>شريكك الرقمي</span><br>المتكامل</h2>
+        <p class="about-desc">
+          نقطتين شركة متخصصة في الحلول الرقمية الحديثة، تقدم خدمات متكاملة تشمل التسويق والتطوير والاستشارات التقنية. نفهم احتياجات عملائنا بعمق ونحوّلها إلى حلول عملية تحقق نتائج ملموسة.
+        </p>
+        <div class="feat-list">
+          <div class="feat">
+            <div class="feat-ic">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="feat-tx">حلول مبنية على الاستراتيجية والبيانات</div>
+          </div>
+          <div class="feat">
+            <div class="feat-ic">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div class="feat-tx">تصميم يركز على تجربة المستخدم</div>
+          </div>
+          <div class="feat">
+            <div class="feat-ic">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="feat-tx">تقنيات حديثة وقابلة للتوسع</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right">
+        <img src="https://noqtatain.com/noqtatainoffice.png" alt="فريق عمل عربي مع لابتوب">
+        <div class="about-badge">
+          <div class="n">+50</div>
+          <div class="l">مشروع ناجح</div>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="brand">NOQTATAIN · نقطتين</span>
+      <div class="dots"><span class="dw"></span><span class="dp"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 4 — VISION / MISSION / VALUES
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="vision">
+    <div class="vision-bg1"></div>
+    <div class="vision-bg2"></div>
+    <div class="ph" style="background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07);">
+      <img src="https://noqtatain.com/logo-dark.png" alt="نقطتين">
+      <span class="pt" style="color:var(--purpleL);">الرؤية والرسالة</span>
+      <span class="pg" style="color:rgba(255,255,255,.25);">04 / 12</span>
+    </div>
+    <div class="vision-body">
+      <div class="vsec-lbl">الرؤية والرسالة والقيم</div>
+      <div class="vm-row">
+        <div class="vm-card vm-mission">
+          <div class="vm-ic">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9B7EC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <h3>رسالتنا</h3>
+          <p>تمكين الشركات من خلال حلول رقمية مبتكرة تعزز النمو والكفاءة وتفتح آفاقاً جديدة للنجاح في العالم الرقمي.</p>
+        </div>
+        <div class="vm-card vm-vision">
+          <div class="vm-ic">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9B7EC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>رؤيتنا</h3>
+          <p>أن نكون من الرواد في الشرق الأوسط في تقديم الحلول التقنية الإبداعية والموثوقة التي تُحدث فارقاً حقيقياً.</p>
+        </div>
+      </div>
+      <div>
+        <div class="vals-title" style="margin-bottom:14px;">قيمنا</div>
+        <div class="vals-grid">
+          <div class="val">
+            <div class="vi">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9B7EC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"/><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/><line x1="12" y1="22" x2="12" y2="18"/><line x1="4.22" y1="4.22" x2="7.05" y2="7.05"/><line x1="16.95" y1="16.95" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="7.05" y2="16.95"/><line x1="16.95" y1="7.05" x2="19.78" y2="4.22"/></svg>
+            </div>
+            <div class="vl">الابتكار</div>
+          </div>
+          <div class="val">
+            <div class="vi">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9B7EC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="vl">الجودة</div>
+          </div>
+          <div class="val">
+            <div class="vi">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9B7EC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <div class="vl">الشفافية</div>
+          </div>
+          <div class="val">
+            <div class="vi">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9B7EC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="vl">الشراكة</div>
+          </div>
+          <div class="val">
+            <div class="vi">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9B7EC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="vl">النمو</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pf-dark">
+      <span class="brand" style="color:rgba(255,255,255,.25);">NOQTATAIN · نقطتين</span>
+      <span style="font-size:9px;color:rgba(255,255,255,.2);letter-spacing:2px;">04 / 12</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 5 — SERVICES OVERVIEW
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="svc-ov">
+    <div class="svc-ov-hdr">
+      <img src="https://noqtatain.com/logo-transparent.png" alt="فريق عمل عربي" class="logo">
+      <div class="lbl">خدماتنا</div>
+      <h2>حلول رقمية<br>متكاملة</h2>
+      <p>نقدم مجموعة شاملة من الخدمات الرقمية المصممة لتلبية احتياجات عملك وتحقيق أهدافك.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div class="svc-tx"><h4>استراتيجيات التسويق</h4><p>خطط تسويقية مبنية على البيانات وتحليل السوق</p></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="svc-tx"><h4>التسويق الرقمي</h4><p>حملات إعلانية وإدارة منصات التواصل الاجتماعي</p></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        </div>
+        <div class="svc-tx"><h4>أتمتة التسويق والمبيعات</h4><p>أنظمة CRM وأتمتة العمليات لزيادة الكفاءة</p></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="svc-tx"><h4>تطوير المواقع الإلكترونية</h4><p>مواقع احترافية سريعة ومتوافقة مع جميع الأجهزة</p></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div class="svc-tx"><h4>تطوير تطبيقات الجوال</h4><p>تطبيقات iOS وAndroid بتجربة مستخدم سلسة</p></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+        </div>
+        <div class="svc-tx"><h4>تصميم UI/UX</h4><p>تجارب رقمية جذابة تزيد من تفاعل المستخدم</p></div>
+      </div>
+      <div class="svc-card" style="grid-column:1/-1;">
+        <div class="svc-ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="svc-tx"><h4>بناء الهوية والعلامة التجارية</h4><p>هويات بصرية قوية تعكس رؤيتك وتميزك في السوق</p></div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="brand">NOQTATAIN · نقطتين</span>
+      <div class="dots"><span class="dw"></span><span class="dp"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 6 — SERVICES 1-4 (2×2 grid)
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="svc-page">
+    <div class="svc-hero">
+      <img src="https://noqtatain.com/noqtatainfull.png" alt="عرض تقديمي لفريق عربي">
+      <div class="svc-hero-ov" style="background:linear-gradient(135deg,rgba(13,27,46,.88),rgba(123,94,167,.5));">
+        <div>
+          <div class="snum">خدمات التسويق والتقنية</div>
+          <h2>التسويق · الأتمتة · المواقع · التطبيقات</h2>
+          <div class="ssub">حلول رقمية متكاملة لنمو أعمالك</div>
+        </div>
+      </div>
+    </div>
+    <div class="svc-quad">
+      <!-- Service 1 -->
+      <div class="svc-cell">
+        <div class="svc-cell-hd">
+          <div class="ic3">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h4>استراتيجيات التسويق</h4>
+        </div>
+        <div class="svc-sub">خدمة 01 / 07</div>
+        <p class="svc-desc">نبني رؤية تسويقية واضحة مبنية على تحليل السوق وسلوك العملاء لتحقيق أفضل النتائج وتحقيق نمو مستدام لأعمالك.</p>
+        <div class="svc-quote">
+          <div class="sq">"</div>
+          <p>استراتيجية واضحة هي الفرق بين النمو والركود.</p>
+        </div>
+        <div class="svc-list">
+          <div class="svc-item">تحليل السوق والمنافسين</div>
+          <div class="svc-item">تحديد الجمهور المستهدف</div>
+          <div class="svc-item">بناء خطط تسويق متكاملة</div>
+          <div class="svc-item">قياس الأداء وتحسين الاستراتيجية</div>
+        </div>
+        <div class="svc-stats">
+          <div class="svc-stat"><div class="sn">+40%</div><div class="sl">نمو متوسط</div></div>
+          <div class="svc-stat"><div class="sn">3x</div><div class="sl">عائد الاستثمار</div></div>
+        </div>
+      </div>
+      <!-- Service 2 -->
+      <div class="svc-cell">
+        <div class="svc-cell-hd">
+          <div class="ic3">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h4>التسويق الرقمي</h4>
+        </div>
+        <div class="svc-sub">خدمة 02 / 07</div>
+        <p class="svc-desc">حلول تسويق رقمي متكاملة تساعدك على الوصول لجمهورك وزيادة الوعي بعلامتك وتحقيق نمو فعلي قابل للقياس.</p>
+        <div class="svc-quote">
+          <div class="sq">"</div>
+          <p>التسويق الرقمي الفعّال يبدأ بفهم الجمهور وينتهي بنتائج ملموسة.</p>
+        </div>
+        <div class="svc-list">
+          <div class="svc-item">إدارة الحملات الإعلانية (Google, Social)</div>
+          <div class="svc-item">تحسين محركات البحث (SEO)</div>
+          <div class="svc-item">التسويق عبر المحتوى</div>
+          <div class="svc-item">تحليل الأداء والتقارير</div>
+        </div>
+        <div class="svc-stats">
+          <div class="svc-stat"><div class="sn">5x</div><div class="sl">وصول أوسع</div></div>
+          <div class="svc-stat"><div class="sn">+60%</div><div class="sl">تفاعل أعلى</div></div>
+        </div>
+      </div>
+      <!-- Service 3 -->
+      <div class="svc-cell">
+        <div class="svc-cell-hd">
+          <div class="ic3">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+          </div>
+          <h4>أتمتة التسويق والمبيعات</h4>
+        </div>
+        <div class="svc-sub">خدمة 03 / 07</div>
+        <p class="svc-desc">نؤتمت عمليات التسويق والمبيعات لتوفير الوقت وزيادة الكفاءة وتحقيق نتائج مستدامة وقابلة للتوسع.</p>
+        <div class="svc-quote">
+          <div class="sq">"</div>
+          <p>الأتمتة ليست رفاهية — هي ضرورة لكل عمل يسعى للنمو.</p>
+        </div>
+        <div class="svc-list">
+          <div class="svc-item">إعداد أنظمة CRM</div>
+          <div class="svc-item">أتمتة الحملات التسويقية</div>
+          <div class="svc-item">بناء مسارات البيع (Funnels)</div>
+          <div class="svc-item">تكامل الأدوات والمنصات</div>
+        </div>
+        <div class="svc-stats">
+          <div class="svc-stat"><div class="sn">70%</div><div class="sl">توفير الوقت</div></div>
+          <div class="svc-stat"><div class="sn">2x</div><div class="sl">زيادة المبيعات</div></div>
+        </div>
+      </div>
+      <!-- Service 4 -->
+      <div class="svc-cell">
+        <div class="svc-cell-hd">
+          <div class="ic3">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h4>تطوير المواقع الإلكترونية</h4>
+        </div>
+        <div class="svc-sub">خدمة 04 / 07</div>
+        <p class="svc-desc">نصمم ونطور مواقع حديثة وسريعة الاستجابة تركز على تجربة المستخدم وتحقيق الأهداف التجارية بأعلى معايير الجودة.</p>
+        <div class="svc-quote">
+          <div class="sq">"</div>
+          <p>موقعك هو واجهتك الرقمية — اجعله يعكس احترافيتك.</p>
+        </div>
+        <div class="svc-list">
+          <div class="svc-item">تصميم وتطوير مواقع مخصصة</div>
+          <div class="svc-item">مواقع متوافقة مع جميع الأجهزة</div>
+          <div class="svc-item">تحسين السرعة والأداء</div>
+          <div class="svc-item">ربط الأنظمة والتكاملات</div>
+        </div>
+        <div class="svc-stats">
+          <div class="svc-stat"><div class="sn">99%</div><div class="sl">وقت التشغيل</div></div>
+          <div class="svc-stat"><div class="sn">&lt;2s</div><div class="sl">سرعة التحميل</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="brand">NOQTATAIN · نقطتين</span>
+      <span style="font-size:9px;color:var(--muted);letter-spacing:2px;">06 / 12</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 7 — SERVICES 5-7 (3-column grid)
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="svc-page">
+    <div class="svc-hero">
+      <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80" alt="مكتب حديث مع لابتوبات">
+      <div class="svc-hero-ov" style="background:linear-gradient(135deg,rgba(92,64,128,.9),rgba(13,27,46,.8));">
+        <div>
+          <div class="snum">خدمات التصميم والتطوير والهوية</div>
+          <h2>التطبيقات · UI/UX · الهوية البصرية</h2>
+          <div class="ssub">تجارب رقمية استثنائية وهوية تميزك</div>
+        </div>
+      </div>
+    </div>
+    <div class="svc-triple">
+      <!-- Service 5 -->
+      <div class="svc-col">
+        <div class="svc-col-hd">
+          <div class="ic3">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h4>تطوير تطبيقات الجوال</h4>
+        </div>
+        <div class="svc-sub">خدمة 05 / 07</div>
+        <p class="svc-desc">نطور تطبيقات جوال مبتكرة تلبي احتياجات المستخدم وتدعم نمو أعمالك بتصميم عصري وأداء عالٍ.</p>
+        <div class="svc-list">
+          <div class="svc-item">تطوير iOS و Android</div>
+          <div class="svc-item">تطبيقات هجينة (Hybrid)</div>
+          <div class="svc-item">تصميم واجهات جذابة</div>
+          <div class="svc-item">اختبار وتحسين الأداء</div>
+          <div class="svc-item">دعم وصيانة مستمرة</div>
+        </div>
+        <div class="svc-quote">
+          <div class="sq">"‎</div>
+          <p>تطبيق ناجح يبدأ بتجربة مستخدم استثنائية.</p>
+        </div>
+        <div class="svc-stats">
+          <div class="svc-stat"><div class="sn">iOS</div><div class="sl">&amp; Android</div></div>
+          <div class="svc-stat"><div class="sn">+95%</div><div class="sl">رضا المستخدم</div></div>
+        </div>
+      </div>
+      <!-- Service 6 -->
+      <div class="svc-col">
+        <div class="svc-col-hd">
+          <div class="ic3">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+          <h4>تصميم UI/UX</h4>
+        </div>
+        <div class="svc-sub">خدمة 06 / 07</div>
+        <p class="svc-desc">نصمم تجارب رقمية سهلة وجذابة تزيد من تفاعل المستخدم وتحسن معدل التحويل بشكل ملحوظ.</p>
+        <div class="svc-list">
+          <div class="svc-item">أبحاث المستخدم (User Research)</div>
+          <div class="svc-item">تصميم تجربة المستخدم (UX)</div>
+          <div class="svc-item">تصميم واجهات المستخدم (UI)</div>
+          <div class="svc-item">النماذج الأولية (Prototyping)</div>
+          <div class="svc-item">اختبار وتحسين التجربة</div>
+        </div>
+        <div class="svc-quote">
+          <div class="sq">"‎</div>
+          <p>التصميم الجيد ليس ما تراه — بل ما يجعل المستخدم يشعر بالراحة.</p>
+        </div>
+        <div class="svc-stats">
+          <div class="svc-stat"><div class="sn">+80%</div><div class="sl">تحسين التحويل</div></div>
+          <div class="svc-stat"><div class="sn">UX</div><div class="sl">محوري</div></div>
+        </div>
+      </div>
+      <!-- Service 7 -->
+      <div class="svc-col">
+        <div class="svc-col-hd">
+          <div class="ic3">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h4>الهوية والعلامة التجارية</h4>
+        </div>
+        <div class="svc-sub">خدمة 07 / 07</div>
+        <p class="svc-desc">نبني علامات تجارية قوية تعكس رؤيتك وتترك أثراً دائماً لدى جمهورك وتجعلك متميزاً في سوق مزدحم.</p>
+        <div class="svc-list">
+          <div class="svc-item">تصميم الشعارات</div>
+          <div class="svc-item">بناء الهوية البصرية الكاملة</div>
+          <div class="svc-item">دليل استخدام الهوية</div>
+          <div class="svc-item">استراتيجية العلامة التجارية</div>
+          <div class="svc-item">تصميم المواد التسويقية</div>
+        </div>
+        <div class="svc-quote">
+          <div class="sq">"‎</div>
+          <p>هويتك هي أول انطباع — اجعله لا يُنسى.</p>
+        </div>
+        <div class="svc-stats">
+          <div class="svc-stat"><div class="sn">Brand</div><div class="sl">Identity</div></div>
+          <div class="svc-stat"><div class="sn">100%</div><div class="sl">مخصص</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="brand">NOQTATAIN · نقطتين</span>
+      <span style="font-size:9px;color:var(--muted);letter-spacing:2px;">07 / 12</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 8 — METHODOLOGY
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="meth">
+    <div class="meth-hdr">
+      <img src="https://noqtatain.com/logo-transparent.png" alt="نقطتين">
+      <h2>منهجيتنا في العمل</h2>
+      <p>نتبع منهجية واضحة ومُثبتة تضمن تحقيق أفضل النتائج لعملائنا في كل مرحلة.</p>
+    </div>
+    <div class="meth-body">
+      <div class="meth-step">
+        <div class="step-num">١</div>
+        <div class="step-body"><h4>الفهم</h4><p>نبدأ بفهم عميق لاحتياجاتك وأهدافك وسوقك المستهدف لبناء أساس متين للمشروع.</p></div>
+        <div class="step-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D1B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+      </div>
+      <div class="meth-step">
+        <div class="step-num">٢</div>
+        <div class="step-body"><h4>التنظيم</h4><p>نضع خارطة طريق واضحة مع جدول زمني محدد وتوزيع مهام دقيق لضمان سير العمل بكفاءة.</p></div>
+        <div class="step-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D1B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+      </div>
+      <div class="meth-step">
+        <div class="step-num">٣</div>
+        <div class="step-body"><h4>التنفيذ</h4><p>ننفذ الحلول بأعلى معايير الجودة مع التواصل المستمر معك لضمان توافق النتائج مع توقعاتك.</p></div>
+        <div class="step-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D1B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+      </div>
+      <div class="meth-step">
+        <div class="step-num">٤</div>
+        <div class="step-body"><h4>الأتمتة</h4><p>نؤتمت العمليات القابلة للأتمتة لتوفير الوقت والموارد وضمان الاستدامة على المدى البعيد.</p></div>
+        <div class="step-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D1B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        </div>
+      </div>
+      <div class="meth-step">
+        <div class="step-num">٥</div>
+        <div class="step-body"><h4>النتائج</h4><p>نقيس الأداء ونحلل النتائج ونقدم تقارير شاملة مع توصيات للتحسين المستمر.</p></div>
+        <div class="step-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D1B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="brand">NOQTATAIN · نقطتين</span>
+      <span style="font-size:9px;color:var(--muted);letter-spacing:2px;">08 / 12</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 9 — WHY US
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="why">
+    <div class="why-top">
+      <div class="why-tl">
+        <img src="https://noqtatain.com/logo-transparent.png" alt="نقطتين">
+        <h2>لماذا<br>نقطتين؟</h2>
+      </div>
+      <div class="why-tr">
+        <img src="https://noqtatain.com/noqtatainfull.png" alt="">
+      </div>
+    </div>
+    <div class="why-body">
+      <p class="why-intro">
+        نحن لا نقدم خدمات فقط، بل نبني شراكات نجاح طويلة المدى. نفهم أعمالك كما تفهمها أنت، ونعمل معك كشريك حقيقي لا كمزود خدمة.
+      </p>
+      <div class="why-grid">
+        <div class="why-feat">
+          <div class="wic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7B5EA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <h4>فهم حقيقي للسوق</h4>
+          <p>خبرة عميقة في أسواق الشرق الأوسط وفهم دقيق لاحتياجات العملاء المحليين.</p>
+        </div>
+        <div class="why-feat">
+          <div class="wic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7B5EA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h4>حلول مخصصة</h4>
+          <p>لا نؤمن بالحلول الجاهزة. كل مشروع يحصل على استراتيجية مصممة خصيصاً لاحتياجاته.</p>
+        </div>
+        <div class="why-feat">
+          <div class="wic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7B5EA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h4>سرعة في التنفيذ</h4>
+          <p>نلتزم بالمواعيد ونحرص على تسليم المشاريع في الوقت المحدد دون المساس بالجودة.</p>
+        </div>
+        <div class="why-feat">
+          <div class="wic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7B5EA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h4>فريق متعدد التخصصات</h4>
+          <p>فريقنا يجمع خبراء التسويق والتطوير والتصميم لتقديم حلول متكاملة وشاملة.</p>
+        </div>
+        <div class="why-feat">
+          <div class="wic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7B5EA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h4>نتائج قابلة للقياس</h4>
+          <p>نركز على المؤشرات التي تهمك ونقدم تقارير شفافة تُظهر الأثر الحقيقي لعملنا.</p>
+        </div>
+        <div class="why-feat">
+          <div class="wic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7B5EA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h4>شراكة طويلة المدى</h4>
+          <p>نبني علاقات مستدامة مع عملائنا ونكون معهم في كل مرحلة من مراحل نموهم.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="brand">NOQTATAIN · نقطتين</span>
+      <span style="font-size:9px;color:var(--muted);letter-spacing:2px;">09 / 12</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 10 — CLIENTS & SUCCESS PARTNERS
+══════════════════════════════════════ -->
+<div class="page" style="background: linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 100%);">
+  <div style="padding: 50px 60px; direction: rtl; text-align: center;">
+    <!-- Header -->
+    <div style="margin-bottom: 50px;">
+      <img src="https://noqtatain.com/logo-transparent.png" alt="نقطتين" style="width: 50px; margin-bottom: 20px;">
+      <h1 style="font-size: 44px; color: var(--navy); font-weight: 700; margin-bottom: 10px;">شركاء<br>النجاح</h1>
+      <p style="font-size: 16px; color: #666; margin: 0;">عملاؤنا والشركات التي وثقوا بنا</p>
+    </div>
+
+    <!-- Cards Grid - All 10 companies -->
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 25px; margin: 50px 0;">
+      <!-- Clients Section -->
+      <div style="background: white; padding: 25px; border-radius: 14px; box-shadow: 0 4px 20px rgba(123, 94, 167, 0.12); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; border: 2px solid rgba(123, 94, 167, 0.1);">
+        <div style="width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+          <img src="https://website.emasteryacademy.com/assets/images/logo-1.svg" alt="ماستري أكاديمي" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div style="font-weight: 600; color: var(--navy); font-size: 13px; text-align: center;">ماستري أكاديمي</div>
+      </div>
+      
+      <div style="background: white; padding: 25px; border-radius: 14px; box-shadow: 0 4px 20px rgba(123, 94, 167, 0.12); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; border: 2px solid rgba(123, 94, 167, 0.1);">
+        <div style="width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+          <img src="https://acadimiat.com/assets/new-site/images/logo/logo.svg" alt="أكاديميات" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div style="font-weight: 600; color: var(--navy); font-size: 13px; text-align: center;">أكاديميات</div>
+      </div>
+      
+      <div style="background: white; padding: 25px; border-radius: 14px; box-shadow: 0 4px 20px rgba(123, 94, 167, 0.12); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; border: 2px solid rgba(123, 94, 167, 0.1);">
+        <div style="width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+          <img src="https://anardes.sa/new/images/newlogo.png" alt="أكاديمية أناردس" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div style="font-weight: 600; color: var(--navy); font-size: 13px; text-align: center;">أكاديمية أناردس</div>
+      </div>
+      
+      <div style="background: white; padding: 25px; border-radius: 14px; box-shadow: 0 4px 20px rgba(123, 94, 167, 0.12); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; border: 2px solid rgba(123, 94, 167, 0.1);">
+        <div style="width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; background-color: #000; border-radius: 8px;">
+          <img src="https://dpower.sa/img/_logo.png" alt="دي باور" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div style="font-weight: 600; color: var(--navy); font-size: 13px; text-align: center;">دي باور</div>
+      </div>
+      
+      <div style="background: white; padding: 25px; border-radius: 14px; box-shadow: 0 4px 20px rgba(123, 94, 167, 0.12); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; border: 2px solid rgba(123, 94, 167, 0.1);">
+        <div style="width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+          <img src="https://mudonglobal.com/wp-content/uploads/2024/05/MUDON-GLOBAL-LOGO-1.png" alt="مدن العقارية" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div style="font-weight: 600; color: var(--navy); font-size: 13px; text-align: center;">مدن العقارية</div>
+      </div>
+
+      <!-- Partners Section -->
+      <div style="background: linear-gradient(135deg, var(--purpleL) 0%, var(--purple) 100%); padding: 25px; border-radius: 14px; box-shadow: 0 4px 20px rgba(123, 94, 167, 0.2); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; border: 2px solid var(--purpleL);">
+        <div style="width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+          <img src="/H&T Logo-02.png" alt="H&T" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div style="font-weight: 600; color: white; font-size: 13px; text-align: center;">H&T</div>
+      </div>
+
+      <div style="background: linear-gradient(135deg, var(--purpleL) 0%, var(--purple) 100%); padding: 25px; border-radius: 14px; box-shadow: 0 4px 20px rgba(123, 94, 167, 0.2); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; border: 2px solid var(--purpleL);">
+        <div style="width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+          <img src="/Mr.mnto logo.png" alt="Mr.mnto" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div style="font-weight: 600; color: white; font-size: 13px; text-align: center;">Mr.mnto</div>
+      </div>
+
+      <div style="background: linear-gradient(135deg, var(--purpleL) 0%, var(--purple) 100%); padding: 25px; border-radius: 14px; box-shadow: 0 4px 20px rgba(123, 94, 167, 0.2); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; border: 2px solid var(--purpleL);">
+        <div style="width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+          <img src="/finoo-logo.png" alt="Finoo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div style="font-weight: 600; color: white; font-size: 13px; text-align: center;">Finoo</div>
+      </div>
+
+      <div style="background: linear-gradient(135deg, var(--purpleL) 0%, var(--purple) 100%); padding: 25px; border-radius: 14px; box-shadow: 0 4px 20px rgba(123, 94, 167, 0.2); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px; border: 2px solid var(--purpleL);">
+        <div style="width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+          <img src="/logo-safetyside.png" alt="Safety Side" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div style="font-weight: 600; color: white; font-size: 13px; text-align: center;">Safety Side</div>
+      </div>
+    </div>
+
+    <!-- Footer Tag -->
+    <div style="margin-top: 50px; padding-top: 30px; border-top: 2px solid rgba(123, 94, 167, 0.15);">
+      <p style="font-size: 15px; color: var(--navy); font-weight: 500;">معًا نصنع قيمة حقيقية ونجاحاً مستداماً</p>
+    </div>
+
+    <!-- Page Number -->
+    <div style="position: absolute; bottom: 40px; left: 60px; text-align: left;">
+      <span style="font-size: 9px; color: rgba(13, 27, 46, 0.25); letter-spacing: 2px;">10 / 11</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 11 — TEAM
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="team">
+    <div class="team-hdr">
+      <img src="https://noqtatain.com/logo-transparent.png" alt="نقطتين">
+      <h2>الهيكل الإداري</h2>
+      <span style="font-size:9px;color:rgba(255,255,255,.25);letter-spacing:3px;">11 / 12</span>
+    </div>
+    <div class="team-body">
+      <p class="team-intro">فريق متكامل من المتخصصين يعملون بتناغم لتحقيق أفضل النتائج لعملائنا.</p>
+      <div class="org">
+        <div class="org-row">
+          <div class="org-card ceo">
+            <div class="org-av">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="or">CEO</div>
+            <div class="od">المدير التنفيذي</div>
+          </div>
+        </div>
+        <div class="org-conn"></div>
+        <div class="org-h-line"></div>
+        <div class="org-row" style="margin-top:0;">
+          <div class="org-card">
+            <div class="org-av">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <div class="or">CMO</div><div class="od">مدير التسويق</div>
+          </div>
+          <div class="org-card">
+            <div class="org-av">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="or">CTO</div><div class="od">مدير التقنية</div>
+          </div>
+          <div class="org-card">
+            <div class="org-av">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg>
+            </div>
+            <div class="or">CDO</div><div class="od">مدير التصميم</div>
+          </div>
+          <div class="org-card">
+            <div class="org-av">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="or">CSM</div><div class="od">علاقات العملاء</div>
+          </div>
+        </div>
+        <div class="org-conn"></div>
+        <div class="team-depts">
+          <div class="dept"><div class="dt">فريق التسويق</div><div class="dd">استراتيجية · محتوى<br>إعلانات · SEO</div></div>
+          <div class="dept"><div class="dt">فريق التطوير</div><div class="dd">مواقع · تطبيقات<br>أتمتة · تكامل</div></div>
+          <div class="dept"><div class="dt">فريق التصميم</div><div class="dd">UI/UX · هوية<br>موشن · إنفوجرافيك</div></div>
+          <div class="dept"><div class="dt">فريق الدعم</div><div class="dd">متابعة · تقارير<br>دعم · صيانة</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="brand">NOQTATAIN · نقطتين</span>
+      <div class="dots"><span class="dw"></span><span class="dp"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 12 — CONTACT (back cover)
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="contact">
+    <div class="ct-bg1"></div>
+    <div class="ct-bg2"></div>
+    <div class="ct-body">
+      <img src="https://noqtatain.com/logo-transparent.png" alt="نقطتين" class="ct-logo">
+      <div class="ct-badge">لنبدأ رحلتنا معًا</div>
+      <div class="ct-title">تواصل<br><span>معنا</span></div>
+      <div class="ct-sub">نحن هنا لنحوّل أفكارك إلى واقع رقمي مؤثر. تواصل معنا اليوم وابدأ رحلة النجاح.</div>
+      <div class="ct-div"></div>
+      <div class="ct-grid">
+        <div class="ct-item">
+          <div class="cii">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9B7EC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="cil">الموقع</div>
+          <div class="civ">www.noqtatain.com</div>
+        </div>
+        <div class="ct-item">
+          <div class="cii">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9B7EC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="cil">البريد الإلكتروني</div>
+          <div class="civ">info@noqtatain.com</div>
+        </div>
+      </div>
+      <div class="ct-qr" style="margin:32px auto 0 auto;display:flex;justify-content:center;align-items:center;background:#fff;border-radius:18px;box-shadow:0 2px 12px rgba(123,94,167,0.10);padding:14px;width:120px;height:120px;">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://noqtatain.com/Contact" alt="QR code to contact page" style="width:92px;height:92px;">
+      </div>
+      <div style="height:32px;"></div>
+      <div class="ct-dots">
+        <div class="dlw"></div>
+        <div class="dlb">نقطتين</div>
+        <div class="dlp"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="floating-actions" aria-label="إجراءات سريعة">
+  <a class="fab" href="https://noqtatain.com/profile.pdf" target="_blank" rel="noopener noreferrer" download>تنزيل كملف PDF</a>
+  <a class="fab" id="shareBtn" href="#" role="button">مشاركة</a>
+  <a class="fab" href="https://noqtatain.com/Contact" target="_blank" rel="noopener noreferrer">تواصل معنا</a>
+</div>
+
+<script>
+  const shareBtn = document.getElementById('shareBtn');
+
+  if (shareBtn) {
+    shareBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      const message = 'مرحبا .. يسعدني أن أشاركك بروفايل شركة نقطتين.. للتسويق والأتمتة https://noqtatain.com/profile';
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    });
+  }
+</script>
+
+</body>
+</html>
