@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ANSWER_LABELS } from "./WameerDiagnostic";
+import noqtatainLogo from "@/assets/logo-transparent.png";
 
 /**
  * العرض الكامل — وامر العقارية × نقطتين
@@ -142,10 +143,19 @@ export default function WameerProposal() {
       }
     } catch (e) {
       // لا توجد إجابات محفوظة — يُعرض العرض بصيغته العامة
+    } finally {
+      // إعادة تصفير إجابات التشخيص بعد عرضها هنا، كي تبدأ أي زيارة لاحقة لصفحة التشخيص فارغة
+      localStorage.removeItem(STORAGE_KEY);
     }
   }, []);
 
   const hasAnswers = Object.keys(answers).length > 0;
+
+  const pageUrl = typeof window !== "undefined" ? window.location.href : "";
+  const ctaMessage = encodeURIComponent(
+    `مرحباً، أرغب في حجز جلسة عمل لمناقشة عرض نقطتين المقترح لشركة وامر العقارية.\nرابط العرض: ${pageUrl}`
+  );
+  const ctaWhatsappUrl = `https://wa.me/966543569492?text=${ctaMessage}`;
 
   return (
     <div dir="rtl" style={S.outer}>
@@ -155,6 +165,7 @@ export default function WameerProposal() {
       {/* الغلاف */}
       <section style={S.cover}>
         <div style={S.coverGlow} />
+        <img src={noqtatainLogo} alt="نقطتين" style={S.brandLogo} />
         <span style={S.brandMark}>نقطتين</span>
         <span style={S.brandSub}>Noqtatain · شريكك التقني في التسويق</span>
         <h1 style={S.coverTitle}>تحليل الأعمال والحضور الرقمي</h1>
@@ -163,7 +174,7 @@ export default function WameerProposal() {
           <span style={S.coverClientName}>شركة وامر العقارية</span>
           <span style={S.coverClientEn}>Wamer Real Estate</span>
         </div>
-        <span style={S.coverMeta}>وثيقة سرّية · فريق نقطتين · يونيو ٢٠٢٦</span>
+        <span style={S.coverMeta}>وثيقة خاصة · فريق نقطتين · يونيو ٢٠٢٦</span>
       </section>
 
       {/* الملخّص التنفيذي */}
@@ -317,7 +328,7 @@ export default function WameerProposal() {
           نقترح جلسة عمل مدّتها ٤٥ دقيقة لاستعراض الأولويات والاتفاق على نطاق المرحلة الأولى.
           فريق نقطتين جاهز للبدء فور موافقتكم.
         </p>
-        <button style={S.ctaBtn} onClick={() => window.open && window.open("https://wa.me/", "_blank")}>
+        <button style={S.ctaBtn} onClick={() => window.open && window.open(ctaWhatsappUrl, "_blank")}>
           حجز جلسة عمل
         </button>
         <span style={S.ctaContact}>نقطتين · info@noqtatain.com · الرياض</span>
@@ -387,6 +398,7 @@ const S = {
     background: "radial-gradient(circle,rgba(109,74,255,.25),transparent 65%)",
     pointerEvents: "none",
   },
+  brandLogo: { width: 44, height: 44, objectFit: "contain", display: "block", margin: "0 auto 12px", position: "relative" },
   brandMark: { fontSize: 26, fontWeight: 800, color: VIOLET, display: "block", position: "relative" },
   brandSub: { fontSize: 13, color: GOLD, display: "block", marginTop: 6, position: "relative" },
   coverTitle: { fontSize: "clamp(28px,6vw,46px)", fontWeight: 800, color: "#fff", margin: "36px 0 8px", position: "relative", lineHeight: 1.2 },
