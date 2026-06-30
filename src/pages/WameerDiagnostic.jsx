@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 /**
  * قسم التشخيص الرقمي — وامر العقارية × نقطتين
@@ -69,6 +70,11 @@ const QUESTIONS = [
     ],
   },
 ];
+
+// خرائط value → نص الخيار كما يراه العميل، تُستخدم لعرض إجاباته في صفحة العرض المقترح
+export const ANSWER_LABELS = Object.fromEntries(
+  QUESTIONS.map((q) => [q.id, Object.fromEntries(q.options.map((o) => [o.v, o.label]))])
+);
 
 // خرائط القيم → نص عربي مقروء، تُستخدم عند بناء تعليق Bitrix24
 const LABELS = {
@@ -149,6 +155,7 @@ async function postToBitrix(commentText) {
 }
 
 export default function WameerDiagnostic() {
+  const navigate = useNavigate();
   const [answers, setAnswers] = useState({});
   const [notesText, setNotesText] = useState("");
   const [status, setStatus] = useState("idle"); // idle | saving | saved | error
@@ -212,6 +219,9 @@ export default function WameerDiagnostic() {
       setSubmitState("submitted");
     } catch (e) {
       setSubmitState("error");
+      console.error("Bitrix sync failed:", e);
+    } finally {
+      navigate("/q/01194-proposal");
     }
   };
 
