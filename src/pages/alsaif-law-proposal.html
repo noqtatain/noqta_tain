@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نقطتين × إبراهيم السيف وشركاه — عرض تقديمي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0B0A14;
+    --panel:#131120;
+    --panel2:#181530;
+    --violet:#8B6BFF;
+    --violet-dim:#4A3D8F;
+    --gold:#C6A15B;
+    --gold-dim:#8A7442;
+    --ink:#F3F1FA;
+    --ink-dim:#B6B1CC;
+    --ink-faint:#7A759A;
+    --line:#2A2645;
+    --good:#7FD1A8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--void);
+    color:var(--ink);
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .num{font-family:'Space Grotesk',sans-serif;}
+  h1,h2,h3,.disp{font-family:'El Messiri', 'IBM Plex Sans Arabic', sans-serif;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 32px;}
+  section{padding:88px 0;position:relative;}
+  .divider{
+    display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:14px;
+  }
+  .divider .dot{width:6px;height:6px;border-radius:50%;background:var(--violet);}
+  .divider .dot.gold{background:var(--gold);}
+  .eyebrow{
+    text-align:center;color:var(--gold);letter-spacing:.04em;font-size:13px;font-weight:600;
+    margin-bottom:10px;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;padding:60px 32px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(139,107,255,.22), transparent 60%),
+      radial-gradient(ellipse 700px 400px at 90% 100%, rgba(198,161,91,.10), transparent 60%),
+      var(--void);
+    border-bottom:1px solid var(--line);
+  }
+  .mark{display:flex;gap:10px;align-items:center;justify-content:center;margin-bottom:36px;}
+  .mark .d{width:12px;height:12px;border-radius:50%;background:var(--violet);box-shadow:0 0 22px rgba(139,107,255,.7);}
+  .mark .d:nth-child(2){background:var(--gold);box-shadow:0 0 22px rgba(198,161,91,.6);}
+  .brandname{font-size:15px;letter-spacing:.12em;color:var(--ink-dim);margin-top:14px;font-weight:500;}
+  .hero .kicker{color:var(--violet);font-size:14px;font-weight:600;letter-spacing:.03em;margin-bottom:22px;}
+  .hero h1{font-size:44px;font-weight:700;line-height:1.35;max-width:760px;color:var(--ink);}
+  .hero h1 span{color:var(--gold);}
+  .hero p.lead{margin-top:22px;color:var(--ink-dim);font-size:17px;max-width:560px;}
+  .meta-row{
+    margin-top:56px;display:flex;gap:0;border-top:1px solid var(--line);padding-top:24px;
+    max-width:640px;width:100%;justify-content:space-between;
+  }
+  .meta-item{text-align:center;flex:1;}
+  .meta-item .k{font-size:11px;color:var(--ink-faint);letter-spacing:.05em;margin-bottom:6px;}
+  .meta-item .v{font-size:15px;color:var(--ink);font-weight:600;}
+
+  /* ===== SECTION HEADINGS ===== */
+  .sec-title{font-size:30px;font-weight:700;text-align:center;color:var(--ink);margin-bottom:16px;}
+  .sec-desc{text-align:center;color:var(--ink-dim);max-width:600px;margin:0 auto 52px;font-size:15.5px;}
+
+  /* ===== UNDERSTANDING ===== */
+  .quote-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:36px 40px;
+    position:relative;margin-bottom:56px;
+  }
+  .quote-card::before{
+    content:"";position:absolute;top:0;right:40px;width:44px;height:3px;background:var(--gold);
+  }
+  .quote-card p{color:var(--ink-dim);font-size:15.5px;}
+  .need-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .need-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;
+    display:flex;gap:14px;align-items:flex-start;
+  }
+  .need-card .ic{
+    width:36px;height:36px;flex:0 0 36px;border-radius:9px;background:var(--panel2);
+    display:flex;align-items:center;justify-content:center;color:var(--violet);font-size:16px;
+    border:1px solid var(--line);
+  }
+  .need-card .t{font-weight:600;font-size:15px;color:var(--ink);margin-bottom:4px;}
+  .need-card .d{font-size:13.5px;color:var(--ink-faint);}
+
+  /* ===== PRACTICE AREAS STRIP ===== */
+  .practice-strip{
+    display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:40px;
+  }
+  .chip{
+    border:1px solid var(--line);color:var(--ink-dim);font-size:12.5px;padding:7px 16px;
+    border-radius:99px;background:var(--panel);
+  }
+
+  /* ===== SERVICES ===== */
+  .svc{
+    border:1px solid var(--line);background:var(--panel);border-radius:18px;
+    padding:32px 34px;margin-bottom:20px;
+  }
+  .svc-head{display:flex;align-items:center;gap:16px;margin-bottom:18px;}
+  .svc-num{
+    font-family:'Space Grotesk',sans-serif;font-size:13px;color:var(--gold);
+    border:1px solid var(--gold-dim);width:34px;height:34px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;flex:0 0 34px;
+  }
+  .svc-title{font-size:19px;font-weight:700;color:var(--ink);}
+  .svc-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 22px;}
+  .svc-list li{
+    font-size:14px;color:var(--ink-dim);padding-right:18px;position:relative;
+  }
+  .svc-list li::before{
+    content:"";position:absolute;right:0;top:8px;width:6px;height:6px;border-radius:50%;
+    background:var(--violet);
+  }
+
+  /* ===== TIMELINE ===== */
+  .phase{
+    display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);
+  }
+  .phase:last-child{border-bottom:none;}
+  .phase-when{
+    flex:0 0 130px;font-family:'Space Grotesk',sans-serif;color:var(--gold);font-size:13px;
+    font-weight:500;padding-top:2px;
+  }
+  .phase-body .t{font-weight:600;font-size:15.5px;color:var(--ink);margin-bottom:6px;}
+  .phase-body .d{font-size:13.5px;color:var(--ink-faint);}
+
+  /* ===== PRICING — WEBSITE ===== */
+  .site-card{
+    background:linear-gradient(180deg, var(--panel2), var(--panel));
+    border:1px solid var(--line);border-radius:20px;padding:38px 40px;margin-bottom:56px;
+    display:flex;justify-content:space-between;gap:40px;align-items:center;flex-wrap:wrap;
+  }
+  .site-card .left{flex:1;min-width:260px;}
+  .site-card .tag{color:var(--violet);font-size:12.5px;font-weight:600;letter-spacing:.04em;margin-bottom:10px;}
+  .site-card h3{font-size:22px;color:var(--ink);margin-bottom:10px;}
+  .site-card p{color:var(--ink-dim);font-size:14px;max-width:420px;}
+  .site-card .right{text-align:center;}
+  .site-price{font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:600;color:var(--gold);}
+  .site-price sup{font-size:16px;font-family:'IBM Plex Sans Arabic';color:var(--ink-faint);margin-inline-start:6px;}
+  .site-sub{font-size:12px;color:var(--ink-faint);margin-top:4px;}
+
+  /* ===== PRICING TIERS ===== */
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .price-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:30px 26px;
+    display:flex;flex-direction:column;
+  }
+  .price-card.feat{
+    border-color:var(--violet);background:linear-gradient(180deg, rgba(139,107,255,.10), var(--panel));
+    position:relative;
+  }
+  .feat-badge{
+    position:absolute;top:-13px;right:26px;background:var(--violet);color:#fff;font-size:11px;
+    font-weight:600;padding:5px 14px;border-radius:99px;
+  }
+  .p-tier{font-size:11.5px;color:var(--ink-faint);letter-spacing:.04em;margin-bottom:6px;}
+  .p-name{font-size:19px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+  .p-line{font-size:12.5px;color:var(--ink-faint);min-height:34px;}
+  .p-price{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:600;color:var(--ink);margin-top:16px;}
+  .p-price span{font-size:14px;color:var(--ink-faint);font-family:'IBM Plex Sans Arabic';}
+  .p-period{font-size:12px;color:var(--gold);margin-bottom:20px;}
+  .p-div{height:1px;background:var(--line);margin-bottom:18px;}
+  .p-feats{display:flex;flex-direction:column;gap:11px;flex:1;}
+  .p-feat{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink-dim);}
+  .p-check{
+    width:16px;height:16px;flex:0 0 16px;border-radius:5px;background:rgba(127,209,168,.15);
+    color:var(--good);display:flex;align-items:center;justify-content:center;font-size:10px;margin-top:2px;
+  }
+  .p-check.off{background:transparent;color:var(--ink-faint);}
+  .ads-note{
+    text-align:center;color:var(--ink-faint);font-size:12.5px;margin-top:22px;
+  }
+
+  /* ===== TERMS (legal-style clauses) ===== */
+  .clause{
+    display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);
+  }
+  .clause:last-child{border-bottom:none;}
+  .clause-mark{
+    font-family:'Space Grotesk',sans-serif;color:var(--gold);font-size:13px;flex:0 0 70px;padding-top:2px;
+  }
+  .clause-body .t{font-weight:600;color:var(--ink);font-size:15px;margin-bottom:6px;}
+  .clause-body .d{color:var(--ink-faint);font-size:13.5px;}
+
+  /* ===== WHY US ===== */
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .why-item{
+    text-align:center;padding:24px 14px;border:1px solid var(--line);border-radius:14px;background:var(--panel);
+  }
+  .why-item .ic{color:var(--violet);font-size:20px;margin-bottom:12px;}
+  .why-item .t{font-size:13px;color:var(--ink-dim);font-weight:500;}
+
+  /* ===== CTA / FOOTER ===== */
+  .cta{
+    text-align:center;background:radial-gradient(ellipse 700px 300px at 50% 0%, rgba(139,107,255,.18), transparent 70%);
+    border-top:1px solid var(--line);
+  }
+  .cta h2{font-size:28px;color:var(--ink);margin-bottom:14px;}
+  .cta p{color:var(--ink-dim);max-width:480px;margin:0 auto 30px;font-size:14.5px;}
+  .btnrow{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    padding:14px 30px;border-radius:99px;font-size:14px;font-weight:600;text-decoration:none;
+    display:inline-block;
+  }
+  .btn-solid{background:var(--violet);color:#fff;}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);}
+  .foot{
+    text-align:center;padding:40px 0;color:var(--ink-faint);font-size:12px;border-top:1px solid var(--line);
+  }
+  .foot .mark{margin-bottom:14px;transform:scale(.7);}
+
+  @media (max-width:720px){
+    .hero h1{font-size:30px;}
+    .need-grid{grid-template-columns:1fr;}
+    .svc-list{grid-template-columns:1fr;}
+    .pricing-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .site-card{flex-direction:column;text-align:center;}
+    .site-card p{max-width:100%;}
+    .meta-row{flex-wrap:wrap;gap:20px;}
+    .meta-item{flex:1 1 40%;}
+  }
+  @media print{
+    body{background:#fff;color:#000;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="mark"><div class="d"></div><div class="d"></div></div>
+    <div class="brandname">نقطتين &nbsp;·&nbsp; NOQTATAIN</div>
+    <div class="kicker" style="margin-top:40px;">عرض تقديمي وخدمات تسويق رقمي</div>
+    <h1>شركة إبراهيم السيف وشركاه<br><span>للمحاماة والاستشارات القانونية</span></h1>
+    <p class="lead">شراكة تقنية متكاملة لبناء حضوركم الرقمي — من موقع إلكتروني احترافي إلى إدارة الحملات ورحلة العميل، بما يليق بثقة عملائكم وطبيعة عملكم القانوني.</p>
+    <div class="meta-row">
+      <div class="meta-item"><div class="k">مُعد لـ</div><div class="v">إبراهيم السيف وشركاه</div></div>
+      <div class="meta-item"><div class="k">مُقدَّم من</div><div class="v">نقطتين</div></div>
+      <div class="meta-item"><div class="k">التاريخ</div><div class="v num">٠١ / ٠٧ / ٢٠٢٦</div></div>
+      <div class="meta-item"><div class="k">الرياض</div><div class="v">المملكة العربية السعودية</div></div>
+    </div>
+  </section>
+
+  <!-- ================= EXECUTIVE SUMMARY ================= -->
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">ملخص تنفيذي</div>
+      <h2 class="sec-title">نظرة عامة على العرض</h2>
+      <p class="sec-desc">شراكة تقنية متكاملة تبني حضور المكتب الرقمي من الصفر وتديره باحترافية، بأربع ركائز مترابطة وتسعير واضح.</p>
+
+      <div class="quote-card">
+        <p>نقترح على مكتب إبراهيم السيف وشركاه منظومة رقمية متكاملة تبدأ بموقع إلكتروني احترافي ثنائي اللغة يعكس تخصصات المكتب القانونية العشرة، يليه تأسيس حضور منتظم على منصات التواصل الاجتماعي، وحملات إعلانية ممولة تستهدف الباحثين فعليًا عن استشارات قانونية، ونظام لإدارة رحلة كل عميل من أول تواصل حتى التعاقد عبر CRM. الاستثمار الإجمالي المقترح يبدأ من ٥٬٠٠٠ ريال لتصميم الموقع، مع باقات إدارة شهرية تبدأ من ٣٬٥٠٠ ريال، وعقد بمدة وشروط واضحة تفصيلًا في الأقسام التالية — جاهز لعرضه على الإدارة مباشرة.</p>
+      </div>
+
+      <div class="practice-strip">
+        <span class="chip">العقود والاتفاقيات</span>
+        <span class="chip">القضايا والمنازعات</span>
+        <span class="chip">تأسيس الشركات</span>
+        <span class="chip">الاستثمار الأجنبي</span>
+        <span class="chip">التحكيم</span>
+        <span class="chip">الزكاة والضرائب</span>
+        <span class="chip">العقارات</span>
+        <span class="chip">الملكية الفكرية</span>
+        <span class="chip">العلاقات العمالية</span>
+        <span class="chip">تحصيل الديون</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section style="background:var(--panel2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="eyebrow">نطاق العمل</div>
+      <h2 class="sec-title">الخدمات المقدَّمة</h2>
+      <p class="sec-desc">أربع ركائز تعمل معًا كمنظومة واحدة، لا كخدمات منفصلة.</p>
+
+      <div class="svc">
+        <div class="svc-head"><div class="svc-num num">01</div><div class="svc-title">تصميم وتطوير موقع إلكتروني احترافي</div></div>
+        <ul class="svc-list">
+          <li>هوية بصرية رصينة تليق بقطاع المحاماة والاستشارات</li>
+          <li>نسخة عربية وإنجليزية بالكامل</li>
+          <li>صفحة مستقلة لكل تخصص من تخصصات المكتب العشرة</li>
+          <li>نظام حجز استشارة أونلاين مرتبط بالواتساب والبريد</li>
+          <li>تحسين أساسي لمحركات البحث (SEO)</li>
+          <li>ربط النطاق (الدومين) والاستضافة، وتسليم كامل الصلاحيات</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <div class="svc-head"><div class="svc-num num">02</div><div class="svc-title">تأسيس وإدارة حسابات التواصل الاجتماعي</div></div>
+        <ul class="svc-list">
+          <li>تأسيس/تهيئة الحسابات على LinkedIn وX وInstagram</li>
+          <li>محتوى قانوني توعوي بلغة مبسّطة للجمهور المستهدف</li>
+          <li>تصاميم احترافية موحدة الهوية لكل منشور</li>
+          <li>جدول نشر منتظم ومتابعة التفاعل والرسائل</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <div class="svc-head"><div class="svc-num num">03</div><div class="svc-title">إدارة حملات إعلانية ممولة</div></div>
+        <ul class="svc-list">
+          <li>حملات Google Ads على عبارات بحث قانونية محددة</li>
+          <li>حملات Meta وLinkedIn لاستهداف الشركات ورواد الأعمال</li>
+          <li>تحسين مستمر للاستهداف وخفض تكلفة الاستفسار</li>
+          <li>تقرير أداء شهري بأرقام واضحة</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <div class="svc-head"><div class="svc-num num">04</div><div class="svc-title">إدارة رحلة العميل والتنسيق مع المبيعات</div></div>
+        <ul class="svc-list">
+          <li>نظام CRM (Bitrix24) لالتقاط وتصنيف كل استفسار وارد</li>
+          <li>رد أولي آلي عبر واتساب والبريد الإلكتروني</li>
+          <li>توزيع الاستفسارات على المحامي/الفريق المختص تلقائيًا</li>
+          <li>لوحة متابعة تُظهر كل عميل محتمل من أول تواصل حتى التعاقد</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TIMELINE ================= -->
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">آلية التنفيذ</div>
+      <h2 class="sec-title">الجدول الزمني</h2>
+      <p class="sec-desc">من التوقيع إلى الإطلاق، على ثلاث مراحل واضحة.</p>
+
+      <div class="phase">
+        <div class="phase-when">الأسابيع ١–٤</div>
+        <div class="phase-body">
+          <div class="t">التصميم والتأسيس</div>
+          <div class="d">تصميم وتطوير الموقع، تهيئة حسابات التواصل الاجتماعي، وتركيب نظام إدارة العملاء (CRM)</div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-when">الأسبوع ٥–٦</div>
+        <div class="phase-body">
+          <div class="t">الإطلاق</div>
+          <div class="d">إطلاق الموقع رسميًا، بدء النشر المنتظم على السوشيال ميديا، وربط جميع القنوات بالـCRM</div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-when">مستمر</div>
+        <div class="phase-body">
+          <div class="t">الإدارة والتحسين</div>
+          <div class="d">إدارة الحملات الإعلانية، متابعة رحلة كل عميل، وتقارير أداء شهرية مع توصيات</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRICING ================= -->
+  <section style="background:var(--panel2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="eyebrow">العرض المالي</div>
+      <h2 class="sec-title">التسعير</h2>
+      <p class="sec-desc">تكلفة تأسيس الموقع (مبلغ مقطوع لمرة واحدة)، ثم باقة إدارة شهرية بثلاث مستويات.</p>
+
+      <div class="site-card">
+        <div class="left">
+          <div class="tag">مبلغ مقطوع — لمرة واحدة</div>
+          <h3>تصميم وتطوير الموقع الإلكتروني</h3>
+          <p>يشمل الهوية البصرية، صفحات التخصصات القانونية، النسخة الثنائية اللغة، نظام حجز الاستشارات، والربط بالـCRM.</p>
+        </div>
+        <div class="right">
+          <div class="site-price" style="font-size:32px;">٥٬٠٠٠ – ١٢٬٠٠٠<sup>ر.س</sup></div>
+          <div class="site-sub">حسب عدد الصفحات والمزايا · دفعة ٥٠٪ عند البدء، و٥٠٪ عند التسليم</div>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="p-tier">الباقة الأولى</div>
+          <div class="p-name">الأساسية</div>
+          <div class="p-line">لبناء حضور منتظم دون إعلانات مدفوعة</div>
+          <div class="p-price">٣٬٥٠٠<span> ر.س / شهريًا</span></div>
+          <div class="p-period">عقد ٦ أشهر</div>
+          <div class="p-div"></div>
+          <div class="p-feats">
+            <div class="p-feat"><div class="p-check">✓</div>إدارة منصتين (LinkedIn + X)</div>
+            <div class="p-feat"><div class="p-check">✓</div>١٢ منشور شهريًا بتصاميم احترافية</div>
+            <div class="p-feat"><div class="p-check">✓</div>الرد الأولي الآلي على واتساب</div>
+            <div class="p-feat"><div class="p-check">✓</div>تقرير أداء شهري أساسي</div>
+            <div class="p-feat"><div class="p-check off">—</div><span style="color:var(--ink-faint)">إدارة الحملات الإعلانية</span></div>
+            <div class="p-feat"><div class="p-check off">—</div><span style="color:var(--ink-faint)">نظام CRM كامل</span></div>
+          </div>
+        </div>
+
+        <div class="price-card feat">
+          <div class="feat-badge">الأنسب</div>
+          <div class="p-tier">الباقة الثانية</div>
+          <div class="p-name">النمو</div>
+          <div class="p-line">تسويق متكامل + حملات إعلانية مُدارة</div>
+          <div class="p-price">٦٬٥٠٠<span> ر.س / شهريًا</span></div>
+          <div class="p-period">عقد ٦ أشهر</div>
+          <div class="p-div"></div>
+          <div class="p-feats">
+            <div class="p-feat"><div class="p-check">✓</div>إدارة ٣ منصات (LinkedIn + X + Instagram)</div>
+            <div class="p-feat"><div class="p-check">✓</div>٢٠ منشور شهريًا + محتوى توعوي</div>
+            <div class="p-feat"><div class="p-check">✓</div>إدارة حملات Google وMeta وLinkedIn</div>
+            <div class="p-feat"><div class="p-check">✓</div>نظام CRM أساسي (التقاط وتصنيف)</div>
+            <div class="p-feat"><div class="p-check">✓</div>تقرير أداء شهري تفصيلي</div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="p-tier">الباقة الثالثة</div>
+          <div class="p-name">الشراكة الكاملة</div>
+          <div class="p-line">إدارة شاملة لرحلة العميل من أول تواصل</div>
+          <div class="p-price">٩٬٥٠٠<span> ر.س / شهريًا</span></div>
+          <div class="p-period">عقد ١٢ شهرًا</div>
+          <div class="p-div"></div>
+          <div class="p-feats">
+            <div class="p-feat"><div class="p-check">✓</div>كل ما في باقة النمو</div>
+            <div class="p-feat"><div class="p-check">✓</div>نظام CRM كامل (Bitrix24) + توزيع تلقائي على الفريق</div>
+            <div class="p-feat"><div class="p-check">✓</div>لوحة متابعة لرحلة كل عميل حتى التعاقد</div>
+            <div class="p-feat"><div class="p-check">✓</div>مدير حساب مخصص واجتماع شهري</div>
+            <div class="p-feat"><div class="p-check">✓</div>تقارير أسبوعية + تحسين مستمر</div>
+          </div>
+        </div>
+      </div>
+      <div class="ads-note">* رسوم الإدارة أعلاه لا تشمل الميزانية الإعلانية نفسها (تُحدَّد وتُدار على حساب العميل مباشرة).</div>
+    </div>
+  </section>
+
+  <!-- ================= TERMS ================= -->
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">طبيعة التعاقد</div>
+      <h2 class="sec-title">شروط العقد</h2>
+      <p class="sec-desc">صياغة واضحة لكل ما يخص المدة والدفع والملكية.</p>
+
+      <div class="clause">
+        <div class="clause-mark num">مادة ١</div>
+        <div class="clause-body"><div class="t">مدة العقد</div><div class="d">الحد الأدنى ٦ أشهر للباقتين الأولى والثانية، و١٢ شهرًا لباقة الشراكة الكاملة — قابل للتجديد التلقائي ما لم يُخطر أحد الطرفين بالإلغاء قبل ٣٠ يومًا من نهاية المدة.</div></div>
+      </div>
+      <div class="clause">
+        <div class="clause-mark num">مادة ٢</div>
+        <div class="clause-body"><div class="t">آلية الدفع</div><div class="d">تكلفة الموقع: ٥٠٪ عند التوقيع، و٥٠٪ عند التسليم النهائي. الباقات الشهرية: تُسدَّد مقدَّمًا في بداية كل شهر تعاقد.</div></div>
+      </div>
+      <div class="clause">
+        <div class="clause-mark num">مادة ٣</div>
+        <div class="clause-body"><div class="t">الميزانية الإعلانية</div><div class="d">منفصلة عن رسوم الإدارة، وتُدفع مباشرة لمنصات الإعلانات (Google / Meta / LinkedIn) بموافقة مسبقة من المكتب على كل ميزانية شهرية.</div></div>
+      </div>
+      <div class="clause">
+        <div class="clause-mark num">مادة ٤</div>
+        <div class="clause-body"><div class="t">الملكية والتسليم</div><div class="d">تنتقل كامل الحقوق والملكية (الموقع، التصاميم، بيانات الـCRM) إلى المكتب فور سداد المستحقات كاملة.</div></div>
+      </div>
+      <div class="clause">
+        <div class="clause-mark num">مادة ٥</div>
+        <div class="clause-body"><div class="t">الإلغاء المبكر</div><div class="d">يحق لأي طرف إنهاء التعاقد بإشعار كتابي مسبق ٣٠ يومًا، مع تسليم كامل الأصول والبيانات المنجزة حتى تاريخ الإلغاء.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHY US ================= -->
+  <section style="background:var(--panel2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="eyebrow">لماذا نقطتين</div>
+      <h2 class="sec-title">شريك تقني، لا مجرد مورّد</h2>
+      <div class="why-grid">
+        <div class="why-item"><div class="ic">◆</div><div class="t">خبرة في أتمتة التسويق وأنظمة CRM (Bitrix24)</div></div>
+        <div class="why-item"><div class="ic">◆</div><div class="t">هوية بصرية عربية أولًا، تليق بالقطاع القانوني</div></div>
+        <div class="why-item"><div class="ic">◆</div><div class="t">تقارير شهرية شفافة بأرقام حقيقية</div></div>
+        <div class="why-item"><div class="ic">◆</div><div class="t">فريق واحد لكل شيء — لا تنسيق بين جهات متعددة</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="cta">
+    <div class="wrap">
+      <h2>جاهزون للبدء</h2>
+      <p>هذا العرض جاهز لعرضه على الإدارة كما هو. بانتظار ملاحظاتكم للبدء خلال ٤٨ ساعة من التوقيع.</p>
+      <div class="btnrow">
+        <a href="https://wa.me/966543569492" target="_blank" class="btn btn-solid">جدولة موعد لمناقشة العرض عبر الواتساب</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <div class="mark" style="display:flex;gap:8px;justify-content:center;">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--violet);"></div>
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);"></div>
+    </div>
+    نقطتين — شريككم التقني في التسويق الرقمي والأتمتة · الرياض، المملكة العربية السعودية
+  </div>
+
+</body>
+</html>
