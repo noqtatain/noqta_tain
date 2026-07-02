@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مجموعة كاف · تصور تطوير الواجهات — نقطتين</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0A0A0F;
+  --void-2:#111119;
+  --panel:#15151F;
+  --panel-2:#1B1B27;
+  --line:#26263A;
+  --violet:#7C4DFF;
+  --violet-2:#9B6BFF;
+  --violet-glow:rgba(124,77,255,.35);
+  --paper:#E8E4D8;
+  --ink:#F4F3F0;
+  --muted:#9A9AB0;
+  --muted-2:#6A6A80;
+  --ok:#3DD68C;
+  --warn:#FFB454;
+  --bad:#FF6B6B;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--void);
+  color:var(--ink);
+  font-family:'IBM Plex Sans Arabic',sans-serif;
+  line-height:1.75;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:'Space Grotesk',monospace;direction:ltr;unicode-bidi:embed}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+
+/* ambient */
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.ambient::before,.ambient::after{content:"";position:absolute;border-radius:50%;filter:blur(120px);opacity:.4}
+.ambient::before{width:600px;height:600px;background:var(--violet-glow);top:-200px;left:-150px}
+.ambient::after{width:500px;height:500px;background:rgba(124,77,255,.15);bottom:-150px;right:-100px}
+
+/* progress */
+.progress{position:fixed;top:0;right:0;height:3px;background:linear-gradient(90deg,var(--violet),var(--violet-2));z-index:100;width:0;transition:width .1s linear}
+
+/* nav */
+nav{position:fixed;top:0;right:0;left:0;z-index:90;backdrop-filter:blur(14px);background:rgba(10,10,15,.7);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.5px}
+.dots{display:inline-flex;gap:5px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--violet);display:block}
+.dots i:last-child{background:var(--paper)}
+.navlinks{display:flex;gap:26px;font-size:14px}
+.navlinks a{color:var(--muted);text-decoration:none;transition:color .2s}
+.navlinks a:hover{color:var(--ink)}
+@media(max-width:820px){.navlinks{display:none}}
+
+section{position:relative;z-index:1;padding:110px 0}
+.eyebrow{font-family:'Space Grotesk';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--violet-2);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--violet)}
+h1{font-size:clamp(38px,6.5vw,72px);line-height:1.1;font-weight:700;letter-spacing:-1.5px}
+h2{font-size:clamp(28px,4.5vw,44px);line-height:1.2;font-weight:700;letter-spacing:-1px;margin-bottom:16px}
+h3{font-size:22px;font-weight:600;letter-spacing:-.5px}
+.lead{font-size:19px;color:var(--muted);max-width:640px;font-weight:300}
+
+/* hero */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:64px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:100px;padding:7px 16px;margin-bottom:32px;background:var(--panel)}
+.hero-tag b{color:var(--violet-2);font-weight:600}
+#hero h1 span{color:var(--violet-2)}
+.hero-meta{display:flex;gap:40px;margin-top:48px;flex-wrap:wrap}
+.hero-meta .m{border-right:2px solid var(--violet);padding-right:14px}
+.hero-meta .m .k{font-family:'Space Grotesk';font-size:26px;font-weight:600}
+.hero-meta .m .l{font-size:13px;color:var(--muted-2)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* cards */
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:820px){.g2,.g3{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px;transition:transform .3s,border-color .3s,background .3s}
+.card:hover{transform:translateY(-4px);border-color:var(--violet);background:var(--panel-2)}
+.card .ic{width:44px;height:44px;border-radius:12px;background:var(--void-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px}
+.card h3{margin-bottom:8px}
+.card p{color:var(--muted);font-size:15px;font-weight:300}
+
+/* audit */
+.audit-row{display:flex;align-items:flex-start;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}
+.audit-row:last-child{border-bottom:none}
+.audit-badge{flex-shrink:0;width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:600;font-size:13px}
+.b-bad{background:rgba(255,107,107,.12);color:var(--bad);border:1px solid rgba(255,107,107,.3)}
+.b-warn{background:rgba(255,180,84,.12);color:var(--warn);border:1px solid rgba(255,180,84,.3)}
+.audit-row h3{font-size:17px;margin-bottom:4px}
+.audit-row p{color:var(--muted);font-size:14.5px;font-weight:300}
+
+/* score */
+.score-wrap{display:flex;align-items:center;gap:40px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:38px}
+.score-ring{position:relative;width:150px;height:150px;flex-shrink:0}
+.score-ring svg{transform:rotate(-90deg)}
+.score-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num .n{font-family:'Space Grotesk';font-size:42px;font-weight:700;line-height:1}
+.score-num .t{font-size:12px;color:var(--muted-2)}
+
+/* phases */
+.phase{display:flex;gap:26px;position:relative;padding-bottom:44px}
+.phase:last-child{padding-bottom:0}
+.phase-line{position:absolute;top:44px;bottom:0;right:23px;width:2px;background:var(--line)}
+.phase:last-child .phase-line{display:none}
+.phase-node{flex-shrink:0;width:48px;height:48px;border-radius:50%;background:var(--panel);border:2px solid var(--violet);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:600;color:var(--violet-2);z-index:2}
+.phase-body h3{margin-bottom:6px}
+.phase-body .dur{font-family:'Space Grotesk';font-size:13px;color:var(--violet-2);margin-bottom:8px}
+.phase-body p{color:var(--muted);font-size:15px;font-weight:300}
+
+/* pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+@media(max-width:820px){.price-grid{grid-template-columns:1fr}}
+.plan{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:32px;display:flex;flex-direction:column;position:relative;transition:transform .3s,border-color .3s}
+.plan:hover{transform:translateY(-6px)}
+.plan.feat{border-color:var(--violet);background:linear-gradient(180deg,var(--panel-2),var(--panel));box-shadow:0 20px 60px -20px var(--violet-glow)}
+.plan .tag{position:absolute;top:-13px;right:32px;background:var(--violet);color:#fff;font-size:12px;font-weight:600;padding:5px 14px;border-radius:100px}
+.plan .pname{font-size:15px;color:var(--violet-2);font-weight:600;letter-spacing:1px;text-transform:uppercase;font-family:'Space Grotesk'}
+.plan .psub{color:var(--muted);font-size:14px;margin-bottom:22px;font-weight:300;min-height:42px}
+.plan .amt{font-family:'Space Grotesk';font-size:40px;font-weight:700;line-height:1}
+.plan .amt small{font-size:16px;color:var(--muted);font-weight:400}
+.plan .amt .cur{font-size:20px}
+.plan ul{list-style:none;margin:24px 0;flex:1}
+.plan li{display:flex;gap:10px;padding:9px 0;font-size:14.5px;color:var(--ink);border-bottom:1px solid var(--line);font-weight:300}
+.plan li:last-child{border-bottom:none}
+.plan li .ck{color:var(--violet-2);flex-shrink:0}
+.plan li.off{color:var(--muted-2)}
+.plan li.off .ck{color:var(--muted-2)}
+.plan .btn{margin-top:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--violet);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:13px 24px;border-radius:12px;border:none;cursor:pointer;transition:background .25s,transform .2s;width:100%}
+.btn:hover{background:var(--violet-2);transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--violet);background:var(--panel-2)}
+
+/* addons table */
+.addons{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.addons .r{display:flex;justify-content:space-between;align-items:center;padding:18px 26px;border-bottom:1px solid var(--line);font-weight:300}
+.addons .r:last-child{border-bottom:none}
+.addons .r:hover{background:var(--panel-2)}
+.addons .r .name{font-size:15px}
+.addons .r .name .sub{display:block;font-size:13px;color:var(--muted-2);margin-top:2px;font-weight:300}
+.addons .r .p{font-family:'Space Grotesk';font-weight:600;color:var(--violet-2);white-space:nowrap}
+.addons .r.addon{cursor:pointer;user-select:none}
+.addons .r .name{display:flex;flex-direction:column}
+.addons .r .box{position:relative;display:inline-block;width:20px;height:20px;border:2px solid var(--line);border-radius:6px;margin-left:12px;vertical-align:middle;transition:all .2s;flex-shrink:0;float:right}
+.addons .r .name{padding-right:34px;position:relative}
+.addons .r .box{position:absolute;right:0;top:2px;float:none;margin:0}
+.addons .r.sel{background:var(--panel-2)}
+.addons .r.sel .box{background:var(--violet);border-color:var(--violet)}
+.addons .r.sel .box::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700}
+.total-line.addon-line{color:var(--muted);font-size:14px}
+.total-line.addon-line .mono{color:var(--muted)}
+
+/* totals */
+.total-box{background:linear-gradient(135deg,var(--panel-2),var(--panel));border:1px solid var(--violet);border-radius:20px;padding:38px;margin-top:32px}
+.total-line{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px dashed var(--line);font-weight:300}
+.total-line.grand{border-bottom:none;border-top:2px solid var(--violet);margin-top:10px;padding-top:22px;font-size:22px;font-weight:600}
+.total-line .mono{font-weight:600}
+.total-line.grand .mono{color:var(--violet-2);font-size:28px}
+
+/* deliverables chips */
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:100px;padding:10px 20px;font-size:14px;color:var(--muted);font-weight:300;transition:all .25s}
+.chip:hover{border-color:var(--violet);color:var(--ink)}
+
+/* terms */
+.terms{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:820px){.terms{grid-template-columns:1fr}}
+.term{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.term h3{font-size:16px;margin-bottom:6px}
+.term p{color:var(--muted);font-size:14px;font-weight:300}
+
+/* cta */
+#cta{text-align:center}
+.cta-box{background:linear-gradient(135deg,rgba(124,77,255,.14),var(--panel));border:1px solid var(--violet);border-radius:24px;padding:64px 40px}
+.cta-actions{display:flex;gap:16px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+.cta-actions .btn{width:auto;padding:14px 32px}
+
+footer{border-top:1px solid var(--line);padding:40px 0;text-align:center;color:var(--muted-2);font-size:14px;position:relative;z-index:1}
+
+.section-num{font-family:'Space Grotesk';color:var(--muted-2);font-size:14px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="progress" id="prog"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dots"><i></i><i></i></span> نقطتين</div>
+    <div class="navlinks">
+      <a href="#audit">التشخيص</a>
+      <a href="#vision">الرؤية</a>
+      <a href="#scope">النطاق</a>
+      <a href="#timeline">المراحل</a>
+      <a href="#pricing">الأسعار</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-tag reveal">عرض سعر مُقدَّم لـ <b>مجموعة كاف — خزام الفلا</b></div>
+    <h1 class="reveal">واجهة رقمية بحجم<br><span>مجموعة استثمارية</span> رائدة</h1>
+    <p class="lead reveal" style="margin-top:28px">إعادة بناء كاملة لموقع مجموعة كاف من الصفر — منصة قابضة تُبرز ست شركات تابعة، وتبني ثقة المستثمرين والشركاء، وتعكس مكانة المجموعة كواحدة من أبرز المجموعات الاستثمارية في المملكة منذ 2011.</p>
+    <div class="hero-meta reveal">
+      <div class="m"><div class="k mono">6</div><div class="l">شركات تابعة</div></div>
+      <div class="m"><div class="k mono">2011</div><div class="l">سنة التأسيس</div></div>
+      <div class="m"><div class="k mono">6</div><div class="l">أسابيع تنفيذ</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT -->
+<section id="audit">
+  <div class="wrap">
+    <div class="section-num mono reveal">01 — الوضع الحالي</div>
+    <h2 class="reveal">قرأنا موقعكم بعين المستثمر والشريك</h2>
+    <p class="lead reveal" style="margin-bottom:44px">الموقع الحالي مبني على قالب WordPress جاهز مع إضافات ثقيلة (Slider Revolution). يعرض الشركات التابعة، لكنه لا يعكس ثقل مجموعة كاف الاستثماري، ولا يبني الثقة الفورية التي يبحث عنها المستثمر أو الشريك المحتمل.</p>
+
+    <div class="score-wrap reveal">
+      <div class="score-ring">
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="66" fill="none" stroke="#26263A" stroke-width="12"/>
+          <circle id="ring" cx="75" cy="75" r="66" fill="none" stroke="#7C4DFF" stroke-width="12" stroke-linecap="round" stroke-dasharray="415" stroke-dashoffset="415"/>
+        </svg>
+        <div class="score-num"><div class="n mono" id="scoreN">0</div><div class="t">من 100</div></div>
+      </div>
+      <div style="flex:1;min-width:240px">
+        <h3 style="margin-bottom:10px">تقييم الجاهزية الرقمية</h3>
+        <p style="color:var(--muted);font-weight:300;font-size:15px">تقييم مبدئي على محاور: هيبة المجموعة القابضة، وضوح المحفظة الاستثمارية، رحلة المستثمر والشريك، الأداء والسرعة، والمحتوى والمدونة. النتيجة تعكس فجوة بين مكانة المجموعة الفعلية وحضورها الرقمي.</p>
+      </div>
+    </div>
+
+    <div style="height:36px"></div>
+
+    <div class="audit-row reveal">
+      <div class="audit-badge b-bad">هيبة</div>
+      <div><h3>الحضور الرقمي لا يوازي مكانة المجموعة</h3><p>مجموعة استثمارية بست شركات وخبرة منذ 2011 تستحق واجهة تعكس هذا الثقل. القالب الحالي عام ولا يميّز كاف عن أي شركة أصغر.</p></div>
+    </div>
+    <div class="audit-row reveal">
+      <div class="audit-badge b-bad">محفظة</div>
+      <div><h3>عرض الشركات التابعة مسطّح</h3><p>الشركات الست تُعرض كروابط خارجية بسيطة دون سرد استثماري يربطها بقصة المجموعة، أو يبرز القطاعات والتنوع الذي يقلّل المخاطر ويجذب المستثمر.</p></div>
+    </div>
+    <div class="audit-row reveal">
+      <div class="audit-badge b-warn">مستثمر</div>
+      <div><h3>غياب رحلة واضحة للمستثمر والشريك</h3><p>لا يوجد مسار موجّه لـ «تواصل للاستثمار» أو «كن شريكاً». الزائر المهتم بفرصة استثمارية لا يجد نداءً واضحاً ولا نموذجاً مخصّصاً.</p></div>
+    </div>
+    <div class="audit-row reveal">
+      <div class="audit-badge b-warn">أداء</div>
+      <div><h3>سرعة متأثرة بالإضافات الثقيلة</h3><p>الاعتماد على Slider Revolution وإضافات القوالب يبطئ التحميل، وهو عامل مباشر في انطباع الاحترافية وترتيب البحث.</p></div>
+    </div>
+    <div class="audit-row reveal">
+      <div class="audit-badge b-warn">محتوى</div>
+      <div><h3>مدونة مهملة بمحتوى قديم وغير مترجم</h3><p>المدونة تحتوي مقالات بتواريخ قديمة (2017–2018) وعناوين إنجليزية داخل النسخة العربية، ما يضعف المصداقية والسيو معاً.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="wrap">
+    <div class="section-num mono reveal">02 — الرؤية</div>
+    <h2 class="reveal">منصة قابضة تروي قصة استثمارية واحدة</h2>
+    <p class="lead reveal" style="margin-bottom:44px">موقع مبني من الصفر (Custom) يوحّد الشركات الست تحت هوية مجموعة كاف، ويقود المستثمر والشريك بثقة نحو التواصل.</p>
+    <div class="grid g3">
+      <div class="card reveal"><div class="ic">◆</div><h3>هيبة المجموعة القابضة</h3><p>واجهة راقية بنبرة استثمارية تعكس خبرة منذ 2011 وتوافق رؤية 2030 — تبني الثقة من أول ثانية.</p></div>
+      <div class="card reveal"><div class="ic">▦</div><h3>محفظة الشركات الذكية</h3><p>عرض احترافي للشركات الست بصفحات مخصّصة تربط كل شركة بقصة المجموعة وقطاعها الاستثماري.</p></div>
+      <div class="card reveal"><div class="ic">✦</div><h3>رحلة المستثمر والشريك</h3><p>مسارات واضحة ونماذج مخصّصة لـ «فرص استثمارية» و«شراكات»، تحوّل الاهتمام إلى تواصل فعلي.</p></div>
+      <div class="card reveal"><div class="ic">⚡</div><h3>أداء وهيبة تقنية</h3><p>بناء نظيف خفيف يحقّق سرعة عالية على الجوال وسطح المكتب — انطباع احترافي وأساس للسيو.</p></div>
+      <div class="card reveal"><div class="ic">⟐</div><h3>ثنائي اللغة باحتراف</h3><p>تجربة عربية أولاً (RTL) مع نسخة إنجليزية كاملة ومتّسقة تخدم المستثمرين والشركاء الدوليين.</p></div>
+      <div class="card reveal"><div class="ic">✎</div><h3>مركز محتوى وأخبار</h3><p>مدونة ومركز أخبار مُحدّث بمحتوى مترجم واحترافي يبرز نشاط المجموعة ويدعم الظهور في البحث.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCOPE -->
+<section id="scope">
+  <div class="wrap">
+    <div class="section-num mono reveal">03 — نطاق العمل</div>
+    <h2 class="reveal">وش راح نسلّمه بالضبط</h2>
+    <p class="lead reveal" style="margin-bottom:32px">حزمة متكاملة من التصميم إلى الإطلاق — مبنية خصيصاً لمجموعة كاف.</p>
+    <div class="chips reveal">
+      <span class="chip">بحث وتحليل المجموعات المنافسة</span>
+      <span class="chip">هوية واجهة (UI Kit)</span>
+      <span class="chip">تصميم UX لرحلة المستثمر</span>
+      <span class="chip">نماذج تفاعلية (Prototype)</span>
+      <span class="chip">الصفحة الرئيسية</span>
+      <span class="chip">صفحة عن المجموعة</span>
+      <span class="chip">صفحات الشركات الست</span>
+      <span class="chip">قسم الفرص الاستثمارية</span>
+      <span class="chip">نموذج تواصل مستثمر / شريك</span>
+      <span class="chip">مركز أخبار ومدونة</span>
+      <span class="chip">نسخة عربي + إنجليزي</span>
+      <span class="chip">تجاوب كامل مع الجوال</span>
+      <span class="chip">لوحة تحكم للإدارة</span>
+      <span class="chip">تهيئة سيو تقنية</span>
+      <span class="chip">ربط تحليلات + قنوات التواصل</span>
+      <span class="chip">تدريب الفريق + دعم بعد الإطلاق</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="section-num mono reveal">04 — خطة التنفيذ</div>
+    <h2 class="reveal">أربع مراحل، مسار واضح</h2>
+    <p class="lead reveal" style="margin-bottom:44px">مدة إجمالية تقديرية: <b style="color:var(--violet-2)">6 أسابيع</b> من اعتماد العرض.</p>
+
+    <div class="phase reveal">
+      <div class="phase-line"></div>
+      <div class="phase-node mono">01</div>
+      <div class="phase-body"><div class="dur mono">الأسبوع 1</div><h3>الاكتشاف والاستراتيجية</h3><p>ورشة مع فريق المجموعة، تحليل المجموعات الاستثمارية المنافسة، هيكلة محتوى الشركات الست وخريطة الموقع، واعتماد رحلة المستثمر.</p></div>
+    </div>
+    <div class="phase reveal">
+      <div class="phase-line"></div>
+      <div class="phase-node mono">02</div>
+      <div class="phase-body"><div class="dur mono">الأسبوع 2 – 3</div><h3>التصميم والهوية</h3><p>بناء هوية الواجهة (UI Kit)، تصميم كل الصفحات وصفحات الشركات، ونموذج تفاعلي قابل للنقر (Prototype) للاعتماد قبل البرمجة.</p></div>
+    </div>
+    <div class="phase reveal">
+      <div class="phase-line"></div>
+      <div class="phase-node mono">03</div>
+      <div class="phase-body"><div class="dur mono">الأسبوع 4 – 5</div><h3>البرمجة والتطوير</h3><p>بناء الموقع من الصفر بكود نظيف، صفحات الشركات، قسم الفرص الاستثمارية، لوحة التحكم، والنسختين العربية والإنجليزية.</p></div>
+    </div>
+    <div class="phase reveal">
+      <div class="phase-node mono">04</div>
+      <div class="phase-body"><div class="dur mono">الأسبوع 6</div><h3>الاختبار والإطلاق</h3><p>اختبار شامل، تهيئة السيو التقنية، ربط التحليلات، تدريب الفريق، ثم الإطلاق ودعم مستقر بعده.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-num mono reveal">05 — عرض الأسعار</div>
+    <h2 class="reveal">اختر النطاق المناسب</h2>
+    <p class="lead reveal" style="margin-bottom:44px">كل الباقات مبنية من الصفر بهوية مخصّصة. الأسعار بالريال السعودي، غير شاملة ضريبة القيمة المضافة.</p>
+
+    <div class="price-grid reveal">
+      <div class="plan">
+        <div class="pname mono">Essential</div>
+        <div class="psub">حضور رقمي احترافي للمجموعة</div>
+        <div class="amt"><span class="cur">﷼</span> 4,500</div>
+        <ul>
+          <li><span class="ck">✓</span> هوية واجهة مخصّصة (UI)</li>
+          <li><span class="ck">✓</span> حتى 8 صفحات أساسية</li>
+          <li><span class="ck">✓</span> صفحات الشركات الست</li>
+          <li><span class="ck">✓</span> نموذج تواصل واحد</li>
+          <li><span class="ck">✓</span> تجاوب كامل مع الجوال</li>
+          <li><span class="ck">✓</span> عربي (RTL)</li>
+          <li class="off"><span class="ck">✕</span> نسخة إنجليزية</li>
+          <li class="off"><span class="ck">✕</span> لوحة تحكم متقدمة</li>
+        </ul>
+        <button class="btn ghost" onclick="pick('Essential')">اختيار Essential</button>
+        <a class="btn" style="margin-top:10px" href="#" onclick="return approve('Essential')">اعتماد عبر واتساب</a>
+      </div>
+
+      <div class="plan feat">
+        <div class="tag">الأنسب لمجموعة كاف</div>
+        <div class="pname mono">Growth</div>
+        <div class="psub">منصة قابضة متكاملة للمستثمرين</div>
+        <div class="amt"><span class="cur">﷼</span> 9,500</div>
+        <ul>
+          <li><span class="ck">✓</span> كل ما في Essential</li>
+          <li><span class="ck">✓</span> صفحات شركات موسّعة + مدونة</li>
+          <li><span class="ck">✓</span> قسم الفرص الاستثمارية</li>
+          <li><span class="ck">✓</span> نماذج مستثمر / شريك</li>
+          <li><span class="ck">✓</span> نسخة عربي + إنجليزي</li>
+          <li><span class="ck">✓</span> لوحة تحكم لإدارة المحتوى</li>
+          <li><span class="ck">✓</span> تهيئة سيو تقنية كاملة</li>
+          <li><span class="ck">✓</span> دعم 60 يوم بعد الإطلاق</li>
+        </ul>
+        <button class="btn ghost" onclick="pick('Growth')">اختيار Growth</button>
+        <a class="btn" style="margin-top:10px" href="#" onclick="return approve('Growth')">اعتماد عبر واتساب</a>
+      </div>
+
+      <div class="plan">
+        <div class="pname mono">Enterprise</div>
+        <div class="psub">منصة قابلة للتوسّع + ربط أنظمة</div>
+        <div class="amt"><span class="cur">﷼</span> 15,000</div>
+        <ul>
+          <li><span class="ck">✓</span> كل ما في Growth</li>
+          <li><span class="ck">✓</span> صفحات غير محدودة</li>
+          <li><span class="ck">✓</span> ربط CRM (Bitrix24)</li>
+          <li><span class="ck">✓</span> بوابة مستثمرين خاصة</li>
+          <li><span class="ck">✓</span> أتمتة طلبات الشراكة</li>
+          <li><span class="ck">✓</span> تكامل مع أنظمة الشركات التابعة</li>
+          <li><span class="ck">✓</span> أداء ومقاييس متقدمة</li>
+          <li><span class="ck">✓</span> دعم 90 يوم + أولوية</li>
+        </ul>
+        <button class="btn ghost" onclick="pick('Enterprise')">اختيار Enterprise</button>
+        <a class="btn" style="margin-top:10px" href="#" onclick="return approve('Enterprise')">اعتماد عبر واتساب</a>
+      </div>
+    </div>
+
+    <div style="height:56px"></div>
+    <h3 class="reveal" style="margin-bottom:18px">إضافات اختيارية</h3>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:14px;font-weight:300">حدّد الإضافات لتُضاف تلقائياً إلى الإجمالي التقديري بالأسفل.</p>
+    <div class="addons reveal">
+      <div class="r addon" data-price="3000" data-recurring="" onclick="toggleAddon(this)">
+        <div class="name"><span class="box"></span>أتمتة استقبال ومتابعة المستثمرين والشركاء<span class="sub">ربط نماذج التواصل بنظام متابعة آلي</span></div>
+        <div class="p mono">﷼ 3,000</div>
+      </div>
+      <div class="r addon" data-price="1800" data-recurring="" onclick="toggleAddon(this)">
+        <div class="name"><span class="box"></span>حزمة محتوى سيو (10 مقالات)<span class="sub">محتوى مُهيّأ للكلمات المفتاحية المستهدفة</span></div>
+        <div class="p mono">﷼ 1,800</div>
+      </div>
+      <div class="r addon" data-price="2500" data-recurring="" onclick="toggleAddon(this)">
+        <div class="name"><span class="box"></span>تصوير احترافي للشركات<span class="sub">جلسة تصوير لمقرات وخدمات الشركات التابعة</span></div>
+        <div class="p mono">﷼ 2,500</div>
+      </div>
+      <div class="r addon" data-price="2000" data-recurring="سنة" onclick="toggleAddon(this)">
+        <div class="name"><span class="box"></span>استضافة وصيانة سنوية<span class="sub">استضافة، نسخ احتياطي، تحديثات أمان</span></div>
+        <div class="p mono">﷼ 2,000 / سنة</div>
+      </div>
+      <div class="r addon" data-price="3500" data-recurring="شهر" onclick="toggleAddon(this)">
+        <div class="name"><span class="box"></span>إدارة حملات إعلانية (شهري)<span class="sub">قوقل + السوشيال ميديا لتعزيز حضور المجموعة</span></div>
+        <div class="p mono">﷼ 3,500 / شهر</div>
+      </div>
+    </div>
+
+    <div class="total-box reveal" id="totalBox">
+      <div class="total-line"><span>الباقة المختارة</span><span class="mono" id="tPlan">Growth</span></div>
+      <div class="total-line"><span>قيمة الباقة</span><span class="mono" id="tBase">﷼ 11,000</span></div>
+      <div id="addonLines"></div>
+      <div class="total-line"><span>مجموع فرعي</span><span class="mono" id="tSub">﷼ 11,000</span></div>
+      <div class="total-line"><span>ضريبة القيمة المضافة (15%)</span><span class="mono" id="tVat">﷼ 1,650</span></div>
+      <div class="total-line grand"><span>الإجمالي التقديري</span><span class="mono" id="tGrand">﷼ 12,650</span></div>
+      <p id="recurNote" style="color:var(--muted-2);font-size:13px;margin-top:16px;font-weight:300">* الإجمالي يشمل الباقة والإضافات لمرة واحدة. البنود الدورية (شهري / سنوي) تُحتسب بشكل منفصل حسب الاشتراك.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section id="terms" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-num mono reveal">06 — الشروط</div>
+    <h2 class="reveal">تفاصيل التعاقد</h2>
+    <div style="height:24px"></div>
+    <div class="terms">
+      <div class="term reveal"><h3>الدفعات</h3><p>50% دفعة مقدّمة عند الاعتماد، 25% عند اعتماد التصميم، 25% عند الإطلاق.</p></div>
+      <div class="term reveal"><h3>المراجعات</h3><p>جولتا مراجعة مشمولتان في كل مرحلة تصميم. المراجعات الإضافية تُقدّر بشكل منفصل.</p></div>
+      <div class="term reveal"><h3>المخرجات</h3><p>تسليم الموقع كاملاً مع ملفات التصميم، وثائق تقنية، وتدريب لفريق مجموعة كاف.</p></div>
+      <div class="term reveal"><h3>صلاحية العرض</h3><p>هذا العرض ساري لمدة 30 يوماً من تاريخ الإرسال. الأسعار قابلة للتفاوض حسب النطاق النهائي.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <div class="dots" style="justify-content:center;margin-bottom:20px;display:flex"><i style="width:12px;height:12px;border-radius:50%;background:var(--violet);display:block;margin:0 4px"></i><i style="width:12px;height:12px;border-radius:50%;background:var(--paper);display:block;margin:0 4px"></i></div>
+      <h2 style="margin-bottom:14px">جاهزين نبني واجهة بحجم مجموعة كاف</h2>
+      <p class="lead" style="margin:0 auto">خلّونا نحوّل موقعكم من صفحة تعريفية إلى منصة استثمارية تبني الثقة وتوحّد قصة الشركات الست.</p>
+      <div class="cta-actions">
+        <a href="#" class="btn" onclick="return approve()">اعتماد العرض عبر واتساب</a>
+        <a href="kaf-group-proposal.pdf" download class="btn ghost">تنزيل الملف PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="justify-content:center;margin-bottom:10px"><span class="dots"><i></i><i></i></span> نقطتين · Noqtatain</div>
+    عرض سعر مُعدّ خصيصاً لمجموعة كاف — خزام الفلا · وكالة نقطتين للتسويق الرقمي وأتمتة الأعمال
+  </div>
+</footer>
+
+<script>
+// progress bar
+const prog=document.getElementById('prog');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const p=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  prog.style.width=p+'%';
+});
+
+// reveal on scroll
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%6*.06)+'s';io.observe(el)});
+
+// score ring animation
+let scored=false;
+const sObs=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting&&!scored){
+      scored=true;
+      const target=41, ring=document.getElementById('ring'), num=document.getElementById('scoreN');
+      const circ=415, off=circ-(circ*target/100);
+      setTimeout(()=>{ring.style.transition='stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)';ring.style.strokeDashoffset=off;},200);
+      let c=0;const t=setInterval(()=>{c++;num.textContent=c;if(c>=target)clearInterval(t);},1600/target);
+    }
+  });
+},{threshold:.5});
+sObs.observe(document.querySelector('.score-wrap'));
+
+// pricing calc
+const WA='966543569492';
+const plans={Essential:4500,Growth:9500,Enterprise:15000};
+let currentPlan='Growth';
+function fmt(n){return '﷼ '+n.toLocaleString('en-US')}
+
+function toggleAddon(el){el.classList.toggle('sel');recalc()}
+
+function pick(name){
+  currentPlan=name;
+  recalc();
+  document.getElementById('totalBox').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function recalc(){
+  const base=plans[currentPlan];
+  let oneTime=base, addonLinesHTML='';
+  document.querySelectorAll('.addon.sel').forEach(a=>{
+    const price=+a.dataset.price, recurring=a.dataset.recurring;
+    const label=a.querySelector('.name').childNodes[1].textContent.trim();
+    if(recurring){
+      addonLinesHTML+=`<div class="total-line addon-line"><span>+ ${label} (${recurring==='شهر'?'شهري':'سنوي'})</span><span class="mono">${fmt(price)} / ${recurring}</span></div>`;
+    }else{
+      oneTime+=price;
+      addonLinesHTML+=`<div class="total-line addon-line"><span>+ ${label}</span><span class="mono">${fmt(price)}</span></div>`;
+    }
+  });
+  const vat=Math.round(oneTime*.15), grand=oneTime+vat;
+  document.getElementById('tPlan').textContent=currentPlan;
+  document.getElementById('tBase').textContent=fmt(base);
+  document.getElementById('addonLines').innerHTML=addonLinesHTML;
+  document.getElementById('tSub').textContent=fmt(oneTime);
+  document.getElementById('tVat').textContent=fmt(vat);
+  document.getElementById('tGrand').textContent=fmt(grand);
+}
+
+function approve(planName){
+  const plan=planName||currentPlan;
+  const base=plans[plan];
+  let oneTime=base, addons=[];
+  document.querySelectorAll('.addon.sel').forEach(a=>{
+    const price=+a.dataset.price, recurring=a.dataset.recurring;
+    const label=a.querySelector('.name').childNodes[1].textContent.trim();
+    if(recurring){addons.push(`${label}: ${fmt(price)}/${recurring}`);}
+    else{oneTime+=price;addons.push(`${label}: ${fmt(price)}`);}
+  });
+  const vat=Math.round(oneTime*.15), grand=oneTime+vat;
+  let msg=`السلام عليكم، أرغب باعتماد عرض سعر تطوير موقع مجموعة كاف من نقطتين.\n\n`;
+  msg+=`الباقة: ${plan} (${fmt(base)})\n`;
+  if(addons.length){msg+=`الإضافات:\n- ${addons.join('\n- ')}\n`;}
+  msg+=`\nالمجموع الفرعي: ${fmt(oneTime)}\nالضريبة (15%): ${fmt(vat)}\nالإجمالي التقديري: ${fmt(grand)}`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+  return false;
+}
+</script>
+</body>
+</html>

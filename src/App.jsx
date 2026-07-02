@@ -18,6 +18,8 @@ import LamasatProposal from '@/pages/Lamasat-Noqtatain-Proposal';
 import WameerDiagnostic from '@/pages/WameerDiagnostic';
 import WameerProposal from '@/pages/WameerProposal';
 import AlsaifLawProposal from '@/pages/AlsaifLawProposal';
+import RassenAltayfProposal from '@/pages/RassenAltayfProposal';
+import KafGroupProposal from '@/pages/KafGroupProposal';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -64,6 +66,8 @@ const AuthenticatedApp = () => {
       <Route path="/q/01194" element={<WameerDiagnostic />} />
       <Route path="/q/01194-proposal" element={<WameerProposal />} />
       <Route path="/q/01141" element={<AlsaifLawProposal />} />
+      <Route path="/q/1142" element={<RassenAltayfProposal />} />
+      <Route path="/q/1143" element={<KafGroupProposal />} />
       <Route path="/" element={
         <LayoutWrapper currentPageName={mainPageKey}>
           <MainPage />
