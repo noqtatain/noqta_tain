@@ -15,6 +15,7 @@ import Portal from './pages/Portal.jsx';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import NoqtaChatEula from './pages/NoqtaChatEula';
+import Zidx24Eula from './pages/Zidx24Eula';
 import beau10 from './pages/beau10';
 import MedhalJazeera from './pages/medhal-jazeera';
 import SafetySideOffer from './pages/safetysideoffer';
@@ -63,6 +64,9 @@ export const PAGES = {
     NoqtaChatEula,
     'noqtachat-eula': NoqtaChatEula,
     'noqtachat/eula': NoqtaChatEula,
+    EULA: Zidx24Eula,
+    Zidx24Eula,
+    'zidx24-eula': Zidx24Eula,
     MutahedDesignOffer,
     'mutahed-design-offer': MutahedDesignOffer,
     HamsaMenuPlan,
