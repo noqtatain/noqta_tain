@@ -172,7 +172,10 @@ h2{font-size:clamp(26px,4vw,40px);line-height:1.22;font-weight:700;letter-spacin
 .field.error .field-error-msg{display:block}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:420px){.field-row{grid-template-columns:1fr}}
-.field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b6b80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 14px center}
+.field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b6b80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 12px center}
+.phone-input{display:flex;gap:8px}
+.phone-input .country-select{flex:0 0 118px;padding-left:26px;padding-right:10px}
+.phone-input input{flex:1;min-width:0}
 .form-note{font-size:11.5px;color:#9a9aab;text-align:center;margin-top:14px;line-height:1.6}
 .honeypot{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
@@ -324,7 +327,17 @@ footer p{color:var(--muted-2);font-size:13px}
 
           <div class="field" data-field="phone">
             <label>رقم الجوال <span class="req">*</span></label>
-            <input type="tel" name="phone" id="phone" placeholder="05xxxxxxxx" autocomplete="tel" dir="ltr" style="text-align:right">
+            <div class="phone-input">
+              <select name="countryCode" id="countryCode" class="country-select" dir="ltr">
+                <option value="966" data-len="9" selected>🇸🇦 +966</option>
+                <option value="971" data-len="9">🇦🇪 +971</option>
+                <option value="965" data-len="8">🇰🇼 +965</option>
+                <option value="974" data-len="8">🇶🇦 +974</option>
+                <option value="973" data-len="8">🇧🇭 +973</option>
+                <option value="968" data-len="8">🇴🇲 +968</option>
+              </select>
+              <input type="tel" name="phone" id="phone" placeholder="5xxxxxxxx" autocomplete="tel" dir="ltr">
+            </div>
             <div class="field-error-msg">الرجاء إدخال رقم جوال صحيح</div>
           </div>
         </div>
@@ -555,15 +568,36 @@ footer p{color:var(--muted-2);font-size:13px}
   function isValidEmail(v){
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   }
-  function isValidPhone(v){
-    var digits = v.replace(/[^\d]/g, '');
-    return digits.length >= 8 && digits.length <= 14;
+
+  // خليجي فقط — طول الرقم المحلي المتوقع بعد إزالة الصفر/مفتاح الدولة (بدون +ورمز الدولة)
+  var GULF_COUNTRIES = {
+    '966': { len: 9 }, // السعودية
+    '971': { len: 9 }, // الإمارات
+    '965': { len: 8 }, // الكويت
+    '974': { len: 8 }, // قطر
+    '973': { len: 8 }, // البحرين
+    '968': { len: 8 }  // عمان
+  };
+
+  // يحوّل أي صيغة محلية (مع/بدون صفر البداية أو رمز الدولة) إلى صيغة دولية +رمز الدولة+الرقم
+  function normalizePhone(dial, rawValue){
+    var digits = (rawValue || '').replace(/\D/g, '');
+    if (digits.indexOf(dial) === 0) digits = digits.slice(dial.length);
+    digits = digits.replace(/^0+/, '');
+    return { e164: '+' + dial + digits, local: digits };
+  }
+
+  function isValidPhone(dial, v){
+    var info = GULF_COUNTRIES[dial];
+    if (!info) return false;
+    var normalized = normalizePhone(dial, v);
+    return normalized.local.length === info.len;
   }
 
   function validate(data){
     var errors = {};
     if (!data.full_name.trim()) errors.full_name = true;
-    if (!isValidPhone(data.phone)) errors.phone = true;
+    if (!isValidPhone(data.countryCode, data.phone)) errors.phone = true;
     if (data.email && !isValidEmail(data.email)) errors.email = true;
     if (!data.job_title) errors.job_title = true;
     if (!data.team_size) errors.team_size = true;
@@ -621,6 +655,7 @@ footer p{color:var(--muted-2);font-size:13px}
 
     var data = {
       full_name: form.full_name.value,
+      countryCode: form.countryCode.value,
       phone: form.phone.value,
       email: form.email.value,
       job_title: form.job_title.value,
@@ -642,6 +677,9 @@ footer p{color:var(--muted-2);font-size:13px}
       if (firstErrorField) firstErrorField.focus();
       return;
     }
+
+    // نحوّل الرقم دائمًا إلى الصيغة الدولية (+رمز الدولة) قبل الإرسال إلى Bitrix24
+    data.phone = normalizePhone(data.countryCode, data.phone).e164;
 
     submitBtn.disabled = true;
     submitLabel.textContent = 'جاري الإرسال...';
@@ -667,6 +705,23 @@ footer p{color:var(--muted-2);font-size:13px}
     var input = form.querySelector('#' + name);
     if (input) input.addEventListener('input', function(){ setError(name, false); });
   });
+
+  // رقم الجوال: نسمح بالأرقام فقط، ونحدّث الحقل النائب ونمسح الخطأ عند تغيير الدولة
+  var countrySelect = document.getElementById('countryCode');
+  var phoneInput = document.getElementById('phone');
+  function updatePhonePlaceholder(){
+    var len = parseInt(countrySelect.selectedOptions[0].dataset.len, 10);
+    phoneInput.placeholder = '5' + 'x'.repeat(Math.max(len - 1, 0));
+  }
+  phoneInput.addEventListener('input', function(){
+    var digitsOnly = phoneInput.value.replace(/\D/g, '');
+    if (digitsOnly !== phoneInput.value) phoneInput.value = digitsOnly;
+  });
+  countrySelect.addEventListener('change', function(){
+    updatePhonePlaceholder();
+    setError('phone', false);
+  });
+  updatePhonePlaceholder();
 })();
 </script>
 
