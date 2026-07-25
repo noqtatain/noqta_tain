@@ -20,6 +20,7 @@ import WameerProposal from '@/pages/WameerProposal';
 import AlsaifLawProposal from '@/pages/AlsaifLawProposal';
 import RassenAltayfProposal from '@/pages/RassenAltayfProposal';
 import KafGroupProposal from '@/pages/KafGroupProposal';
+import WorkshopBitrix24Zid from '@/pages/WorkshopBitrix24Zid';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -68,6 +69,7 @@ const AuthenticatedApp = () => {
       <Route path="/q/01141" element={<AlsaifLawProposal />} />
       <Route path="/q/1142" element={<RassenAltayfProposal />} />
       <Route path="/q/1143" element={<KafGroupProposal />} />
+      <Route path="/workshop" element={<WorkshopBitrix24Zid />} />
       <Route path="/" element={
         <LayoutWrapper currentPageName={mainPageKey}>
           <MainPage />
