@@ -189,6 +189,7 @@ h2{font-size:clamp(26px,4vw,40px);line-height:1.22;font-weight:700;letter-spacin
 .form-success .ic svg{width:32px;height:32px}
 .form-success h3{color:#14141f;font-size:19px;margin-bottom:8px}
 .form-success p{color:#5a5a70;font-size:14.5px;font-weight:400;line-height:1.8}
+.form-success .redirect-note{color:#3DD68C;font-size:13px;font-weight:600;margin-top:10px}
 
 /* feature grid */
 .grid{display:grid;gap:20px}
@@ -400,6 +401,7 @@ footer p{color:var(--muted-2);font-size:13px}
         </div>
         <h3>🎉 تم استلام تسجيلك بنجاح</h3>
         <p>سيتم التواصل معك قريبًا وإرسال تفاصيل حضور الورشة عبر واتساب أو البريد الإلكتروني.</p>
+        <p class="redirect-note">سيتم تحويلك إلى واتساب الآن لتأكيد التسجيل...</p>
       </div>
     </div>
   </div>
@@ -613,11 +615,20 @@ footer p{color:var(--muted-2);font-size:13px}
     } catch (e) { /* localStorage unavailable, ignore */ }
   }
 
+  // بعد التسجيل الناجح، نحوّل الزائر إلى واتساب مع رسالة جاهزة لتأكيد الانضمام
+  var WHATSAPP_NUMBER = '966543569492';
+  var WHATSAPP_MESSAGE = 'ارغب بالانظمام لورشة "الأدوات التقنية للتاجر في المبيعات وخدمة العملاء"';
+
   function showSuccess(){
     formIntro.style.display = 'none';
     form.style.display = 'none';
     formSuccess.classList.add('show');
     formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    var whatsappUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(WHATSAPP_MESSAGE);
+    setTimeout(function(){
+      window.location.href = whatsappUrl;
+    }, 1500);
   }
 
   async function submitToBitrix(payload){
