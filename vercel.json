@@ -5,6 +5,10 @@
       "destination": "/workshop.html"
     },
     {
+      "source": "/join-group",
+      "destination": "/join-group.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
