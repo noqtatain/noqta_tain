@@ -130,6 +130,18 @@ h2{font-size:clamp(26px,4vw,40px);line-height:1.22;font-weight:700;letter-spacin
 .hero-desc{font-size:15.5px;color:var(--muted);margin-top:16px;font-weight:300;max-width:560px}
 .hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
 
+/* countdown */
+.countdown-block{margin-top:28px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 20px;max-width:460px}
+.countdown-date{font-size:13.5px;color:var(--muted);margin-bottom:14px;text-align:center;line-height:1.6}
+.countdown-grid{display:flex;gap:10px}
+.countdown-box{flex:1;background:var(--void-2);border:1px solid var(--line);border-radius:12px;padding:12px 6px;text-align:center;min-width:0}
+.countdown-num{display:block;font-size:26px;font-weight:700;color:var(--violet-2);letter-spacing:.5px}
+.countdown-label{display:block;font-size:11px;color:var(--muted-2);margin-top:4px}
+.countdown-live{display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:600;color:var(--ok);padding:6px 0}
+.countdown-live .dot{width:9px;height:9px;border-radius:50%;background:var(--ok);animation:cdPulse 1.4s ease-in-out infinite}
+@keyframes cdPulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media(max-width:480px){.countdown-box{padding:9px 3px}.countdown-num{font-size:19px}.countdown-label{font-size:9.5px}}
+
 .hero-visual{position:relative;display:flex;justify-content:center}
 .hero-photo-wrap{position:relative;width:100%;max-width:520px}
 .hero-photo-glow{position:absolute;inset:-40px;background:radial-gradient(circle at 50% 30%,var(--violet-glow),transparent 70%);filter:blur(14px);z-index:0}
@@ -278,6 +290,17 @@ footer p{color:var(--muted-2);font-size:13px}
         <h1 class="reveal in">الأدوات التقنية للتاجر في <span>المبيعات وخدمة العملاء</span></h1>
         <p class="hero-sub reveal in">تعلم كيف تربط متجرك على زد مع Bitrix24 لإدارة المبيعات والعملاء وأتمتة العمليات بكفاءة أعلى.</p>
         <p class="hero-desc reveal in">إذا كنت تمتلك متجرًا إلكترونيًا على منصة زد، أو تعمل في إدارة المبيعات أو خدمة العملاء، فهذه الورشة ستساعدك على بناء نظام عمل أكثر احترافية باستخدام أدوات CRM والأتمتة والذكاء الاصطناعي.</p>
+
+        <div class="countdown-block reveal in">
+          <div class="countdown-date">📅 السبت ١ أغسطس ٢٠٢٦ · 🕖 ٧:٠٠ مساءً بتوقيت مكة المكرمة</div>
+          <div class="countdown-grid" id="countdownGrid">
+            <div class="countdown-box"><span class="countdown-num mono" id="cdDays">00</span><span class="countdown-label">يوم</span></div>
+            <div class="countdown-box"><span class="countdown-num mono" id="cdHours">00</span><span class="countdown-label">ساعة</span></div>
+            <div class="countdown-box"><span class="countdown-num mono" id="cdMinutes">00</span><span class="countdown-label">دقيقة</span></div>
+            <div class="countdown-box"><span class="countdown-num mono" id="cdSeconds">00</span><span class="countdown-label">ثانية</span></div>
+          </div>
+          <div class="countdown-live" id="countdownLive" style="display:none"><span class="dot"></span> الورشة جارية الآن</div>
+        </div>
 
         <div class="hero-cta-row reveal in">
           <a href="#register" class="btn btn-primary">سجل مجانًا الآن</a>
@@ -527,6 +550,38 @@ footer p{color:var(--muted-2);font-size:13px}
 
 <script>
 (function(){
+  // ---- countdown to workshop start (Aug 1, 2026, 7:00 PM Mecca/Riyadh time, UTC+3) ----
+  var WORKSHOP_START = new Date('2026-08-01T19:00:00+03:00').getTime();
+  function pad(n){ return String(Math.max(n, 0)).padStart(2, '0'); }
+  function updateCountdown(){
+    var diff = WORKSHOP_START - Date.now();
+    var grid = document.getElementById('countdownGrid');
+    var live = document.getElementById('countdownLive');
+    if (diff <= 0){
+      if (grid) grid.style.display = 'none';
+      if (live) live.style.display = 'flex';
+      return false; // stop ticking
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var elDays = document.getElementById('cdDays');
+    var elHours = document.getElementById('cdHours');
+    var elMinutes = document.getElementById('cdMinutes');
+    var elSeconds = document.getElementById('cdSeconds');
+    if (elDays) elDays.textContent = pad(d);
+    if (elHours) elHours.textContent = pad(h);
+    if (elMinutes) elMinutes.textContent = pad(m);
+    if (elSeconds) elSeconds.textContent = pad(s);
+    return true;
+  }
+  if (updateCountdown()){
+    var countdownTimer = setInterval(function(){
+      if (!updateCountdown()) clearInterval(countdownTimer);
+    }, 1000);
+  }
+
   // ---- progress bar ----
   var progress = document.getElementById('progress');
   function onScroll(){
