@@ -38,8 +38,44 @@ function TitleSlide({ slide }) {
   );
 }
 
-function PointsSlide({ slide }) {
+function GuestSlide({ slide }) {
   return (
+    <div className="wk-s-center">
+      <div className="wk-eyebrow" style={{ justifyContent: 'center' }}>{slide.eyebrow}</div>
+      <h2 className="wk-s-h2">{slide.title}</h2>
+      <p className="wk-s-lead">{slide.note}</p>
+
+      <div className="wk-s-guests">
+        {slide.guests.map((g) => (
+          <div key={g.name} className="wk-s-guest">
+            <div className="wk-s-guest-photo"><img src={g.photo} alt={g.name} /></div>
+            <span>{g.name}</span>
+          </div>
+        ))}
+      </div>
+
+      {slide.storeUrl && (
+        <a href={slide.storeUrl} target="_blank" rel="noopener noreferrer" className="wk-chip mono" style={{ marginTop: 10 }}>
+          🏬 {slide.storeLabel} — {slide.storeUrl.replace(/^https?:\/\//, '')}
+        </a>
+      )}
+
+      {slide.screenshots && (
+        <div className="wk-s-screens">
+          {slide.screenshots.map((s) => (
+            <div key={s.src} className="wk-s-screen">
+              <img src={s.src} alt={s.label} />
+              <span>{s.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function PointsSlide({ slide }) {
+  const content = (
     <div>
       {slide.eyebrow && <div className="wk-eyebrow">{slide.eyebrow}</div>}
       <h2 className="wk-s-h2">{slide.title}</h2>
@@ -47,6 +83,38 @@ function PointsSlide({ slide }) {
       <ul className="wk-s-bullets">
         {slide.bullets.map((b) => <li key={b}>{b}</li>)}
       </ul>
+    </div>
+  );
+
+  if (!slide.logo) return content;
+
+  return (
+    <div className="wk-s-points-side">
+      <div className="wk-s-points-logo-box">
+        <img src={slide.logo} alt="" style={{ objectPosition: slide.logoPosition || 'center' }} />
+      </div>
+      <div className="wk-s-points-text">{content}</div>
+    </div>
+  );
+}
+
+function PresenterSlide({ slide }) {
+  return (
+    <div className="wk-s-presenter">
+      <div className="wk-s-presenter-photo">
+        <img src={slide.photo} alt={slide.name} />
+      </div>
+      <div className="wk-s-presenter-info">
+        <div className="wk-eyebrow">{slide.eyebrow}</div>
+        <h2 className="wk-s-h2" style={{ marginBottom: 2 }}>{slide.name}</h2>
+        <p className="wk-gold-text" style={{ fontSize: 'clamp(14px,1.6vw,18px)', fontWeight: 600, marginBottom: 12 }}>{slide.role}</p>
+        <p className="wk-s-lead" style={{ maxWidth: 520 }}>{slide.bio}</p>
+        {slide.tags && (
+          <div className="wk-s-presenter-tags">
+            {slide.tags.map((t) => <span key={t} className="wk-chip">{t}</span>)}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -73,6 +141,11 @@ function AgendaSlide({ slide }) {
 function PlainSlide({ slide }) {
   return (
     <div className="wk-s-center">
+      {slide.image && (
+        <div className="wk-s-banner">
+          <img src={slide.image} alt="" />
+        </div>
+      )}
       <h2 className="wk-s-h1">{slide.title}</h2>
       {slide.lead && <p className="wk-s-lead" style={{ marginTop: 20 }}>{slide.lead}</p>}
     </div>
@@ -101,7 +174,7 @@ function GridSlide({ slide }) {
 function ActivitySlide({ slide }) {
   return (
     <div className="wk-s-center">
-      <div className="wk-eyebrow" style={{ justifyContent: 'center' }}>{slide.eyebrow}</div>
+      {slide.eyebrow && <div className="wk-eyebrow" style={{ justifyContent: 'center' }}>{slide.eyebrow}</div>}
       <h2 className="wk-s-h2">{slide.title}</h2>
       {slide.lead && <p className="wk-s-lead">{slide.lead}</p>}
       {slide.body && <p className="wk-s-lead">{slide.body}</p>}
@@ -245,6 +318,8 @@ function ThanksSlide({ slide }) {
 const LAYOUTS = {
   title: TitleSlide,
   points: PointsSlide,
+  presenter: PresenterSlide,
+  guest: GuestSlide,
   agenda: AgendaSlide,
   plain: PlainSlide,
   grid: GridSlide,
@@ -270,6 +345,29 @@ function SlideStyles() {
       .wk-s-chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
       .wk-s-h1{font-size:clamp(26px,4.2vw,44px);font-weight:700;line-height:1.3}
       .wk-s-h2{font-size:clamp(22px,3.4vw,34px);font-weight:700;margin-bottom:14px;line-height:1.3}
+      .wk-s-points-side{display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center}
+      .wk-s-points-logo-box{flex:0 0 auto;width:clamp(200px,34vw,420px);aspect-ratio:1/1;border-radius:24px;overflow:hidden;box-shadow:0 0 60px -8px rgba(159,103,255,.55)}
+      .wk-s-points-logo-box img{width:100%;height:100%;object-fit:cover;display:block}
+      .wk-s-points-text{flex:1 1 340px;min-width:280px}
+      @media(max-width:760px){.wk-s-points-logo-box{width:min(70vw,320px)}}
+
+      .wk-s-banner{width:100%;max-width:640px;margin:0 auto 26px;border-radius:24px;overflow:hidden;box-shadow:0 0 60px -8px rgba(159,103,255,.5)}
+      .wk-s-banner img{width:100%;display:block}
+      .wk-s-presenter{display:flex;align-items:center;gap:36px;flex-wrap:wrap;justify-content:center;text-align:right}
+      .wk-s-presenter-photo{flex:0 0 auto;width:clamp(160px,20vw,240px);aspect-ratio:1686/2528;max-height:70vh;border-radius:24px;overflow:hidden;background:var(--wk-card2);border:1px solid var(--wk-line);box-shadow:0 0 50px -10px rgba(159,103,255,.5)}
+      .wk-s-presenter-photo img{width:100%;height:100%;object-fit:cover}
+      .wk-s-presenter-info{flex:1 1 320px;min-width:260px}
+      .wk-s-presenter-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+      @media(max-width:640px){.wk-s-presenter{text-align:center;justify-content:center}.wk-s-presenter-info{text-align:center}.wk-s-presenter-info .wk-eyebrow,.wk-s-presenter-tags{justify-content:center}}
+
+      .wk-s-guests{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+      .wk-s-guest{display:flex;flex-direction:column;align-items:center;gap:10px;font-size:clamp(14px,1.6vw,17px);font-weight:600}
+      .wk-s-guest-photo{width:clamp(84px,10vw,120px);height:clamp(84px,10vw,120px);border-radius:50%;overflow:hidden;border:2px solid var(--wk-violet2);box-shadow:0 0 30px -6px rgba(159,103,255,.6)}
+      .wk-s-guest-photo img{width:100%;height:100%;object-fit:cover}
+      .wk-s-screens{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+      .wk-s-screen{flex:1 1 320px;max-width:440px;background:var(--wk-card);border:1px solid var(--wk-line);border-radius:16px;padding:10px;text-align:center}
+      .wk-s-screen img{width:100%;border-radius:10px;display:block}
+      .wk-s-screen span{display:block;margin-top:8px;font-size:12.5px;color:var(--wk-muted)}
       .wk-s-lead{font-size:clamp(15px,1.9vw,21px);color:var(--wk-muted);margin-top:8px}
       .wk-s-bullets{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:22px;font-size:clamp(15px,1.8vw,20px)}
       .wk-s-steps{padding-inline-start:0}
