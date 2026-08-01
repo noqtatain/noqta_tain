@@ -21,6 +21,13 @@ import AlsaifLawProposal from '@/pages/AlsaifLawProposal';
 import RassenAltayfProposal from '@/pages/RassenAltayfProposal';
 import KafGroupProposal from '@/pages/KafGroupProposal';
 import WorkshopBitrix24Zid from '@/pages/WorkshopBitrix24Zid';
+import WorkshopHub from '@/pages/workshop/WorkshopHub';
+import WorkshopSlides from '@/pages/workshop/WorkshopSlides';
+import WorkshopDiagnostic from '@/pages/workshop/WorkshopDiagnostic';
+import WorkshopScenario from '@/pages/workshop/WorkshopScenario';
+import WorkshopGapMap from '@/pages/workshop/WorkshopGapMap';
+import WorkshopBook from '@/pages/workshop/WorkshopBook';
+import WorkshopFeedback from '@/pages/workshop/WorkshopFeedback';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -70,6 +77,13 @@ const AuthenticatedApp = () => {
       <Route path="/q/1142" element={<RassenAltayfProposal />} />
       <Route path="/q/1143" element={<KafGroupProposal />} />
       <Route path="/workshop" element={<WorkshopBitrix24Zid />} />
+      <Route path="/agenda" element={<WorkshopHub />} />
+      <Route path="/slides" element={<WorkshopSlides />} />
+      <Route path="/activities/diagnostic" element={<WorkshopDiagnostic />} />
+      <Route path="/activities/scenario" element={<WorkshopScenario />} />
+      <Route path="/activities/gap-map" element={<WorkshopGapMap />} />
+      <Route path="/book" element={<WorkshopBook />} />
+      <Route path="/feedback" element={<WorkshopFeedback />} />
       <Route path="/" element={
         <LayoutWrapper currentPageName={mainPageKey}>
           <MainPage />
