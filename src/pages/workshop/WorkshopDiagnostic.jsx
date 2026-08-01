@@ -1,7 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import WorkshopPage from './shared/WorkshopChrome';
 import { ROUTES } from './shared/constants';
+import { supabase } from './shared/supabaseClient';
 
 const QUESTIONS = [
   'سرعة الرد على استفسارات العملاء',
@@ -24,10 +25,26 @@ export default function WorkshopDiagnostic() {
   const total = useMemo(() => answers.reduce((a, b) => a + b, 0), [answers]);
   const done = answeredCount === QUESTIONS.length;
   const band = done ? bandFor(total) : null;
+  const loggedRef = useRef(false);
 
   function setAnswer(qi, val) {
     setAnswers((prev) => prev.map((v, i) => (i === qi ? val : v)));
   }
+
+  // Anonymous, no-PII: just the 1-5 scores, for a live "room average" in /admin.
+  useEffect(() => {
+    if (!done || loggedRef.current) return;
+    loggedRef.current = true;
+    supabase
+      .from('diagnostic_responses')
+      .insert({
+        q1: answers[0], q2: answers[1], q3: answers[2],
+        q4: answers[3], q5: answers[4], q6: answers[5],
+      })
+      .then(({ error }) => {
+        if (error) console.error('diagnostic log failed:', error.message);
+      });
+  }, [done, answers]);
 
   return (
     <WorkshopPage backLabel="الرجوع للمحاور" backHref={ROUTES.hub}>

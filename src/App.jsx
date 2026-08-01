@@ -28,6 +28,7 @@ import WorkshopScenario from '@/pages/workshop/WorkshopScenario';
 import WorkshopGapMap from '@/pages/workshop/WorkshopGapMap';
 import WorkshopBook from '@/pages/workshop/WorkshopBook';
 import WorkshopFeedback from '@/pages/workshop/WorkshopFeedback';
+import WorkshopAdmin from '@/pages/workshop/WorkshopAdmin';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -84,6 +85,7 @@ const AuthenticatedApp = () => {
       <Route path="/activities/gap-map" element={<WorkshopGapMap />} />
       <Route path="/book" element={<WorkshopBook />} />
       <Route path="/feedback" element={<WorkshopFeedback />} />
+      <Route path="/admin" element={<WorkshopAdmin />} />
       <Route path="/" element={
         <LayoutWrapper currentPageName={mainPageKey}>
           <MainPage />
