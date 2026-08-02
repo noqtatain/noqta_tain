@@ -4,6 +4,7 @@ import WorkshopPage from './shared/WorkshopChrome';
 import PhoneField from './shared/PhoneField';
 import { ROUTES } from './shared/constants';
 import { isValidGulfPhone, normalizePhone, saveLocalRecord, submitWorkshopLead } from './shared/bitrix';
+import { supabase } from './shared/supabaseClient';
 
 const NEXT_STEP_OPTIONS = [
   { value: 'assessment', label: 'تقييم مجاني (٣٠ دقيقة، بلا التزام)' },
@@ -59,6 +60,7 @@ export default function WorkshopGapMap() {
     setSubmitting(true);
     saveLocalRecord('workshop_gapmap_backup', payload);
 
+    let bitrixLeadId = null;
     if (needsContact) {
       const comments = [
         'الأدوات والمشاكل الحالية:',
@@ -67,14 +69,26 @@ export default function WorkshopGapMap() {
         `الخطوة التالية المطلوبة: ${nextStepLabel}`,
       ].join('\n');
 
-      await submitWorkshopLead({
+      const result = await submitWorkshopLead({
         title: `خارطة الفجوات — ${storeName || name}`,
         name,
         phone: payload.whatsapp,
         comments,
         sourceDescription: 'نشاط: خارطة الفجوات',
       });
+      if (result.ok) bitrixLeadId = result.leadId ?? null;
     }
+
+    const { error } = await supabase.from('gap_map_responses').insert({
+      rows: filledRows,
+      priority_gap: priorityGap || null,
+      next_step: nextStep || null,
+      name: name || null,
+      store_name: storeName || null,
+      whatsapp: payload.whatsapp || null,
+      bitrix_lead_id: bitrixLeadId,
+    });
+    if (error) console.error('gap-map supabase log failed:', error.message);
 
     setSubmitting(false);
     setDone(true);

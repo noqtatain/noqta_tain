@@ -147,6 +147,26 @@ export function WorkshopStyles() {
       .wk-progress-fill{height:100%;background:linear-gradient(90deg,var(--wk-violet),var(--wk-violet2));transition:width .3s}
 
       @media(max-width:640px){.wk-h1{font-size:28px}}
+
+      /* Bright theme variant — opt-in via <WorkshopPage theme="bright">,
+         leaves every other page's dark violet/gold look untouched. */
+      .wk-root.wk-theme-bright{
+        --wk-bg:#FBFAFF;
+        --wk-card:#FFFFFF;
+        --wk-card2:#F4F1FC;
+        --wk-gold:#B8860B;
+        --wk-ink:#201A3D;
+        --wk-muted:#6E6790;
+        --wk-line:#E6E1F7;
+      }
+      .wk-root.wk-theme-bright .wk-nav{background:rgba(255,255,255,.82)}
+      .wk-root.wk-theme-bright .wk-glow::before,
+      .wk-root.wk-theme-bright .wk-glow::after{opacity:.16}
+      .wk-root.wk-theme-bright .wk-card{box-shadow:0 1px 2px rgba(32,26,61,.04),0 8px 24px -12px rgba(32,26,61,.10)}
+      .wk-root.wk-theme-bright .wk-field label .req,
+      .wk-root.wk-theme-bright .wk-field-error-msg{color:#D6336C}
+      .wk-root.wk-theme-bright .wk-field.error input,
+      .wk-root.wk-theme-bright .wk-field.error select{border-color:#D6336C}
     `}</style>
   );
 }
@@ -179,10 +199,10 @@ export function WorkshopFooter() {
   );
 }
 
-export default function WorkshopPage({ children, backLabel, backHref, hideChrome, wide }) {
+export default function WorkshopPage({ children, backLabel, backHref, hideChrome, wide, theme }) {
   useWorkshopFonts();
   return (
-    <div className="wk-root" dir="rtl" lang="ar">
+    <div className={`wk-root${theme === 'bright' ? ' wk-theme-bright' : ''}`} dir="rtl" lang="ar">
       <WorkshopStyles />
       <div className="wk-glow"></div>
       {!hideChrome && <WorkshopHeader backLabel={backLabel} backHref={backHref} />}

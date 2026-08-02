@@ -40,6 +40,12 @@ const LINKS = [
     desc: '٣٠ دقيقة، بلا التزام',
   },
   {
+    href: ROUTES.consultation,
+    emoji: '📞',
+    title: 'استشارة تقنية ١٥ دقيقة',
+    desc: 'تقييم أدواتك وخارطة طريق مبدئية للمبيعات وخدمة العملاء',
+  },
+  {
     href: ROUTES.feedback,
     emoji: '✅',
     title: 'قيّم الورشة',

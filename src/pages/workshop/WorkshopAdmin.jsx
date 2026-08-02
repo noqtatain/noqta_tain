@@ -4,6 +4,12 @@ import PassphraseGate from './shared/PassphraseGate';
 import { ROUTES } from './shared/constants';
 import { supabase } from './shared/supabaseClient';
 
+const NEXT_STEP_LABELS = {
+  assessment: 'تقييم مجاني',
+  consultation: 'استشارة موجّهة',
+  implementation: 'عرض تنفيذ مباشر',
+};
+
 function bandFor(total) {
   if (total <= 14) return { emoji: '🔴', color: '#FF8A8A' };
   if (total <= 22) return { emoji: '🟡', color: '#D4AF6A' };
@@ -124,6 +130,200 @@ function DiagnosticPanel() {
   );
 }
 
+function GapMapPanel() {
+  const [rows, setRows] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    const { data, error: err } = await supabase
+      .from('gap_map_responses')
+      .select('id, created_at, rows, priority_gap, next_step, name, store_name, whatsapp, bitrix_lead_id')
+      .order('created_at', { ascending: false });
+    if (err) setError(err.message);
+    else setRows(data);
+    setLoading(false);
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
+
+  const list = rows || [];
+  const count = list.length;
+  const withNextStep = list.filter((r) => r.next_step).length;
+
+  return (
+    <div style={{ marginTop: 40 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+        <h2 className="wk-h2" style={{ marginBottom: 0 }}>خارطة الفجوات</h2>
+        <button className="wk-btn wk-btn-ghost wk-btn-sm" onClick={load} disabled={loading}>
+          {loading ? 'جاري التحديث...' : 'تحديث ⟳'}
+        </button>
+      </div>
+
+      {error && (
+        <div className="wk-card" style={{ borderColor: '#FF8A8A', marginBottom: 18 }}>
+          <p style={{ color: '#FF8A8A', fontWeight: 600 }}>تعذّر تحميل البيانات</p>
+          <p className="wk-muted" style={{ fontSize: 13.5, marginTop: 6 }}>{error}</p>
+          <p className="wk-muted" style={{ fontSize: 12.5, marginTop: 6 }}>
+            تأكد من إنشاء الجدول وسياسة القراءة (RLS) في Supabase.
+          </p>
+        </div>
+      )}
+
+      <div className="wk-grid wk-g2" style={{ marginBottom: 22 }}>
+        <div className="wk-card wk-center">
+          <p className="wk-muted" style={{ fontSize: 12.5 }}>إجمالي الإجابات</p>
+          <p className="mono" style={{ fontSize: 30, fontWeight: 700 }}>{count}</p>
+        </div>
+        <div className="wk-card wk-center">
+          <p className="wk-muted" style={{ fontSize: 12.5 }}>طلبوا خطوة تالية</p>
+          <p className="mono" style={{ fontSize: 30, fontWeight: 700 }}>{withNextStep}</p>
+        </div>
+      </div>
+
+      {!loading && count === 0 && !error && (
+        <p className="wk-muted wk-center">لا توجد إجابات بعد.</p>
+      )}
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        {list.map((r) => (
+          <div className="wk-card" key={r.id} style={{ borderColor: r.next_step ? 'var(--wk-violet2)' : 'var(--wk-line)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: 8 }}>
+              <span className="mono wk-muted" style={{ fontSize: 12.5 }}>{formatTime(r.created_at)}</span>
+              {r.next_step && (
+                <span className="wk-chip" style={{ fontSize: 12 }}>🎯 {NEXT_STEP_LABELS[r.next_step] || r.next_step}</span>
+              )}
+            </div>
+
+            {(r.name || r.store_name || r.whatsapp) && (
+              <p style={{ marginBottom: 8 }}>
+                <b>{r.name || '—'}</b>
+                {r.store_name && <span className="wk-muted"> · {r.store_name}</span>}
+                {r.whatsapp && (
+                  <> · <a href={`https://wa.me/${r.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="mono" style={{ color: 'var(--wk-violet2)' }}>{r.whatsapp}</a></>
+                )}
+              </p>
+            )}
+
+            {r.priority_gap && <p style={{ marginBottom: 8, fontSize: 14 }}>🎯 أكبر فجوة: {r.priority_gap}</p>}
+
+            {Array.isArray(r.rows) && r.rows.length > 0 && (
+              <ul style={{ fontSize: 13, color: 'var(--wk-muted)', paddingInlineStart: 18 }}>
+                {r.rows.map((row, i) => (
+                  <li key={i}>{row.tool || '—'} — {row.problem || '—'} — {row.impact || '—'}</li>
+                ))}
+              </ul>
+            )}
+
+            {r.bitrix_lead_id && (
+              <span className="wk-muted" style={{ fontSize: 11.5, display: 'block', marginTop: 8 }}>✅ Bitrix Lead #{r.bitrix_lead_id}</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ConsultationPanel() {
+  const [rows, setRows] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    const { data, error: err } = await supabase
+      .from('consultation_requests')
+      .select('id, created_at, name, store_name, whatsapp, email, tools, focus_areas, challenge, preferred_date, preferred_time, notes, bitrix_deal_id, bitrix_lead_id, bitrix_activity_id')
+      .order('created_at', { ascending: false });
+    if (err) setError(err.message);
+    else setRows(data);
+    setLoading(false);
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
+
+  const list = rows || [];
+  const count = list.length;
+  const matchedCount = list.filter((r) => r.bitrix_deal_id).length;
+
+  return (
+    <div style={{ marginTop: 40 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+        <h2 className="wk-h2" style={{ marginBottom: 0 }}>طلبات استشارة ١٥ دقيقة</h2>
+        <button className="wk-btn wk-btn-ghost wk-btn-sm" onClick={load} disabled={loading}>
+          {loading ? 'جاري التحديث...' : 'تحديث ⟳'}
+        </button>
+      </div>
+
+      {error && (
+        <div className="wk-card" style={{ borderColor: '#FF8A8A', marginBottom: 18 }}>
+          <p style={{ color: '#FF8A8A', fontWeight: 600 }}>تعذّر تحميل البيانات</p>
+          <p className="wk-muted" style={{ fontSize: 13.5, marginTop: 6 }}>{error}</p>
+          <p className="wk-muted" style={{ fontSize: 12.5, marginTop: 6 }}>
+            تأكد من إنشاء الجدول وسياسة القراءة (RLS) في Supabase.
+          </p>
+        </div>
+      )}
+
+      <div className="wk-grid wk-g2" style={{ marginBottom: 22 }}>
+        <div className="wk-card wk-center">
+          <p className="wk-muted" style={{ fontSize: 12.5 }}>إجمالي الطلبات</p>
+          <p className="mono" style={{ fontSize: 30, fontWeight: 700 }}>{count}</p>
+        </div>
+        <div className="wk-card wk-center">
+          <p className="wk-muted" style={{ fontSize: 12.5 }}>مرتبطة بصفقة قائمة</p>
+          <p className="mono" style={{ fontSize: 30, fontWeight: 700 }}>{matchedCount}</p>
+        </div>
+      </div>
+
+      {!loading && count === 0 && !error && (
+        <p className="wk-muted wk-center">لا توجد طلبات بعد.</p>
+      )}
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        {list.map((r) => (
+          <div className="wk-card" key={r.id} style={{ borderColor: r.bitrix_deal_id ? 'var(--wk-violet2)' : 'var(--wk-line)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: 8 }}>
+              <span className="mono wk-muted" style={{ fontSize: 12.5 }}>{formatTime(r.created_at)}</span>
+              <span className="wk-chip" style={{ fontSize: 12 }}>📅 {r.preferred_date} — {r.preferred_time}</span>
+            </div>
+
+            <p style={{ marginBottom: 8 }}>
+              <b>{r.name}</b>
+              {r.store_name && <span className="wk-muted"> · {r.store_name}</span>}
+              {r.whatsapp && (
+                <> · <a href={`https://wa.me/${r.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="mono" style={{ color: 'var(--wk-violet2)' }}>{r.whatsapp}</a></>
+              )}
+            </p>
+
+            {Array.isArray(r.tools) && r.tools.length > 0 && (
+              <p style={{ marginBottom: 6, fontSize: 13.5 }}>🛠️ الأدوات الحالية: {r.tools.join('، ')}</p>
+            )}
+            {Array.isArray(r.focus_areas) && r.focus_areas.length > 0 && (
+              <p style={{ marginBottom: 6, fontSize: 13.5 }}>🎯 المجالات المطلوبة: {r.focus_areas.join('، ')}</p>
+            )}
+            {r.challenge && <p style={{ marginBottom: 6, fontSize: 13.5 }}>⚠️ التحدي: {r.challenge}</p>}
+            {r.notes && <p style={{ marginBottom: 6, fontSize: 13.5 }}>📝 ملاحظات: {r.notes}</p>}
+
+            <span className="wk-muted" style={{ fontSize: 11.5, display: 'block', marginTop: 8 }}>
+              {r.bitrix_deal_id
+                ? `✅ صفقة Bitrix قائمة #${r.bitrix_deal_id}`
+                : r.bitrix_lead_id
+                  ? `✅ Bitrix Lead #${r.bitrix_lead_id}`
+                  : '⚠️ لم يتم التسجيل في Bitrix'}
+              {r.bitrix_activity_id && ` · موعد #${r.bitrix_activity_id}`}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function AdminDashboard() {
   return (
     <WorkshopPage backLabel="الرجوع للمحاور" backHref={ROUTES.hub}>
@@ -134,6 +334,8 @@ function AdminDashboard() {
             <h1 className="wk-h1" style={{ fontSize: 'clamp(24px,5vw,32px)' }}>🔒 لوحة تحكم نقطتين</h1>
           </div>
           <DiagnosticPanel />
+          <GapMapPanel />
+          <ConsultationPanel />
         </div>
       </section>
     </WorkshopPage>
