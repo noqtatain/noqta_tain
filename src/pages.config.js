@@ -13,9 +13,11 @@ import hamsa from './pages/hamsa';
 import hamsago from './pages/hamsago';
 import Portal from './pages/Portal.jsx';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import PrivacyPolicyEn from './pages/PrivacyPolicyEn';
 import TermsOfService from './pages/TermsOfService';
 import NoqtaChatEula from './pages/NoqtaChatEula';
 import Zidx24Eula from './pages/Zidx24Eula';
+import Zidx24EulaAr from './pages/Zidx24EulaAr';
 import beau10 from './pages/beau10';
 import MedhalJazeera from './pages/medhal-jazeera';
 import SafetySideOffer from './pages/safetysideoffer';
@@ -60,13 +62,16 @@ export const PAGES = {
     safetysideoffer: SafetySideOffer,
     'medhal-jazeera': MedhalJazeera,
     'privacy-policy': PrivacyPolicy,
+    'privacy-policy/en': PrivacyPolicyEn,
     'terms-of-service': TermsOfService,
     NoqtaChatEula,
     'noqtachat-eula': NoqtaChatEula,
     'noqtachat/eula': NoqtaChatEula,
     EULA: Zidx24Eula,
+    'EULA/ar': Zidx24EulaAr,
     Zidx24Eula,
     'zidx24-eula': Zidx24Eula,
+    'zidx24-eula/ar': Zidx24EulaAr,
     MutahedDesignOffer,
     'mutahed-design-offer': MutahedDesignOffer,
     HamsaMenuPlan,
