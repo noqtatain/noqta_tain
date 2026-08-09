@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نقطتين × بالقلم — عرض تقني وتسويقي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#FBFAF6;
+    --void-2:#F3EFE4;
+    --panel:#FFFFFF;
+    --panel-2:#F6F2E9;
+    --violet:#7C3AED;
+    --violet-bright:#6B2FD1;
+    --gold:#8F6018;
+    --gold-bright:#7A5210;
+    --malachite:#12735A;
+    --malachite-bright:#0F6B52;
+    --ivory:#1C1730;
+    --muted:#6B6478;
+    --line: rgba(28,23,48,0.12);
+    --line-violet: rgba(124,58,237,0.28);
+    --radius: 18px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(124,58,237,0.09), transparent 60%),
+      radial-gradient(900px 500px at 100% 10%, rgba(18,115,90,0.06), transparent 55%),
+      var(--void);
+    color:var(--ivory);
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+    line-height:1.75;
+    overflow-x:hidden;
+  }
+
+  .mono, .num{font-family:'Space Grotesk','IBM Plex Sans Arabic',sans-serif;}
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,250,246,0.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:1080px;margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+  }
+  .brandmark{display:flex;align-items:center;gap:10px;}
+  .brandmark-logo{height:28px;width:auto;display:block;}
+  .brandmark-text{font-size:14px;color:var(--muted);letter-spacing:.3px;}
+  .brandmark-text b{color:var(--ivory);font-weight:600;}
+  .topbar-cta{
+    display:flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,var(--malachite),var(--malachite-bright));
+    color:#F4FBF8;padding:9px 18px;border-radius:999px;font-size:13.5px;font-weight:600;
+    box-shadow:0 6px 20px rgba(18,115,90,0.35);
+    transition:transform .2s ease, box-shadow .2s ease;
+    white-space:nowrap;
+  }
+  .topbar-cta:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(18,115,90,0.5);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:90px 0 70px;
+    position:relative;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;color:var(--gold-bright);
+    border:1px solid var(--line);
+    padding:6px 14px;border-radius:999px;
+    margin-bottom:26px;letter-spacing:.4px;
+  }
+  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);}
+
+  h1.hero-title{
+    font-size:clamp(34px,5.4vw,58px);
+    font-weight:700;
+    line-height:1.28;
+    max-width:780px;
+    color:var(--ivory);
+  }
+  h1.hero-title em{
+    font-style:normal;
+    background:linear-gradient(90deg,var(--gold-bright),var(--violet-bright));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+
+  .hero-stroke{margin:26px 0 30px;width:280px;max-width:60%;}
+  .hero-stroke path{
+    fill:none;stroke:url(#strokeGrad);stroke-width:2.4;stroke-linecap:round;
+    stroke-dasharray:640;stroke-dashoffset:640;
+    animation:draw 1.8s .3s ease forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  .hero-sub{
+    font-size:17px;color:var(--muted);max-width:620px;margin-bottom:38px;
+  }
+
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 26px;border-radius:12px;font-size:14.5px;font-weight:600;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    cursor:pointer;border:none;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--malachite),var(--malachite-bright));
+    color:#F4FBF8;box-shadow:0 10px 30px rgba(18,115,90,0.3);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(18,115,90,0.45);}
+  .btn-ghost{
+    background:transparent;border:1px solid var(--line-violet);color:var(--ivory);
+  }
+  .btn-ghost:hover{background:rgba(124,58,237,0.08);border-color:var(--violet-bright);}
+
+  .hero-strip{
+    margin-top:64px;padding-top:26px;border-top:1px solid var(--line);
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  }
+  .hero-strip .item b{display:block;font-size:22px;font-family:'Space Grotesk';color:var(--gold-bright);}
+  .hero-strip .item span{font-size:13px;color:var(--muted);}
+
+  /* ---------- sections ---------- */
+  section{padding:74px 0;}
+  .section-head{margin-bottom:40px;max-width:640px;}
+  .eyebrow-num{
+    font-family:'Space Grotesk';font-size:13px;color:var(--gold);
+    display:flex;align-items:center;gap:10px;margin-bottom:14px;letter-spacing:1px;
+  }
+  .eyebrow-num::after{content:"";flex:0 0 40px;height:1px;background:var(--line);}
+  h2{font-size:clamp(24px,3.2vw,32px);font-weight:700;margin-bottom:14px;}
+  .section-head p{color:var(--muted);font-size:15.5px;}
+
+  .divider{height:1px;background:var(--line);border:none;}
+
+  /* diagnosis */
+  .diag-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .diag-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;
+  }
+  .diag-card .tag{
+    font-family:'Space Grotesk';font-size:12px;color:var(--malachite-bright);
+    background:rgba(18,115,90,0.12);border:1px solid rgba(18,115,90,0.3);
+    padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:12px;
+  }
+  .diag-card p{font-size:14.5px;color:var(--muted);}
+
+  /* solution */
+  .sol-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .sol-card{
+    background:linear-gradient(180deg,var(--panel),var(--panel-2));
+    border:1px solid var(--line);border-radius:var(--radius);padding:26px;
+    position:relative;overflow:hidden;
+  }
+  .sol-card::before{
+    content:"";position:absolute;inset-inline-end:-40px;top:-40px;width:120px;height:120px;
+    background:radial-gradient(circle,rgba(124,58,237,0.25),transparent 70%);
+  }
+  .sol-num{font-family:'Space Grotesk';font-size:13px;color:var(--gold);margin-bottom:10px;}
+  .sol-card h3{font-size:18px;margin-bottom:10px;font-weight:600;}
+  .sol-card p{font-size:14.5px;color:var(--muted);}
+
+  /* journey */
+  .journey-list{border-inline-start:1px solid var(--line);margin-inline-start:14px;}
+  .j-step{position:relative;padding:0 0 34px 0;padding-inline-start:34px;}
+  .j-step:last-child{padding-bottom:0;}
+  .j-step::before{
+    content:attr(data-n);
+    position:absolute;inset-inline-start:-14px;top:0;
+    width:28px;height:28px;border-radius:50%;
+    background:var(--void-2);border:1px solid var(--gold);color:var(--gold-bright);
+    font-family:'Space Grotesk';font-size:12.5px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .j-step h4{font-size:15.5px;margin-bottom:6px;font-weight:600;}
+  .j-step p{font-size:14px;color:var(--muted);max-width:560px;}
+  .j-step.vip::before{border-color:var(--violet-bright);color:var(--violet-bright);}
+  .j-badge{
+    display:inline-block;font-size:11.5px;font-family:'Space Grotesk';
+    background:rgba(124,58,237,0.15);color:var(--violet-bright);
+    border:1px solid rgba(124,58,237,0.35);padding:2px 9px;border-radius:999px;margin-inline-start:8px;
+  }
+
+  /* pricing */
+  .track-toggle{
+    display:flex;gap:10px;background:var(--panel);border:1px solid var(--line);
+    padding:6px;border-radius:14px;margin-bottom:30px;max-width:420px;
+  }
+  .track-toggle button{
+    flex:1;padding:12px 10px;border-radius:10px;border:none;background:transparent;
+    color:var(--muted);font-family:'IBM Plex Sans Arabic';font-size:14px;font-weight:600;cursor:pointer;
+    transition:all .2s ease;
+  }
+  .track-toggle button.active{
+    background:linear-gradient(135deg,var(--violet),var(--violet-bright));color:#fff;
+    box-shadow:0 6px 18px rgba(124,58,237,0.35);
+  }
+
+  .pricing-panel{display:grid;grid-template-columns:1.4fr 1fr;gap:22px;align-items:start;}
+  .tiers{display:flex;flex-direction:column;gap:12px;}
+  .tier-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;display:flex;align-items:center;justify-content:space-between;
+    cursor:pointer;transition:border-color .2s ease, background .2s ease;
+  }
+  .tier-card:hover{border-color:var(--line-violet);}
+  .tier-card.selected{border-color:var(--gold);background:rgba(201,162,91,0.06);}
+  .tier-left{display:flex;align-items:center;gap:12px;}
+  .radio-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--muted);position:relative;flex:0 0 auto;}
+  .tier-card.selected .radio-dot{border-color:var(--gold);}
+  .tier-card.selected .radio-dot::after{
+    content:"";position:absolute;inset:3px;border-radius:50%;background:var(--gold);
+  }
+  .tier-name{font-weight:600;font-size:15px;}
+  .tier-desc{font-size:12.5px;color:var(--muted);margin-top:2px;}
+  .tier-price{font-family:'Space Grotesk';font-size:16px;color:var(--gold-bright);white-space:nowrap;}
+  .tier-price span{font-size:11px;color:var(--muted);}
+
+  .addons{margin-top:22px;}
+  .addons h4{font-size:13.5px;color:var(--muted);margin-bottom:12px;font-weight:600;}
+  .addon-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 4px;border-bottom:1px solid var(--line);
+  }
+  .addon-left{display:flex;align-items:center;gap:12px;}
+  .checkbox{
+    width:18px;height:18px;border-radius:5px;border:1.5px solid var(--muted);position:relative;cursor:pointer;flex:0 0 auto;
+  }
+  .checkbox.checked{border-color:var(--malachite-bright);background:var(--malachite-bright);}
+  .checkbox.checked::after{
+    content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:12px;color:#fff;font-weight:700;
+  }
+  .addon-name{font-size:14px;}
+  .addon-note{font-size:11.5px;color:var(--muted);}
+  .addon-price{font-family:'Space Grotesk';font-size:13.5px;color:var(--ivory);}
+
+  .summary{
+    background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    border:1px solid var(--gold-bright);border-image:none;border:1px solid rgba(201,162,91,0.35);
+    border-radius:18px;padding:26px;position:sticky;top:90px;
+  }
+  .summary h4{font-size:13.5px;color:var(--muted);margin-bottom:16px;font-weight:600;}
+  .sum-row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:10px;color:var(--ivory);}
+  .sum-row.total{
+    border-top:1px solid var(--line);margin-top:14px;padding-top:14px;
+    font-size:19px;font-weight:700;color:var(--gold-bright);
+  }
+  .sum-row .num{font-family:'Space Grotesk';}
+  .summary .btn-primary{width:100%;justify-content:center;margin-top:20px;}
+  .summary-note{font-size:11.5px;color:var(--muted);margin-top:14px;line-height:1.6;}
+
+  /* why */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .why-card{
+    text-align:center;padding:28px 18px;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--panel);
+  }
+  .why-card .big{font-family:'Space Grotesk';font-size:26px;color:var(--gold-bright);margin-bottom:6px;}
+  .why-card p{font-size:13.5px;color:var(--muted);}
+
+  /* faq */
+  .faq-item{border-bottom:1px solid var(--line);padding:22px 0;}
+  .faq-item h4{font-size:15.5px;margin-bottom:8px;font-weight:600;color:var(--violet-bright);}
+  .faq-item p{font-size:14px;color:var(--muted);max-width:680px;}
+  .faq-table{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:10px;max-width:680px;}
+  .faq-table-row{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:6px;padding:10px 14px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line);}
+  .faq-table-row:last-child{border-bottom:none;}
+  .faq-table-head{background:var(--panel);color:var(--ivory);font-weight:600;font-size:12px;}
+  .faq-table-total{background:rgba(201,162,91,0.08);color:var(--gold-bright);font-weight:700;}
+  @media (max-width:560px){.faq-table-row{font-size:11.5px;padding:8px 10px;}}
+
+  /* next steps */
+  .next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .next-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;
+  }
+  .next-card .n{font-family:'Space Grotesk';color:var(--gold);font-size:13px;margin-bottom:10px;}
+  .next-card h4{font-size:15px;margin-bottom:8px;font-weight:600;}
+  .next-card p{font-size:13.5px;color:var(--muted);}
+
+  footer{
+    padding:44px 0;border-top:1px solid var(--line);text-align:center;
+  }
+  footer p{font-size:12.5px;color:var(--muted);margin-top:10px;}
+
+  /* whatsapp float */
+  .wa-float{
+    position:fixed;bottom:22px;left:22px;z-index:60;
+    display:flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg,var(--malachite),var(--malachite-bright));
+    color:#F4FBF8;padding:13px 20px;border-radius:999px;font-size:13.5px;font-weight:600;
+    box-shadow:0 10px 30px rgba(18,115,90,0.4);
+    animation:float 3s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+
+  @media (max-width:860px){
+    .diag-grid,.sol-grid,.why-grid,.next-grid{grid-template-columns:1fr;}
+    .pricing-panel{grid-template-columns:1fr;}
+    .summary{position:relative;top:0;}
+    .hero-strip{grid-template-columns:1fr;gap:16px;}
+    .wa-float span.wa-text{display:none;}
+  }
+
+  @media print{
+    .topbar,.wa-float,.hero-ctas,.track-toggle{display:none !important;}
+    body{background:#fff;color:#111;}
+    section{padding:24px 0;}
+    .diag-card,.sol-card,.tier-card,.summary,.why-card,.next-card{border-color:#ccc;background:#fafafa;}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0">
+  <defs>
+    <linearGradient id="strokeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8F6018"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brandmark">
+      <img src="https://noqtatain.com/logo-dark.png" alt="نقطتين" class="brandmark-logo">
+      <div class="brandmark-text">نقطتين <b>× بالقلم</b></div>
+    </div>
+    <a href="#" id="topWaBtn" class="topbar-cta">تأكيد عبر واتساب</a>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">عرض تقني وتسويقي مُعد خصيصاً لمتجر بالقلم</div>
+    <h1 class="hero-title">من قلمٍ يُحفر باسم عميلكم، إلى تجربة <em>تُحفر في ذاكرته</em></h1>
+
+    <svg class="hero-stroke" viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4,28 C40,4 70,36 100,18 C130,2 160,32 190,16 C215,3 235,26 260,14 C270,10 280,16 290,12"/>
+    </svg>
+
+    <p class="hero-sub">نظام واحد يجمع واتساب وإنستغرام ومتجركم على زد في مكان واحد، مع بوت ذكاء اصطناعي يعرف عملاءكم كما يعرفهم فريقكم، وتجربة كونسيرج تليق بعملاء الفخامة — دون أن يفوّت طلب واحد.</p>
+
+    <div class="hero-ctas">
+      <a href="#" id="heroWaBtn" class="btn btn-primary">📩 تحدث معنا على واتساب</a>
+      <a href="#pricing" class="btn btn-ghost">استعرض الباقات والأسعار</a>
+    </div>
+
+    <div class="hero-strip">
+      <div class="item"><b>+15,000,000</b><span>شركة حول العالم تستخدم Bitrix24</span></div>
+      <div class="item"><b>شريك ذهبي</b><span>نقطتين — شريك Bitrix24 المعتمد في السعودية</span></div>
+      <div class="item"><b>1–2 شهر</b><span>مدة التسليم الكامل للنظام</span></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- DIAGNOSIS -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">01 · الوضع الحالي</div>
+      <h2>أربع نقاط تستحق الانتباه قبل أي تطوير</h2>
+      <p>خلاصة ما لاحظناه من حديثنا مع فريق بالقلم حول طبيعة العمل اليومي.</p>
+    </div>
+    <div class="diag-grid">
+      <div class="diag-card">
+        <div class="tag">القنوات</div>
+        <p>محادثات العملاء موزّعة بين واتساب وإنستغرام دون نظام واحد يجمعها ويحفظ تاريخها.</p>
+      </div>
+      <div class="diag-card">
+        <div class="tag">الفريق</div>
+        <p>موظف واحد يتولى خدمة العملاء حالياً — أي تأخر في الرد قد يعني فقدان طلب هدية فاخرة أو عميل بالغ الأهمية.</p>
+      </div>
+      <div class="diag-card">
+        <div class="tag">الطلبات</div>
+        <p>طلبات متجر زد لا ترتبط تلقائياً بسجل العميل أو الفاتورة أو بوليصة الشحن.</p>
+      </div>
+      <div class="diag-card">
+        <div class="tag">السلات</div>
+        <p>لا يوجد رصد تلقائي لعربات التسوق المتروكة، ولا آلية لإعادة استهداف من لم يُكمل الشراء.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SOLUTION -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">02 · الحل المقترح</div>
+      <h2>نظام واحد يربط كل قنوات بالقلم</h2>
+      <p>Bitrix24 كمنصة CRM مركزية، مع أتمتة مصمّمة لطبيعة منتج فاخر يحتاج لمسة إنسانية عند الحاجة.</p>
+    </div>
+    <div class="sol-grid">
+      <div class="sol-card">
+        <div class="sol-num">CRM موحّد</div>
+        <h3>Bitrix24 + دمج زد</h3>
+        <p>أي طلب ينزل في متجر زد يظهر مباشرة في Bitrix24 بكامل تفاصيله — الحجر، النقش، اللون — مع إمكانية إصدار البوليصة والفاتورة تلقائياً.</p>
+      </div>
+      <div class="sol-card">
+        <div class="sol-num">بوت مزدوج</div>
+        <h3>خطوات ثابتة + ذكاء اصطناعي</h3>
+        <p>ردود فورية للأسئلة المتكررة، وذكاء اصطناعي (ChatGPT / Claude) مدرَّب على 4 سنوات من محادثاتكم للاستفسارات المفتوحة، مع تحويل تلقائي لموظف الخدمة عند الحاجة.</p>
+      </div>
+      <div class="sol-card">
+        <div class="sol-num">تجربة كونسيرج</div>
+        <h3>مسار خاص لعملاء الفخامة</h3>
+        <p>الطلبات المصنّفة VIP تُحوَّل تلقائياً لموظف يكمل رحلة الشراء بنفسه ويرسل الفاتورة، بنفس الاهتمام الذي يستحقه قلم محفور بالاسم.</p>
+      </div>
+      <div class="sol-card">
+        <div class="sol-num">السلات المتروكة</div>
+        <h3>رصد واستهداف تلقائي</h3>
+        <p>رصد فوري في Bitrix24 لأي سلة متروكة، مع إعادة استهداف تلقائي عبر واتساب أو إعلانات Google وFacebook.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- JOURNEY -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">03 · رحلة الطلب</div>
+      <h2>من لحظة الطلب إلى التسليم — بلا فجوات</h2>
+    </div>
+    <div class="journey-list">
+      <div class="j-step" data-n="1"><h4>العميل يطلب من متجر بالقلم على زد</h4><p>سواء قلم شخصي أو هدية شركات.</p></div>
+      <div class="j-step" data-n="2"><h4>الطلب يظهر تلقائياً في Bitrix24</h4><p>بكامل تفاصيله: المنتج، النقش المطلوب، بيانات العميل.</p></div>
+      <div class="j-step vip" data-n="3"><h4>تصنيف تلقائي للطلب <span class="j-badge">مسار مزدوج</span></h4><p>طلب عادي → يكمله البوت تلقائياً. طلب فاخر/VIP → يُحوَّل فوراً لموظف كونسيرج.</p></div>
+      <div class="j-step" data-n="4"><h4>إصدار البوليصة والفاتورة</h4><p>تلقائياً من داخل Bitrix24 دون تدخل يدوي.</p></div>
+      <div class="j-step" data-n="5"><h4>متابعة ما بعد الطلب</h4><p>تنبيه فوري للموظف والإدارة عند أي تأخر في الرد على عميل.</p></div>
+      <div class="j-step" data-n="6"><h4>سلة متروكة؟</h4><p>استهداف تلقائي عبر واتساب أو إعلانات Google/Facebook لإكمال الشراء.</p></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PRICING -->
+  <section id="pricing" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">04 · الباقات والاستثمار</div>
+      <h2>اختر نموذج التعاون المناسب لبالقلم</h2>
+      <p>الأسعار أدناه مبدئية وقابلة للتعديل حسب النطاق النهائي المتفق عليه — الأسعار غير شاملة ضريبة القيمة المضافة (15%) وتُحتسب تلقائياً أدناه.</p>
+      <p style="margin-top:10px;">الأسعار أعلاه لخدماتنا فقط، ولا تشمل رسوم اشتراك منصة Bitrix24 نفسها — <a href="https://www.bitrix24.com/prices/" target="_blank" rel="noopener" style="color:var(--violet-bright);text-decoration:underline;">اطّلع على أسعار خطط Bitrix24</a>.</p>
+    </div>
+
+    <div class="track-toggle">
+      <button id="btnProject" class="active">التسليم الكامل (مرة واحدة)</button>
+      <button id="btnSub">الاشتراك الشهري</button>
+    </div>
+
+    <div class="pricing-panel">
+      <div>
+        <div id="projectPanel">
+          <div class="tier-card selected" id="projectTierCard">
+            <div class="tier-left">
+              <div class="radio-dot"></div>
+              <div>
+                <div class="tier-name">باقة التسليم الكامل</div>
+                <div class="tier-desc">إعداد Bitrix24 + دمج زد + البوت المزدوج + تصميم رحلة العميل + أتمتة السلات المتروكة + تدريب الفريق + تسليم كامل للبيانات والصلاحيات خلال 1–2 شهر</div>
+              </div>
+            </div>
+            <div class="tier-price num">7,000<span> ر.س</span></div>
+          </div>
+        </div>
+
+        <div id="subPanel" style="display:none;">
+          <div class="tiers">
+            <div class="tier-card" data-tier="starter" data-price="500">
+              <div class="tier-left">
+                <div class="checkbox"></div>
+                <div>
+                  <div class="tier-name">تقني</div>
+                  <div class="tier-desc">دعم فني مستمر لـ Bitrix24 وصيانة النظام والبوت الأساسي</div>
+                </div>
+              </div>
+              <div class="tier-price num">500<span> ر.س / شهرياً</span></div>
+            </div>
+            <div class="tier-card selected" data-tier="growth" data-price="1500">
+              <div class="tier-left">
+                <div class="checkbox checked"></div>
+                <div>
+                  <div class="tier-name">إدارة حسابات السوشال ميديا</div>
+                  <div class="tier-desc">إدارة ونشر محتوى حسابات السوشال ميديا الخاصة بمتجركم شهرياً</div>
+                </div>
+              </div>
+              <div class="tier-price num">1,500<span> ر.س / شهرياً</span></div>
+            </div>
+            <div class="tier-card" data-tier="premium" data-price="2500">
+              <div class="tier-left">
+                <div class="checkbox"></div>
+                <div>
+                  <div class="tier-name">إدارة حملة تسويقية</div>
+                  <div class="tier-desc">إدارة حسابات السوشال ميديا + إدارة حملات ممولة (Google/Facebook) + إعادة استهداف + تقرير أداء شهري</div>
+                </div>
+              </div>
+              <div class="tier-price num">2,500<span> ر.س / لأول شهر</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="addons">
+          <h4>إضافات اختيارية</h4>
+          <div class="addon-row" data-addon="ai" data-price="1500">
+            <div class="addon-left">
+              <div class="checkbox"></div>
+              <div>
+                <div class="addon-name">إعداد وتدريب بوت الذكاء الاصطناعي المتقدم (ChatGPT / Claude)</div>
+                <div class="addon-note">تكلفة الاستخدام الفعلي تُحتسب من حساب العميل على OpenAI مباشرة، بدون وسيط</div>
+              </div>
+            </div>
+            <div class="addon-price num">1,500 ر.س</div>
+          </div>
+          <div class="addon-row" data-addon="vip" data-price="2000">
+            <div class="addon-left">
+              <div class="checkbox"></div>
+              <div>
+                <div class="addon-name">تصميم مخصص لتجربة الكونسيرج الفاخرة</div>
+                <div class="addon-note">سيناريوهات ومحتوى مخصص لعملاء VIP</div>
+              </div>
+            </div>
+            <div class="addon-price num">2,000 ر.س</div>
+          </div>
+          <div class="addon-row" data-addon="launch" data-price="2500">
+            <div class="addon-left">
+              <div class="checkbox"></div>
+              <div>
+                <div class="addon-name">حملة تدشين مدفوعة لأول شهر (Google / Facebook)</div>
+                <div class="addon-note">إعداد وإدارة الحملة الأولى</div>
+              </div>
+            </div>
+            <div class="addon-price num">2,500 ر.س</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary">
+        <h4>ملخص الفاتورة</h4>
+        <div class="sum-row"><span id="baseLabel">باقة التسليم الكامل</span><span class="num" id="baseAmt">7,000 ر.س</span></div>
+        <div class="sum-row"><span>الإضافات</span><span class="num" id="addonsAmt">0 ر.س</span></div>
+        <div class="sum-row"><span>ضريبة القيمة المضافة (15%)</span><span class="num" id="vatAmt">1,050 ر.س</span></div>
+        <div class="sum-row total"><span>الإجمالي</span><span class="num" id="totalAmt">8,050 ر.س</span></div>
+        <a href="#" id="summaryWaBtn" class="btn btn-primary">تأكيد هذه الباقة عبر واتساب</a>
+        <p class="summary-note" id="summaryNote">الأرقام أعلاه تقديرية للنقاش، وستُحدَّد تفصيلياً في عرض السعر النهائي المرسَل. الاشتراك الشهري بلا التزام سنوي.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- WHY -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">05 · لماذا Bitrix24 ونقطتين</div>
+      <h2>شريك تقني موثوق، لا مجرد أداة</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="big">عالمي</div><p>منصة أمريكية يستخدمها أكثر من 15 مليون شركة حول العالم</p></div>
+      <div class="why-card"><div class="big">شريك ذهبي</div><p>نقطتين شريك Bitrix24 المعتمد في السوق السعودي</p></div>
+      <div class="why-card"><div class="big">100% عربي</div><p>تواصل وتنفيذ ودعم فني بالعربية في جميع مراحل التعاون</p></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FAQ -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">06 · أسئلة أثيرت في اجتماعنا</div>
+    </div>
+    <div class="faq-item">
+      <h4>ماذا لو سأل العميل البوت سؤالاً خارج نطاق تدريبه؟</h4>
+      <p>يُصمَّم البوت مع نقطة تحويل فورية لموظف الخدمة بمجرد خروج السؤال عن نطاقه، بحيث لا يُترك أي عميل بلا رد — لا تخمين، ولا انتظار.</p>
+    </div>
+    <div class="faq-item">
+      <h4>كم تكلفة نماذج الذكاء الاصطناعي (ChatGPT / Claude)؟</h4>
+      <p>تعتمد التكلفة على تسعير OpenAI الحالي لواجهة API، وتتفاوت بحسب النموذج المستخدم وحجم سجل المحادثة المُرسل مع كل طلب. بالنسبة لحمل عمل عالي الحجم وحسّاس للتكلفة، يبلغ سعر نموذج GPT-5.6 Luna حالياً 1$ لكل مليون توكن إدخال، و6$ لكل مليون توكن إخراج.</p>
+      <p style="margin-top:10px;">بافتراض أن كل رد من البوت بمعدل ~50 كلمة (65–100 توكن تقريباً حسب اللغة والمحتوى):</p>
+      <div class="faq-table">
+        <div class="faq-table-row faq-table-head"><span>الاستخدام</span><span>التوكنات التقريبية</span><span>التكلفة (Luna)</span></div>
+        <div class="faq-table-row"><span>10,000 رد (إخراج)</span><span>~650 ألف – 1 مليون</span><span>$3.90 – $6.00</span></div>
+        <div class="faq-table-row"><span>رسائل المستخدمين (إدخال)</span><span>~500 ألف – 1 مليون</span><span>$0.50 – $1.00</span></div>
+        <div class="faq-table-row faq-table-total"><span>الإجمالي التقديري</span><span></span><span>~$4.40 – $7.00</span></div>
+      </div>
+      <p style="margin-top:10px;">أي ما يقارب 5$–7$ لكل 1,000 محادثة كنقطة بداية معقولة للتقدير، طالما لا يُرسَل سجل محادثة ضخم مع كل طلب — يتم احتساب المبلغ من حساب خاص بالعميل على OpenAI مباشرة بدون وسيط أو زيادة في التكلفة.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- NEXT STEPS -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">07 · الخطوات التالية</div>
+      <h2>ثلاث خطوات بسيطة نبدأ بها</h2>
+    </div>
+    <div class="next-grid">
+      <div class="next-card"><div class="n">01</div><h4>جرّبوا Bitrix24 مجاناً</h4><p>على bitrix24.com للاطلاع على واجهة النظام قبل القرار النهائي.</p></div>
+      <div class="next-card"><div class="n">02</div><h4>جهّزوا بيانات المحادثات</h4><p>تصدير محادثات واتساب وإنستغرام السابقة لتدريب البوت عليها.</p></div>
+      <div class="next-card"><div class="n">03</div><h4>أكّدوا الباقة</h4><p>راجعوا الباقات أعلاه وتواصلوا معنا على واتساب لإغلاق التفاصيل.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="brandmark" style="justify-content:center;">
+      <img src="https://noqtatain.com/logo-dark.png" alt="نقطتين" class="brandmark-logo">
+      <div class="brandmark-text"><b>نقطتين</b> — شريك التسويق والتقنية</div>
+    </div>
+    <p>عرض مُعد خصيصاً لفريق متجر بالقلم — جميع الأرقام قابلة للنقاش والتعديل.</p>
+  </footer>
+
+</main>
+
+<a href="#" id="floatWaBtn" class="wa-float">📩 <span class="wa-text">تواصل عبر واتساب</span></a>
+
+<script>
+  const WA_NUMBER = "966543569492";
+
+  const state = { track: 'project', tiers: { starter:false, growth:true, premium:false }, addons: { ai:false, vip:false, launch:false } };
+  const TIER_PRICES = { starter:500, growth:1500, premium:2500 };
+  const TIER_LABELS = { starter:'الباقة التقنية', growth:'باقة إدارة السوشال ميديا', premium:'باقة إدارة الحملة التسويقية' };
+  const ADDON_PRICES = { ai:1500, vip:2000, launch:2500 };
+  const ADDON_LABELS = { ai:'بوت الذكاء الاصطناعي المتقدم', vip:'تصميم تجربة الكونسيرج', launch:'حملة التدشين المدفوعة' };
+  const PROJECT_PRICE = 7000;
+  const VAT_RATE = 0.15;
+  const SUMMARY_NOTE_BASE = 'الأرقام أعلاه تقديرية للنقاش، وستُحدَّد تفصيلياً في عرض السعر النهائي المرسَل. الاشتراك الشهري بلا التزام سنوي.';
+  const PREMIUM_NOTE = ' ملاحظة: رسوم إدارة الحملة التسويقية (2,500 ر.س) تُحتسب لأول شهر فقط، وليست رسوماً شهرية متكررة.';
+
+  function fmt(n){ return n.toLocaleString('en-US'); }
+
+  function computeAndRender(){
+    const tierKeys = Object.keys(state.tiers).filter(k => state.tiers[k]);
+    const base = state.track === 'project' ? PROJECT_PRICE : tierKeys.reduce((s,k) => s + TIER_PRICES[k], 0);
+    const addonKeys = Object.keys(state.addons).filter(k => state.addons[k]);
+    const addonsSum = addonKeys.reduce((s,k) => s + ADDON_PRICES[k], 0);
+    const subtotal = base + addonsSum;
+    const vat = subtotal * VAT_RATE;
+    const total = subtotal + vat;
+
+    const subLabel = tierKeys.length ? tierKeys.map(k => TIER_LABELS[k]).join(' + ') : 'اختر باقة واحدة على الأقل';
+    document.getElementById('baseLabel').textContent = state.track === 'project' ? 'باقة التسليم الكامل' : subLabel;
+    document.getElementById('baseAmt').textContent = fmt(base) + ' ر.س';
+    document.getElementById('addonsAmt').textContent = fmt(addonsSum) + ' ر.س';
+    document.getElementById('vatAmt').textContent = fmt(Math.round(vat)) + ' ر.س';
+    const periodSuffix = state.track === 'subscription' ? ' / شهرياً' : '';
+    document.getElementById('totalAmt').textContent = fmt(Math.round(total)) + ' ر.س' + periodSuffix;
+
+    const showPremiumNote = state.track === 'subscription' && state.tiers.premium;
+    document.getElementById('summaryNote').textContent = SUMMARY_NOTE_BASE + (showPremiumNote ? PREMIUM_NOTE : '');
+
+    const trackLabel = state.track === 'project' ? 'باقة التسليم الكامل' : subLabel;
+    const addonsText = addonKeys.length ? (' + ' + addonKeys.map(k => ADDON_LABELS[k]).join(' + ')) : '';
+    const periodText = state.track === 'subscription' ? ' شهرياً' : '';
+    const premiumMsgNote = showPremiumNote ? ' (رسوم الحملة التسويقية لأول شهر فقط)' : '';
+    const msg = `مرحباً نقطتين، معنا من متجر بالقلم. نرغب بتأكيد: ${trackLabel}${addonsText} — الإجمالي شامل الضريبة ${fmt(Math.round(total))} ر.س${periodText}${premiumMsgNote}.`;
+    const link = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+    ['summaryWaBtn','topWaBtn','heroWaBtn','floatWaBtn'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.href = link;
+    });
+  }
+
+  document.getElementById('btnProject').addEventListener('click', () => {
+    state.track = 'project';
+    document.getElementById('btnProject').classList.add('active');
+    document.getElementById('btnSub').classList.remove('active');
+    document.getElementById('projectPanel').style.display = 'block';
+    document.getElementById('subPanel').style.display = 'none';
+    computeAndRender();
+  });
+  document.getElementById('btnSub').addEventListener('click', () => {
+    state.track = 'subscription';
+    document.getElementById('btnSub').classList.add('active');
+    document.getElementById('btnProject').classList.remove('active');
+    document.getElementById('projectPanel').style.display = 'none';
+    document.getElementById('subPanel').style.display = 'block';
+    computeAndRender();
+  });
+
+  document.querySelectorAll('#subPanel .tier-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.dataset.tier;
+      state.tiers[key] = !state.tiers[key];
+      card.classList.toggle('selected', state.tiers[key]);
+      card.querySelector('.checkbox').classList.toggle('checked', state.tiers[key]);
+      computeAndRender();
+    });
+  });
+
+  document.querySelectorAll('.addon-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const key = row.dataset.addon;
+      state.addons[key] = !state.addons[key];
+      row.querySelector('.checkbox').classList.toggle('checked', state.addons[key]);
+      computeAndRender();
+    });
+  });
+
+  computeAndRender();
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
