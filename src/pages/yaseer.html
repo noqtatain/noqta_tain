@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تصور مبدئي — بتركس24 | نقطتين</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#fbfaf6;
+    --panel:#ffffff;
+    --panel-2:#f6f2e9;
+    --line:rgba(28,23,48,0.12);
+    --violet:#7c3aed;
+    --violet-light:#6b2fd1;
+    --gold:#8f6018;
+    --text:#1c1730;
+    --muted:#6b6478;
+    --good:#12735a;
+    --radius:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(ellipse 70% 50% at 15% -10%, rgba(124,58,237,.10), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(212,175,106,.06), transparent 55%),
+      var(--void);
+    color:var(--text);
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+    line-height:1.75;
+    min-height:100vh;
+  }
+  .num{font-family:'Space Grotesk','IBM Plex Sans Arabic', sans-serif; font-variant-numeric: tabular-nums;}
+  a{color:inherit;}
+  img,svg{display:block;}
+  :focus-visible{outline:2px solid var(--violet-light); outline-offset:3px; border-radius:4px;}
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+
+  /* header */
+  header{
+    position:sticky; top:0; z-index:40;
+    backdrop-filter: blur(10px);
+    background:rgba(251,250,246,.82);
+    border-bottom:1px solid var(--line);
+  }
+  .headrow{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-logo{height:28px; width:auto; display:block;}
+  .brand-name{font-weight:800; font-size:1.05rem; letter-spacing:.2px;}
+  .brand-sub{font-size:.72rem; color:var(--muted);}
+  .headtag{font-size:.75rem; color:var(--muted); border:1px solid var(--line); padding:6px 12px; border-radius:100px;}
+
+  /* hero */
+  .hero{padding:72px 0 40px; text-align:center;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:.78rem; color:var(--gold); border:1px solid rgba(212,175,106,.35);
+    background:rgba(212,175,106,.06); padding:7px 16px; border-radius:100px; margin-bottom:22px;
+  }
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--gold);}
+  h1{font-size:clamp(1.7rem, 4.2vw, 2.65rem); font-weight:800; line-height:1.35; max-width:760px; margin:0 auto 16px;}
+  h1 em{font-style:normal; color:var(--violet-light);}
+  .hero-sub{color:var(--muted); font-size:1.02rem; max-width:600px; margin:0 auto;}
+  .meta-row{
+    display:flex; justify-content:center; gap:28px; margin-top:34px; flex-wrap:wrap;
+  }
+  .meta-item{text-align:center;}
+  .meta-item .k{font-size:.72rem; color:var(--muted); margin-bottom:4px;}
+  .meta-item .v{font-size:.92rem; font-weight:600;}
+
+  section{padding:52px 0;}
+  .section-head{margin-bottom:28px;}
+  .section-eyebrow{font-size:.75rem; color:var(--violet-light); font-weight:700; letter-spacing:.3px; margin-bottom:8px;}
+  .section-title{font-size:1.35rem; font-weight:800;}
+  .section-desc{color:var(--muted); font-size:.94rem; max-width:640px; margin-top:8px;}
+
+  /* overview card */
+  .card{
+    background:linear-gradient(180deg, var(--panel), var(--panel-2));
+    border:1px solid var(--line); border-radius:var(--radius); padding:26px;
+  }
+  .overview-text{color:var(--muted); font-size:.98rem;}
+
+  /* journey */
+  .journey{position:relative; padding:34px 10px 10px;}
+  .journey-track{
+    position:relative; display:flex; justify-content:space-between; align-items:flex-start;
+    max-width:640px; margin:0 auto;
+  }
+  .journey-line{
+    position:absolute; top:22px; right:8%; left:8%; height:2px;
+    background:repeating-linear-gradient(to left, var(--violet) 0 6px, transparent 6px 12px);
+  }
+  .jnode{position:relative; z-index:2; text-align:center; width:120px;}
+  .jdot{
+    width:44px; height:44px; border-radius:50%; margin:0 auto 12px;
+    background:var(--panel-2); border:2px solid var(--violet);
+    display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--violet-light);
+  }
+  .jnode .jl{font-weight:700; font-size:.92rem; margin-bottom:4px;}
+  .jnode .jp{font-size:.78rem; color:var(--gold);}
+  .journey-note{
+    text-align:center; margin-top:26px; font-size:.85rem; color:var(--muted);
+    display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .pulse{width:7px; height:7px; border-radius:50%; background:var(--good); flex:0 0 auto; animation: pulse 2.4s ease-in-out infinite;}
+  @media (prefers-reduced-motion: reduce){ .pulse{animation:none;} }
+  @keyframes pulse{0%,100%{opacity:.4;} 50%{opacity:1;}}
+
+  /* pricing groups */
+  .group{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px 24px; margin-bottom:16px;
+  }
+  .group-head{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:4px;}
+  .group-title{font-weight:700; font-size:1rem;}
+  .group-title .sub{display:block; font-weight:400; font-size:.8rem; color:var(--muted); margin-top:3px;}
+  .badge{font-size:.7rem; padding:4px 10px; border-radius:100px; border:1px solid var(--line); color:var(--muted); white-space:nowrap;}
+  .badge.tbd{color:var(--gold); border-color:rgba(212,175,106,.35);}
+
+  .opt-list{margin-top:16px; display:flex; flex-direction:column; gap:10px;}
+  .opt{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:13px 14px; border:1px solid var(--line); border-radius:10px; cursor:pointer;
+    transition:border-color .15s, background .15s;
+  }
+  .opt:hover{border-color:rgba(159,103,255,.5);}
+  .opt.checked{border-color:var(--violet); background:rgba(124,58,237,.08);}
+  .opt-left{display:flex; align-items:center; gap:12px;}
+  .opt input{accent-color:var(--violet); width:17px; height:17px; flex:0 0 auto; cursor:pointer;}
+  .opt-label{font-size:.92rem;}
+  .opt-label .d{display:block; font-size:.78rem; color:var(--muted); margin-top:2px;}
+  .opt-price{font-weight:700; font-size:.95rem; white-space:nowrap;}
+  .opt-price .cyc{font-size:.72rem; color:var(--muted); font-weight:400;}
+
+  .tbd-row{
+    margin-top:14px; padding:13px 14px; border:1px dashed var(--line); border-radius:10px;
+    font-size:.85rem; color:var(--muted);
+  }
+
+  /* summary */
+  .summary{
+    background:linear-gradient(180deg, var(--panel-2), var(--panel));
+    border:1px solid var(--line); border-radius:var(--radius); padding:26px; margin-top:8px;
+  }
+  .sum-row{display:flex; justify-content:space-between; align-items:center; padding:9px 0; font-size:.92rem; color:var(--text);}
+  .sum-row.total{
+    border-top:1px solid var(--line); margin-top:10px; padding-top:16px;
+    font-size:1.2rem; font-weight:800; color:var(--text);
+  }
+  .sum-row.total .num{color:var(--gold);}
+  .vat-toggle{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    margin-top:16px; padding-top:16px; border-top:1px solid var(--line);
+    font-size:.82rem; color:var(--muted);
+  }
+  .switch{position:relative; width:42px; height:24px; flex:0 0 auto;}
+  .switch input{opacity:0; width:100%; height:100%; position:absolute; cursor:pointer; margin:0;}
+  .slider{
+    position:absolute; inset:0; background:var(--line); border-radius:100px; transition:.2s;
+  }
+  .slider::before{
+    content:''; position:absolute; width:18px; height:18px; border-radius:50%; background:#fff;
+    top:3px; right:3px; transition:.2s;
+  }
+  .switch input:checked + .slider{background:var(--violet);}
+  .switch input:checked + .slider::before{transform:translateX(-18px);}
+  .monthly-note{font-size:.8rem; color:var(--muted); margin-top:12px;}
+
+  .constraints{display:flex; flex-direction:column; gap:12px;}
+  .cnote{
+    display:flex; gap:10px; align-items:flex-start; font-size:.86rem; color:var(--muted);
+    padding:14px; border:1px solid var(--line); border-radius:10px; background:rgba(37,44,74,.025);
+  }
+  .cnote .ic{flex:0 0 auto; width:8px; height:8px; border-radius:50%; background:var(--gold); margin-top:7px;}
+
+  /* cta */
+  .cta{
+    text-align:center; padding:56px 24px; border-radius:20px; margin:56px 0 30px;
+    background:linear-gradient(155deg, rgba(124,58,237,.16), rgba(212,175,106,.08)), var(--panel);
+    border:1px solid var(--line);
+  }
+  .cta h2{font-size:1.4rem; font-weight:800; margin-bottom:10px;}
+  .cta p{color:var(--muted); font-size:.92rem; max-width:480px; margin:0 auto 26px;}
+  .btn-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:13px 26px; border-radius:100px;
+    font-weight:700; font-size:.92rem; text-decoration:none; border:1px solid transparent;
+  }
+  .btn-primary{background:var(--violet); color:#fff;}
+  .btn-primary:hover{background:var(--violet-light);}
+  .btn-ghost{border-color:var(--line); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--violet-light);}
+
+  footer{border-top:1px solid var(--line); padding:26px 0; text-align:center;}
+  footer .f-brand{font-weight:700; font-size:.85rem;}
+  footer .f-note{font-size:.76rem; color:var(--muted); margin-top:6px;}
+
+  @media (max-width:640px){
+    .journey-track{flex-wrap:wrap; gap:22px 0; justify-content:center;}
+    .journey-line{display:none;}
+    .jnode{width:100px;}
+    .meta-row{gap:18px;}
+  }
+
+  @media print{
+    header, .cta, .btn-row{display:none !important;}
+    body{background:#fff; color:#111;}
+    .card,.group,.summary{border-color:#ccc; background:#fafafa;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap headrow">
+    <div class="brand">
+      <img src="https://noqtatain.com/logo-dark.png" alt="نقطتين" class="brand-logo">
+      <div>
+        <div class="brand-name">نقطتين</div>
+        <div class="brand-sub"> · Bitrix24 Gold Partner</div>
+      </div>
+    </div>
+    <div class="headtag">تصور مبدئي — غير نهائي</div>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div class="eyebrow"><span class="dot"></span> مبني على جلسة الاستكشاف الأخيرة</div>
+    <h1>تطوير وأتمتة <em>رحلة العميل</em> على بتركس24</h1>
+    <p class="hero-sub">تصور مبدئي مُعد خصيصاً لكم، يرسم النطاق والتكلفة التقديرية بناءً على ما تمت مناقشته — على أن يُبنى المخطط التفصيلي قبل تثبيت السعر النهائي.</p>
+    <div class="meta-row">
+      <div class="meta-item"><div class="k">مُقدَّم إلى</div><div class="v">الأستاذ أحمد الأحمدي</div></div>
+      <div class="meta-item"><div class="k">مُعد من</div><div class="v">نقطتين</div></div>
+      <div class="meta-item"><div class="k">المرجع</div><div class="v">Bitrix24 — تصور أولي</div></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">نظرة عامة</div>
+      <div class="section-title">من الاجتماع إلى الخطة</div>
+    </div>
+    <div class="card">
+      <p class="overview-text">
+        بعد استعراض عملكم اليومي — الصفقات، المهام، ملفات العملاء، والتحصيل — اتفقنا أن الخطوة التالية هي بناء
+        رحلة عميل متكاملة داخل بتركس24 عبر ثلاث مراحل رئيسية: <strong>المبيعات</strong>، <strong>التشغيل</strong>،
+        و<strong>التحصيل</strong>. البنود أدناه تقديرية بحسب فهمنا الحالي، وتبقى قابلة للتعديل عند جلستنا القادمة
+        لتحديد التقارير المطلوبة ورسم المخطط التفصيلي.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">النطاق المقترح</div>
+      <div class="section-title">رحلة العميل — ثلاث مراحل</div>
+    </div>
+    <div class="card">
+      <div class="journey">
+        <div class="journey-track">
+          <div class="journey-line"></div>
+          <div class="jnode"><div class="jdot num">1</div><div class="jl">المبيعات</div><div class="jp num">4,000 ر.س</div></div>
+          <div class="jnode"><div class="jdot num">2</div><div class="jl">التشغيل</div><div class="jp num">4,000 ر.س</div></div>
+          <div class="jnode"><div class="jdot num">3</div><div class="jl">التحصيل</div><div class="jp num">2,000 ر.س</div></div>
+        </div>
+        <div class="journey-note"><span class="pulse"></span> أتمتة الواتساب والجروبات تعمل عبر المراحل الثلاث</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="pricing">
+    <div class="section-head">
+      <div class="section-eyebrow">بنود الأتعاب</div>
+      <div class="section-title">التفاصيل والتكلفة التقديرية</div>
+      <div class="section-desc">فعّلوا أو ألغوا أي بند لمشاهدة أثره على الإجمالي في الأسفل.</div>
+    </div>
+
+    <!-- License -->
+    <div class="group">
+      <div class="group-head">
+        <div class="group-title">ترخيص بتركس24<span class="sub">تجديد الاشتراك — اختاروا دورة السداد</span></div>
+      </div>
+      <div class="opt-list" id="license-group">
+        <label class="opt checked">
+          <span class="opt-left"><input type="radio" name="license" value="8950" data-cycle="سنوياً" checked><span class="opt-label">تجديد سنوي<span class="d">دفعة واحدة كل 12 شهراً</span></span></span>
+          <span class="opt-price"><span class="num">8,950</span> ر.س <span class="cyc">/ سنوياً</span></span>
+        </label>
+        <label class="opt">
+          <span class="opt-left"><input type="radio" name="license" value="2810" data-cycle="ربع سنوي"><span class="opt-label">تجديد ربع سنوي<span class="d">دفعة كل 3 أشهر — مرونة أعلى بسعر إجمالي أعلى</span></span></span>
+          <span class="opt-price"><span class="num">2,810</span> ر.س <span class="cyc">/ للربع</span></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- WhatsApp -->
+    <div class="group">
+      <div class="group-head">
+        <div class="group-title">تكامل الواتساب<span class="sub">دمج واتساب بزنس مع بتركس24</span></div>
+      </div>
+      <div class="opt-list">
+        <label class="opt checked">
+          <span class="opt-left"><input type="checkbox" data-item="whatsapp" data-price="1700" checked><span class="opt-label">اشتراك سنوي<span class="d">استقبال وإرسال الرسائل داخل بتركس مباشرة</span></span></span>
+          <span class="opt-price"><span class="num">1,700</span> ر.س <span class="cyc">/ سنوياً</span></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Journey customization -->
+    <div class="group">
+      <div class="group-head">
+        <div class="group-title">تخصيص رحلة العميل<span class="sub">تصميم وأتمتة كل مرحلة، شامل أتمتة الواتساب والجروبات</span></div>
+      </div>
+      <div class="opt-list">
+        <label class="opt checked">
+          <span class="opt-left"><input type="checkbox" data-item="sales" data-price="4000" checked><span class="opt-label">تخصيص رحلة المبيعات</span></span>
+          <span class="opt-price"><span class="num">4,000</span> ر.س</span>
+        </label>
+        <label class="opt checked">
+          <span class="opt-left"><input type="checkbox" data-item="ops" data-price="4000" checked><span class="opt-label">تخصيص رحلة التشغيل</span></span>
+          <span class="opt-price"><span class="num">4,000</span> ر.س</span>
+        </label>
+        <label class="opt checked">
+          <span class="opt-left"><input type="checkbox" data-item="collections" data-price="2000" checked><span class="opt-label">تخصيص رحلة التحصيل</span></span>
+          <span class="opt-price"><span class="num">2,000</span> ر.س</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Reports -->
+    <div class="group">
+      <div class="group-head">
+        <div class="group-title">العمل على التقارير<span class="sub">مطابقة تقاريركم الحالية مع إمكانيات بتركس24</span></div>
+        <div class="badge tbd">قيد التحديد</div>
+      </div>
+      <div class="tbd-row">يحتاج نطاق التقارير جلسة تحليل مستقلة على عينات فعلية من تقاريركم قبل تحديد السعر — كما اتفقنا.</div>
+    </div>
+
+    <!-- Monthly support -->
+    <div class="group">
+      <div class="group-head">
+        <div class="group-title">الدعم والإشراف الشهري<span class="sub">اختياري — يبدأ بعد التسليم</span></div>
+      </div>
+      <div class="opt-list" id="support-group">
+        <label class="opt checked">
+          <span class="opt-left"><input type="radio" name="support" value="1500" data-cycle="شهرياً" checked><span class="opt-label">باقة الإشراف التقني الكامل<span class="d">اجتماعان شهرياً + تطوير وتحسين مستمر</span></span></span>
+          <span class="opt-price"><span class="num">1,500</span> ر.س <span class="cyc">/ شهرياً</span></span>
+        </label>
+        <label class="opt">
+          <span class="opt-left"><input type="radio" name="support" value="500" data-cycle="شهرياً"><span class="opt-label">باقة الدعم الفني الأساسي<span class="d">دعم فني عند الحاجة، بدون اجتماعات دورية</span></span></span>
+          <span class="opt-price"><span class="num">500</span> ر.س <span class="cyc">/ شهرياً</span></span>
+        </label>
+        <label class="opt">
+          <span class="opt-left"><input type="radio" name="support" value="0" data-cycle=""><span class="opt-label">بدون باقة شهرية حالياً</span></span>
+          <span class="opt-price">—</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary">
+      <div class="sum-row"><span>إجمالي التنفيذ (لمرة واحدة / سنوي)</span><span class="num" id="sum-setup">—</span></div>
+      <div class="sum-row"><span>الدعم الشهري المختار</span><span class="num" id="sum-monthly">—</span></div>
+      <div class="sum-row total"><span>الإجمالي</span><span class="num" id="sum-total">—</span></div>
+      <div class="vat-toggle">
+        <span>إظهار السعر شاملاً ضريبة القيمة المضافة (15%)</span>
+        <label class="switch"><input type="checkbox" id="vat-switch"><span class="slider"></span></label>
+      </div>
+      <div class="monthly-note">لا يشمل الإجمالي بند التقارير (قيد التحديد)، ولا يشمل حل الاتصال (مقسم) الذي لا يزال قيد التطوير خارج نطاق هذا التصور.</div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">ملاحظات مهمة</div>
+      <div class="section-title">حتى لا تفاجئكم التفاصيل</div>
+    </div>
+    <div class="constraints">
+      <div class="cnote"><span class="ic"></span>الواتساب الرسمي (API) لا يدعم الجروبات؛ الأتمتة داخل جروبات الواتساب ستُبنى عبر الحل البديل الذي نطوّره حالياً، وليست جزءاً من التكامل القياسي أعلاه.</div>
+      <div class="cnote"><span class="ic"></span>ربط الاتصال (المقسم) داخل بتركس24 معطّل حالياً بسبب قيود الاتصال السعودية على عناوين الـIP؛ نعمل على حل محلي بدون تقدير زمني نهائي بعد.</div>
+      <div class="cnote"><span class="ic"></span>هذا التصور تقديري وغير رسمي؛ السعر النهائي يُثبَّت بعد جلسة رسم المخطط التفصيلي لرحلة العميل وتحديد نطاق التقارير.</div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cta">
+      <h2>جاهزون نكمل معكم؟</h2>
+      <p>تواصلوا معنا لتحديد موعد جلسة رسم المخطط التفصيلي، أو لأي استفسار حول البنود أعلاه.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" target="_blank" href="https://wa.me/966543569492?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A7%D8%B7%D9%84%D8%B9%D8%AA%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D8%AA%D8%B5%D9%88%D8%B1%20%D8%A7%D9%84%D9%85%D8%A8%D8%AF%D8%A6%D9%8A%20%D9%84%D8%A8%D8%AA%D8%B1%D9%83%D8%B324%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%A7%D9%84%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84.">
+          مناقشة التصور عبر واتساب
+        </a>
+        <a class="btn btn-ghost" href="javascript:window.print()">تنزيل / طباعة PDF</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-brand">نقطتين </div>
+    <div class="f-note">تصور مبدئي غير رسمي — الأسعار بالريال السعودي ولا تشمل ضريبة القيمة المضافة ما لم يُذكر خلاف ذلك</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const items = () => Array.from(document.querySelectorAll('#pricing input'));
+
+  function updateOptState(input){
+    const label = input.closest('.opt');
+    if(!label) return;
+    if(input.type === 'checkbox'){
+      label.classList.toggle('checked', input.checked);
+    } else if(input.type === 'radio'){
+      document.querySelectorAll(`input[name="${input.name}"]`).forEach(r=>{
+        r.closest('.opt').classList.toggle('checked', r.checked);
+      });
+    }
+  }
+
+  function calc(){
+    let setup = 0;
+    let monthly = 0;
+
+    // license (radio)
+    const license = document.querySelector('input[name="license"]:checked');
+    if(license) setup += Number(license.value);
+
+    // checkboxes (whatsapp + journey)
+    document.querySelectorAll('#pricing input[type="checkbox"][data-price]').forEach(cb=>{
+      if(cb.checked) setup += Number(cb.dataset.price);
+    });
+
+    // monthly support
+    const support = document.querySelector('input[name="support"]:checked');
+    if(support) monthly += Number(support.value);
+
+    const vatOn = document.getElementById('vat-switch').checked;
+    const vatRate = 1.15;
+
+    const setupShown = vatOn ? Math.round(setup * vatRate) : setup;
+    const monthlyShown = vatOn ? Math.round(monthly * vatRate) : monthly;
+
+    document.getElementById('sum-setup').textContent = setupShown.toLocaleString('en-US') + ' ر.س';
+    document.getElementById('sum-monthly').textContent = monthly > 0 ? (monthlyShown.toLocaleString('en-US') + ' ر.س / شهرياً') : 'بدون';
+    document.getElementById('sum-total').textContent = setupShown.toLocaleString('en-US') + ' ر.س' + (monthly > 0 ? ' + ' + monthlyShown.toLocaleString('en-US') + ' ر.س/شهرياً' : '');
+  }
+
+  items().forEach(input=>{
+    input.addEventListener('change', ()=>{ updateOptState(input); calc(); });
+  });
+  document.getElementById('vat-switch').addEventListener('change', calc);
+
+  calc();
+})();
+</script>
+
+</body>
+</html>
