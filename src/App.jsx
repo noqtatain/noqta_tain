@@ -23,6 +23,7 @@ import KafGroupProposal from '@/pages/KafGroupProposal';
 import BilqalamProposal from '@/pages/BilqalamProposal';
 import YaseerProposal from '@/pages/YaseerProposal';
 import WorkshopBitrix24Zid from '@/pages/WorkshopBitrix24Zid';
+import TryBitrix24Zid from '@/pages/TryBitrix24Zid';
 import WorkshopHub from '@/pages/workshop/WorkshopHub';
 import WorkshopSlides from '@/pages/workshop/WorkshopSlides';
 import WorkshopDiagnostic from '@/pages/workshop/WorkshopDiagnostic';
@@ -83,6 +84,7 @@ const AuthenticatedApp = () => {
       <Route path="/bilqalam" element={<BilqalamProposal />} />
       <Route path="/yaseer" element={<YaseerProposal />} />
       <Route path="/workshop" element={<WorkshopBitrix24Zid />} />
+      <Route path="/try-bitrix24" element={<TryBitrix24Zid />} />
       <Route path="/agenda" element={<WorkshopHub />} />
       <Route path="/slides" element={<WorkshopSlides />} />
       <Route path="/activities/diagnostic" element={<WorkshopDiagnostic />} />
