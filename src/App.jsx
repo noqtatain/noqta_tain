@@ -22,6 +22,8 @@ import RassenAltayfProposal from '@/pages/RassenAltayfProposal';
 import KafGroupProposal from '@/pages/KafGroupProposal';
 import BilqalamProposal from '@/pages/BilqalamProposal';
 import YaseerProposal from '@/pages/YaseerProposal';
+import DpowerProposal from '@/pages/DpowerProposal';
+import HikalarabaProposal from '@/pages/HikalarabaProposal';
 import WorkshopBitrix24Zid from '@/pages/WorkshopBitrix24Zid';
 import TryBitrix24Zid from '@/pages/TryBitrix24Zid';
 import WorkshopHub from '@/pages/workshop/WorkshopHub';
@@ -83,6 +85,8 @@ const AuthenticatedApp = () => {
       <Route path="/q/1143" element={<KafGroupProposal />} />
       <Route path="/bilqalam" element={<BilqalamProposal />} />
       <Route path="/yaseer" element={<YaseerProposal />} />
+      <Route path="/dpower" element={<DpowerProposal />} />
+      <Route path="/hikalaraba" element={<HikalarabaProposal />} />
       <Route path="/workshop" element={<WorkshopBitrix24Zid />} />
       <Route path="/try-bitrix24" element={<TryBitrix24Zid />} />
       <Route path="/agenda" element={<WorkshopHub />} />
