@@ -24,6 +24,12 @@ import BilqalamProposal from '@/pages/BilqalamProposal';
 import YaseerProposal from '@/pages/YaseerProposal';
 import DpowerProposal from '@/pages/DpowerProposal';
 import HikalarabaProposal from '@/pages/HikalarabaProposal';
+import FinooksaProposal from '@/pages/FinooksaProposal';
+import SafetysideProposal from '@/pages/SafetysideProposal';
+import HydrauticProposal from '@/pages/HydrauticProposal';
+import RafarfProposal from '@/pages/RafarfProposal';
+import KarakpattyProposal from '@/pages/KarakpattyProposal';
+import SisterCompaniesMarketing from '@/pages/SisterCompaniesMarketing';
 import WorkshopBitrix24Zid from '@/pages/WorkshopBitrix24Zid';
 import TryBitrix24Zid from '@/pages/TryBitrix24Zid';
 import WorkshopHub from '@/pages/workshop/WorkshopHub';
@@ -87,6 +93,12 @@ const AuthenticatedApp = () => {
       <Route path="/yaseer" element={<YaseerProposal />} />
       <Route path="/dpower" element={<DpowerProposal />} />
       <Route path="/hikalaraba" element={<HikalarabaProposal />} />
+      <Route path="/finooksa" element={<FinooksaProposal />} />
+      <Route path="/safetyside" element={<SafetysideProposal />} />
+      <Route path="/hydrautic" element={<HydrauticProposal />} />
+      <Route path="/rafarf" element={<RafarfProposal />} />
+      <Route path="/karakpatty" element={<KarakpattyProposal />} />
+      <Route path="/sister-companies-marketing" element={<SisterCompaniesMarketing />} />
       <Route path="/workshop" element={<WorkshopBitrix24Zid />} />
       <Route path="/try-bitrix24" element={<TryBitrix24Zid />} />
       <Route path="/agenda" element={<WorkshopHub />} />

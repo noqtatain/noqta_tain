@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نقطتين × رفارف - عرض فني وتسويقي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#FBFAF6;
+    --void-2:#F3EFE4;
+    --panel:#FFFFFF;
+    --panel-2:#F6F2E9;
+    --violet:#7C3AED;
+    --violet-bright:#6B2FD1;
+    --gold:#8F6018;
+    --gold-bright:#7A5210;
+    --malachite:#12735A;
+    --malachite-bright:#0F6B52;
+    --bad:#C13F3F;
+    --warn:#C08A2E;
+    --ivory:#1C1730;
+    --muted:#6B6478;
+    --line: rgba(28,23,48,0.12);
+    --line-violet: rgba(124,58,237,0.28);
+    --radius: 18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(124,58,237,0.09), transparent 60%),
+      radial-gradient(900px 500px at 100% 10%, rgba(18,115,90,0.06), transparent 55%),
+      var(--void);
+    color:var(--ivory);
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+    line-height:1.75;
+    overflow-x:hidden;
+  }
+  .mono, .num{font-family:'Space Grotesk','IBM Plex Sans Arabic',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(251,250,246,0.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:1080px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+  .brandmark{display:flex;align-items:center;gap:10px;}
+  .brandmark-logo{height:28px;width:auto;display:block;}
+  .brandmark-text{font-size:14px;color:var(--muted);letter-spacing:.3px;}
+  .brandmark-text b{color:var(--ivory);font-weight:600;}
+  .hero{padding:90px 0 70px;position:relative;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--gold-bright);border:1px solid var(--line);padding:6px 14px;border-radius:999px;margin-bottom:26px;letter-spacing:.4px;}
+  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  h1.hero-title{font-size:clamp(34px,5.4vw,56px);font-weight:700;line-height:1.32;max-width:780px;color:var(--ivory);}
+  h1.hero-title em{font-style:normal;background:linear-gradient(90deg,var(--gold-bright),var(--violet-bright));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero-stroke{margin:26px 0 30px;width:280px;max-width:60%;}
+  .hero-stroke path{fill:none;stroke:url(#strokeGrad);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:640;stroke-dashoffset:640;animation:draw 1.8s .3s ease forwards;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .hero-sub{font-size:17px;color:var(--muted);max-width:640px;margin-bottom:38px;}
+  .hero-strip{margin-top:64px;padding-top:26px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .hero-strip .item b{display:block;font-size:22px;font-family:'Space Grotesk';color:var(--gold-bright);}
+  .hero-strip .item span{font-size:13px;color:var(--muted);}
+  section{padding:74px 0;}
+  .section-head{margin-bottom:40px;max-width:640px;}
+  .eyebrow-num{font-family:'Space Grotesk';font-size:13px;color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:14px;letter-spacing:1px;}
+  .eyebrow-num::after{content:"";flex:0 0 40px;height:1px;background:var(--line);}
+  h2{font-size:clamp(24px,3.2vw,32px);font-weight:700;margin-bottom:14px;}
+  .section-head p{color:var(--muted);font-size:15.5px;}
+  .divider{height:1px;background:var(--line);border:none;}
+  .score-wrap{display:flex;align-items:center;gap:40px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:32px;}
+  .score-ring{position:relative;width:150px;height:150px;flex-shrink:0;}
+  .score-ring svg{transform:rotate(-90deg);}
+  .score-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .score-num .n{font-family:'Space Grotesk';font-size:38px;font-weight:700;line-height:1;color:var(--ivory);}
+  .score-num .t{font-size:12px;color:var(--muted);}
+  .score-axes{flex:1;min-width:260px;display:flex;flex-direction:column;gap:13px;}
+  .axis-row{display:flex;align-items:center;gap:12px;}
+  .axis-label{font-size:13.5px;color:var(--muted);width:160px;flex-shrink:0;}
+  .axis-track{flex:1;height:8px;border-radius:99px;background:var(--void-2);overflow:hidden;}
+  .axis-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold-bright),var(--violet-bright));width:0;transition:width 1.3s cubic-bezier(.2,.8,.2,1);}
+  .axis-num{font-family:'Space Grotesk';font-size:13px;color:var(--ivory);width:34px;flex-shrink:0;}
+  .audit-row{display:flex;align-items:flex-start;gap:18px;padding:20px 0;border-bottom:1px solid var(--line);}
+  .audit-row:last-child{border-bottom:none;}
+  .audit-badge{flex-shrink:0;width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:600;font-size:11.5px;text-align:center;padding:4px;}
+  .b-bad{background:rgba(193,63,63,.10);color:var(--bad);border:1px solid rgba(193,63,63,.28);}
+  .b-warn{background:rgba(192,138,46,.14);color:var(--warn);border:1px solid rgba(192,138,46,.32);}
+  .audit-row h3{font-size:16.5px;margin-bottom:4px;font-weight:600;}
+  .audit-row p{color:var(--muted);font-size:14px;}
+  .strengths{background:var(--panel-2);border:1px solid rgba(18,115,90,.25);border-radius:var(--radius);padding:24px 26px;margin-top:28px;}
+  .strengths h4{font-size:14.5px;color:var(--malachite-bright);margin-bottom:12px;font-weight:600;}
+  .strengths ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .strengths li{font-size:14px;color:var(--muted);display:flex;gap:8px;}
+  .strengths li::before{content:"✓";color:var(--malachite-bright);flex-shrink:0;}
+  .sol-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .sol-card{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative;overflow:hidden;}
+  .sol-card::before{content:"";position:absolute;inset-inline-end:-40px;top:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(124,58,237,0.25),transparent 70%);}
+  .sol-num{font-family:'Space Grotesk';font-size:13px;color:var(--gold);margin-bottom:10px;}
+  .sol-card h3{font-size:17px;margin-bottom:10px;font-weight:600;}
+  .sol-card p{font-size:14.5px;color:var(--muted);}
+  .stat-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:8px 0 40px;}
+  .stat-tile{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;text-align:center;}
+  .stat-tile b{display:block;font-family:'Space Grotesk';font-size:26px;color:var(--gold-bright);}
+  .stat-tile span{font-size:12px;color:var(--muted);}
+  .scope-block{margin-top:32px;}
+  .scope-block h3{font-size:16px;margin-bottom:12px;font-weight:600;display:flex;align-items:center;gap:10px;}
+  .scope-block h3 .idx{font-family:'Space Grotesk';font-size:12px;color:var(--gold);border:1px solid var(--line);border-radius:999px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:13.5px;color:var(--muted);transition:all .2s ease;}
+  .chip:hover{border-color:var(--line-violet);color:var(--ivory);}
+  .addon-note{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;font-size:13.5px;color:var(--muted);margin-top:14px;}
+  .phase{display:flex;gap:24px;position:relative;padding-bottom:40px;}
+  .phase:last-child{padding-bottom:0;}
+  .phase-line{position:absolute;top:44px;bottom:0;inset-inline-start:23px;width:2px;background:var(--line);}
+  .phase:last-child .phase-line{display:none;}
+  .phase-node{flex-shrink:0;width:48px;height:48px;border-radius:50%;background:var(--panel);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:600;color:var(--gold-bright);z-index:2;}
+  .phase-body h3{margin-bottom:6px;font-size:17px;font-weight:600;}
+  .phase-body .dur{font-family:'Space Grotesk';font-size:13px;color:var(--violet-bright);margin-bottom:8px;}
+  .phase-body p{color:var(--muted);font-size:14.5px;}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .why-card{text-align:center;padding:28px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);}
+  .why-card .big{font-family:'Space Grotesk';font-size:24px;color:var(--gold-bright);margin-bottom:6px;}
+  .why-card p{font-size:13.5px;color:var(--muted);}
+  footer{padding:44px 0;border-top:1px solid var(--line);text-align:center;}
+  footer p{font-size:12.5px;color:var(--muted);margin-top:10px;}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+  @media (max-width:860px){
+    .sol-grid,.why-grid{grid-template-columns:1fr 1fr;}
+    .stat-tiles{grid-template-columns:1fr 1fr;}
+    .hero-strip{grid-template-columns:1fr;gap:16px;}
+    .score-wrap{padding:24px;}
+    .axis-label{width:120px;}
+  }
+  @media (max-width:560px){
+    .sol-grid,.why-grid,.stat-tiles{grid-template-columns:1fr;}
+  }
+  @media print{
+    body{background:#fff;color:#111;}
+    section{padding:24px 0;}
+    .sol-card,.score-wrap,.audit-row,.why-card,.stat-tile,.strengths{border-color:#ccc;background:#fafafa;}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0">
+  <defs>
+    <linearGradient id="strokeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8F6018"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brandmark">
+      <img src="https://noqtatain.com/logo-dark.png" alt="نقطتين" class="brandmark-logo">
+      <div class="brandmark-text">نقطتين <b>× رفارف</b></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">عرض فني وتسويقي مُعد خصيصاً لـ متجر رفارف</div>
+    <h1 class="hero-title">أساس تقني جاهز منذ اليوم الأول... <em>بحاجة لصوت يُسمع</em></h1>
+
+    <svg class="hero-stroke" viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4,28 C40,4 70,36 100,18 C130,2 160,32 190,16 C215,3 235,26 260,14 C270,10 280,16 290,12"/>
+    </svg>
+
+    <p class="hero-sub">أجرينا تدقيقاً فعلياً لموقع rafarf.com وحسابكم على إنستغرام. هذا العرض فني بالكامل - يوضح ما لاحظناه، والفرص التي يفتحها، وحجم الجهد الشهري المقترح لتحويلها إلى نمو مقاس، مع خطة تنفيذ تفصيلية لأول 90 يوماً.</p>
+
+    <div class="hero-strip">
+      <div class="item"><b>حساب جديد</b><span>إنستغرام بلا متابعين بعد - قناة مفتوحة تنتظر أول محتوى</span></div>
+      <div class="item"><b>صفر</b><span>أدوات تتبع أو تحليلات مُثبّتة على الموقع</span></div>
+      <div class="item"><b>3 صور</b><span>فقط في الصفحة الرئيسية - كتالوج لا يزال في بداياته</span></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- AUDIT -->
+  <section id="audit" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">01 · الوضع الرقمي الحالي</div>
+      <h2>قرأنا موقعكم وحسابكم بعين الباحث والعميل المحتمل</h2>
+      <p>تدقيق فعلي شمل بنية الموقع التقنية، محتوى الصفحة الرئيسية، والحضور على إنستغرام - محدّث حتى أغسطس 2026.</p>
+    </div>
+
+    <div class="score-wrap reveal">
+      <div class="score-ring">
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="66" fill="none" stroke="#F3EFE4" stroke-width="12"/>
+          <circle id="ring" cx="75" cy="75" r="66" fill="none" stroke="url(#strokeGrad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="415" stroke-dashoffset="415"/>
+        </svg>
+        <div class="score-num"><div class="n mono" id="scoreN">0</div><div class="t">من 100</div></div>
+      </div>
+      <div class="score-axes">
+        <div class="axis-row"><div class="axis-label">السيو التقني</div><div class="axis-track"><div class="axis-fill" data-target="60"></div></div><div class="axis-num mono">60</div></div>
+        <div class="axis-row"><div class="axis-label">جودة المحتوى</div><div class="axis-track"><div class="axis-fill" data-target="20"></div></div><div class="axis-num mono">20</div></div>
+        <div class="axis-row"><div class="axis-label">حضور التواصل الاجتماعي</div><div class="axis-track"><div class="axis-fill" data-target="20"></div></div><div class="axis-num mono">20</div></div>
+        <div class="axis-row"><div class="axis-label">الثقة والسمعة الرقمية</div><div class="axis-track"><div class="axis-fill" data-target="20"></div></div><div class="axis-num mono">20</div></div>
+        <div class="axis-row"><div class="axis-label">قياس الأداء والتحويل</div><div class="axis-track"><div class="axis-fill" data-target="10"></div></div><div class="axis-num mono">10</div></div>
+      </div>
+    </div>
+
+    <div style="height:36px"></div>
+
+    <div class="audit-row reveal">
+      <div class="audit-badge b-warn">جمهور</div>
+      <div><h3>حساب إنستغرام جديد بلا متابعين بعد</h3><p>الحساب محجوز بالاسم الصحيح لكنه لم يبدأ النشر بعد - نقطة بداية نظيفة تحتاج أول دفعة محتوى لبناء جمهور حقيقي من الصفر.</p></div>
+    </div>
+    <div class="audit-row reveal">
+      <div class="audit-badge b-bad">تتبع</div>
+      <div><h3>لا توجد أي أداة تتبع أو تحليلات على الموقع</h3><p>لا Google Tag Manager، ولا Meta Pixel - يستحيل حالياً قياس عدد الزوار أو معرفة أي منتج يحقق نتائج.</p></div>
+    </div>
+    <div class="audit-row reveal">
+      <div class="audit-badge b-warn">محتوى</div>
+      <div><h3>3 صور فقط في الصفحة الرئيسية</h3><p>الكتالوج (زيوت، فلاتر، فرامل، إطارات) لا يزال في بداياته - طبيعي لمتجر جديد، لكنه يحتاج محتوى بصري منتظم ليبني حضوراً فعلياً.</p></div>
+    </div>
+
+    <div class="strengths reveal">
+      <h4>ولا يفوتنا: أساس تقني نظيف نبني عليه</h4>
+      <ul>
+        <li>عنوان ووصف تعريفي وواضحان منذ الإطلاق، مع وسوم Open Graph كاملة ووسم Canonical.</li>
+        <li>وسم H1 واحد نظيف - بناء تقني سليم منذ البداية بدل تراكم مشاكل لاحقاً.</li>
+        <li>حسابا إنستغرام وسناب شات محجوزان بالاسم الصحيح منذ الإطلاق - خطوة أولى صحيحة قلّة من المتاجر الجديدة تفعلها.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- OPPORTUNITIES -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">02 · الفرص الاستراتيجية</div>
+      <h2>كل فجوة نلاحظها = فرصة نحوّلها لنمو مقاس</h2>
+      <p>كل بند أدناه رد مباشر على ملاحظة من التدقيق أعلاه.</p>
+    </div>
+    <div class="sol-grid">
+      <div class="sol-card"><div class="sol-num">من حساب فارغ بعد</div><h3>أول دفعة محتوى تبني جمهوراً حقيقياً</h3><p>حساب جديد بلا تاريخ نُصلحه - كل منشور من اليوم الأول يبني قاعدة متابعين صحيحة من الصفر.</p></div>
+      <div class="sol-card"><div class="sol-num">من غياب التتبع</div><h3>تركيب أدوات القياس الأساسية</h3><p>خطوة تأسيسية أولى - بدونها لا يمكن قياس أي نتيجة تسويقية بثقة.</p></div>
+      <div class="sol-card"><div class="sol-num">من كتالوج ناشئ</div><h3>محتوى بصري منتظم من الشهر الأول</h3><p>دفعة تصاميم شهرية تبني مكتبة محتوى حقيقية بدل الاعتماد على 3 صور فقط.</p></div>
+      <div class="sol-card"><div class="sol-num">من أساس تقني نظيف</div><h3>نمو مبني على قواعد سليمة</h3><p>لا حاجة لإصلاح أخطاء قديمة - كل جهد تسويقي جديد يُبنى على أساس صحيح منذ اليوم الأول.</p></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SCOPE -->
+  <section id="scope" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">03 · نطاق الخدمات المقترحة</div>
+      <h2>حجم الجهد الشهري المخصص لرفارف</h2>
+      <p>هذا عرض فني بالكامل - الأرقام أدناه تعكس حجم ونوع التسليمات الشهرية فقط، دون أي تفاصيل مالية. عرض الأسعار يُرسل بشكل منفصل عند الطلب.</p>
+    </div>
+
+    <div class="stat-tiles">
+      <div class="stat-tile"><b>8</b><span>تصاميم شهرياً</span></div>
+      <div class="stat-tile"><b>1</b><span>فيديو شهرياً</span></div>
+      <div class="stat-tile"><b>2</b><span>منصتا تواصل مُدارتان</span></div>
+    </div>
+
+    <div class="scope-block">
+      <h3><span class="idx mono">1</span>إدارة حسابات التواصل الاجتماعي</h3>
+      <div class="chips">
+        <span class="chip">إنستغرام</span>
+        <span class="chip">سناب شات</span>
+        <span class="chip">تقويم نشر شهري</span>
+        <span class="chip">متابعة أداء وملاحظات تحسين دورية</span>
+      </div>
+    </div>
+
+    <div class="scope-block">
+      <h3><span class="idx mono">2</span>التصاميم الشهرية - 8 تصاميم</h3>
+      <div class="chips">
+        <span class="chip">منشورات تعريفية بالمنتجات</span>
+        <span class="chip">عروض ترويجية</span>
+        <span class="chip">مراجعة وتعديل مرة واحدة قبل الاعتماد</span>
+      </div>
+    </div>
+
+    <div class="scope-block">
+      <h3><span class="idx mono">3</span>الفيديو الشهري</h3>
+      <div class="chips">
+        <span class="chip">ريلز / محتوى قصير</span>
+        <span class="chip">تصوير أو مونتاج من مواد يوفرها العميل</span>
+      </div>
+    </div>
+
+    <div class="scope-block">
+      <h3><span class="idx mono">4</span>الأساسيات التقنية (استشاري، الشهر الأول)</h3>
+      <div class="chips">
+        <span class="chip">توصية تركيب Google Tag Manager وMeta Pixel</span>
+      </div>
+      <div class="addon-note">تُسلَّم كوثيقة توصيات فنية لفريق رفارف للتنفيذ - هذا بند استشاري ضمن النطاق التسويقي، وليس تنفيذاً برمجياً من طرفنا.</div>
+    </div>
+
+    <div class="scope-block">
+      <h3><span class="idx mono">5</span>إدارة الحملات الإعلانية (اختياري بعمولة منفصلة)</h3>
+      <div class="chips">
+        <span class="chip">إعداد وإدارة وتحسين حملات ممولة</span>
+        <span class="chip">عمولة إدارة تبدأ من 20% من الميزانية الفعلية المصروفة شهرياً</span>
+        <span class="chip">تُسدَّد منفصلة عن الاشتراك الشهري</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 90 DAY PLAN -->
+  <section id="plan90" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">04 · خطة التسعين يوماً</div>
+      <h2>من التشخيص إلى نتائج مقاسة خلال 90 يوماً</h2>
+    </div>
+
+    <div class="phase reveal">
+      <div class="phase-line"></div>
+      <div class="phase-node mono">01</div>
+      <div class="phase-body"><div class="dur mono">اليوم 1 – 30</div><h3>التأسيس</h3><p>تركيب أدوات التتبع الأساسية، بناء تقويم المحتوى، وإنتاج أول دفعة تصاميم وفيديو تُطلق حساب إنستغرام رسمياً.</p></div>
+    </div>
+    <div class="phase reveal">
+      <div class="phase-line"></div>
+      <div class="phase-node mono">02</div>
+      <div class="phase-body"><div class="dur mono">اليوم 31 – 60</div><h3>النمو</h3><p>وتيرة نشر كاملة عبر إنستغرام وسناب شات، وأول تقرير أداء مبني على بيانات فعلية.</p></div>
+    </div>
+    <div class="phase reveal">
+      <div class="phase-node mono">03</div>
+      <div class="phase-body"><div class="dur mono">اليوم 61 – 90</div><h3>التحسين والتوسع</h3><p>تعديلات مبنية على بيانات الشهرين الأولين، وتقييم تجربة حملة مدفوعة أولى.</p></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- KPIs -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow-num">05 · مؤشرات النجاح المستهدفة</div>
+      <h2>أهداف نسعى لتحقيقها معاً</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="big">أول قاعدة متابعين</div><p>نمو حقيقي على إنستغرام وسناب شات من الصفر</p></div>
+      <div class="why-card"><div class="big">بيانات قابلة للقياس</div><p>أول أرقام زيارات وتحويل فعلية منذ إطلاق الموقع</p></div>
+      <div class="why-card"><div class="big">مكتبة محتوى</div><p>تصاميم وفيديو منتظم يوسّع كتالوجاً لا يزال في بداياته</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="brandmark" style="justify-content:center;">
+      <img src="https://noqtatain.com/logo-dark.png" alt="نقطتين" class="brandmark-logo">
+      <div class="brandmark-text"><b>نقطتين</b> - شريك التسويق والتقنية</div>
+    </div>
+    <p>عرض فني مُعد خصيصاً لفريق رفارف - جميع البيانات مبنية على تدقيق فعلي لموقع rafarf.com وحسابه الرقمي بتاريخ أغسطس 2026.</p>
+  </footer>
+
+</main>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  let scored = false;
+  const scoreObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting && !scored){
+        scored = true;
+        const target = 26, ring = document.getElementById('ring'), num = document.getElementById('scoreN');
+        const circ = 415, off = circ - (circ * target / 100);
+        setTimeout(() => { ring.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)'; ring.style.strokeDashoffset = off; }, 200);
+        let c = 0; const t = setInterval(() => { c++; num.textContent = c; if(c >= target) clearInterval(t); }, 1600 / target);
+        document.querySelectorAll('.axis-fill').forEach(f => { f.style.width = f.dataset.target + '%'; });
+      }
+    });
+  }, { threshold: 0.4 });
+  scoreObs.observe(document.querySelector('.score-wrap'));
+</script>
+
+</body>
+</html>
