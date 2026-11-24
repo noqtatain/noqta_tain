@@ -24,6 +24,7 @@ import KafGroupProposal from '@/pages/KafGroupProposal';
 import BilqalamProposal from '@/pages/BilqalamProposal';
 import YaseerProposal from '@/pages/YaseerProposal';
 import DpowerProposal from '@/pages/DpowerProposal';
+import DpowerTechProposal from '@/pages/DpowerTechProposal';
 import HikalarabaProposal from '@/pages/HikalarabaProposal';
 import FinooksaProposal from '@/pages/FinooksaProposal';
 import SafetysideProposal from '@/pages/SafetysideProposal';
@@ -93,6 +94,7 @@ const AuthenticatedApp = () => {
       <Route path="/bilqalam" element={<BilqalamProposal />} />
       <Route path="/yaseer" element={<YaseerProposal />} />
       <Route path="/dpower" element={<DpowerProposal />} />
+      <Route path="/dpower-tech" element={<DpowerTechProposal />} />
       <Route path="/hikalaraba" element={<HikalarabaProposal />} />
       <Route path="/finooksa" element={<FinooksaProposal />} />
       <Route path="/safetyside" element={<SafetysideProposal />} />
