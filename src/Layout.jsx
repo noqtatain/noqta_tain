@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from './utils';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import WhatsAppButton from './components/WhatsAppButton';
+import { useLanguage } from '@/lib/i18n';
 
 export default function Layout({ children, currentPageName }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const { t, dir, lang, toggleLang } = useLanguage();
   const location = useLocation();
   const isPortal = currentPageName?.toLowerCase() === 'portal'
     || location.pathname.toLowerCase().startsWith('/portal');
@@ -51,16 +53,31 @@ export default function Layout({ children, currentPageName }) {
   };
 
   const navLinks = [
-    { name: 'الرئيسية', page: 'Home' },
-    { name: 'من نحن', page: 'About' },
-    { name: 'الخدمات', page: 'Services' },
-    { name: 'لماذا نحن', page: 'why-us' },
-    { name: 'المدونة', page: 'Blog' },
-    { name: 'تواصل معنا', page: 'Contact' },
+    { name: t('nav.home'), page: 'Home' },
+    { name: t('nav.about'), page: 'About' },
+    { name: t('nav.services'), page: 'Services' },
+    { name: t('nav.whyUs'), page: 'why-us' },
+    { name: t('nav.blog'), page: 'Blog' },
+    { name: t('nav.contact'), page: 'Contact' },
   ];
 
+  const LangSwitcher = ({ compact = false }) => (
+    <motion.button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      onClick={toggleLang}
+      aria-label={t('nav.switchLangAria')}
+      title={t('nav.switchLangAria')}
+      lang={lang === 'ar' ? 'en' : 'ar'}
+      className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-sm font-medium transition-colors"
+    >
+      <Globe size={18} />
+      <span>{compact ? t('nav.switchLangShort') : t('nav.switchLang')}</span>
+    </motion.button>
+  );
+
   return (
-    <div dir="rtl" className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans transition-colors duration-300">
+    <div dir={dir} className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans transition-colors duration-300">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
         
@@ -122,7 +139,7 @@ export default function Layout({ children, currentPageName }) {
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
-                  <span className="text-2xl font-bold text-slate-900 dark:text-white">نقطتين</span>
+                  <span className="text-2xl font-bold text-slate-900 dark:text-white">{t('brand')}</span>
                   <span className="text-violet-500 text-3xl font-bold">..</span>
                 </motion.div>
               </Link>
@@ -149,11 +166,15 @@ export default function Layout({ children, currentPageName }) {
                   </Link>
                 ))}
                 
+                {/* Language Switcher */}
+                <LangSwitcher />
+
                 {/* Theme Toggle */}
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={toggleDarkMode}
+                  aria-label={t('nav.toggleTheme')}
                   className="p-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
                 >
                   <AnimatePresence mode="wait">
@@ -185,23 +206,25 @@ export default function Layout({ children, currentPageName }) {
                   to={createPageUrl('portal')}
                   className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-6 py-2.5 rounded-full text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-200 hover:shadow-lg"
                 >
-                  تسجيل الدخول
+                  {t('nav.login')}
                 </Link>
 
                 <Link
                   to={createPageUrl('Contact')}
                   className="bg-slate-900 dark:bg-violet-600 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-slate-800 dark:hover:bg-violet-700 transition-all duration-200 hover:shadow-lg"
                 >
-                  احجز استشارة
+                  {t('nav.bookConsultation')}
                 </Link>
               </div>
 
               {/* Mobile Menu Button */}
               <div className="flex items-center gap-2 md:hidden">
+                <LangSwitcher compact />
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={toggleDarkMode}
+                  aria-label={t('nav.toggleTheme')}
                   className="p-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
                 >
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -211,11 +234,12 @@ export default function Layout({ children, currentPageName }) {
                   to={createPageUrl('portal')}
                   className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors px-3 py-2"
                 >
-                  دخول
+                  {t('nav.loginShort')}
                 </Link>
                 
                 <button
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  aria-label={t('nav.toggleMenu')}
                   className="p-2 text-slate-600 dark:text-slate-400"
                 >
                   {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -253,7 +277,7 @@ export default function Layout({ children, currentPageName }) {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block w-full text-center bg-slate-900 dark:bg-violet-600 text-white px-6 py-3 rounded-full text-sm font-medium mt-4"
                   >
-                    احجز استشارة
+                    {t('nav.bookConsultation')}
                   </Link>
                 </div>
               </motion.div>
@@ -274,17 +298,16 @@ export default function Layout({ children, currentPageName }) {
             <div className="grid gap-8 md:grid-cols-3">
               <div>
                 <div className="flex items-center gap-1 mb-3">
-                  <span className="text-xl font-bold">نقطتين</span>
+                  <span className="text-xl font-bold">{t('brand')}</span>
                   <span className="text-violet-400 text-2xl font-bold">..</span>
                 </div>
                 <p className="text-sm text-slate-400 leading-relaxed">
-                  وكالة تسويق رقمي وأتمتة أعمال في السعودية. نرفع الأداء والمبيعات عبر استراتيجية واضحة، محتوى مؤثر، وإعلانات مدفوعة
-                  بقياس دقيق.
+                  {t('footer.about')}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm font-semibold mb-3">روابط سريعة</p>
+                <p className="text-sm font-semibold mb-3">{t('footer.quickLinks')}</p>
                 <ul className="space-y-2 text-sm text-slate-400">
                   {navLinks.map((link) => (
                     <li key={link.page}>
@@ -294,30 +317,30 @@ export default function Layout({ children, currentPageName }) {
                     </li>
                   ))}
                   <li>
-                    <Link to="/privacy-policy" className="hover:text-violet-400 transition-colors">
-                      Privacy policy
+                    <Link to={lang === 'en' ? '/privacy-policy/en' : '/privacy-policy'} className="hover:text-violet-400 transition-colors">
+                      {t('footer.privacy')}
                     </Link>
                   </li>
                   <li>
                     <Link to="/terms-of-service" className="hover:text-violet-400 transition-colors">
-                      Terms of service
+                      {t('footer.terms')}
                     </Link>
                   </li>
                   <li>
                     <Link to="/noqtachat-eula" className="hover:text-violet-400 transition-colors">
-                      NOQTACHAT EULA
+                      {t('footer.eula')}
                     </Link>
                   </li>
                 </ul>
               </div>
 
               <div>
-                <p className="text-sm font-semibold mb-3">تواصل معنا</p>
+                <p className="text-sm font-semibold mb-3">{t('footer.contact')}</p>
                 <div className="space-y-2 text-sm text-slate-400">
                   <a href="mailto:info@noqtatain.com" className="block hover:text-violet-400 transition-colors">
                     info@noqtatain.com
                   </a>
-                  <a href="https://wa.me/966543569492" className="block hover:text-violet-400 transition-colors">
+                  <a href="https://wa.me/966543569492" dir="ltr" className="block hover:text-violet-400 transition-colors rtl:text-right">
                     966543569492
                   </a>
                 </div>
@@ -325,7 +348,7 @@ export default function Layout({ children, currentPageName }) {
             </div>
 
             <div className="text-slate-500 text-sm mt-8">
-              © {new Date().getFullYear()} نقطتين
+              © {new Date().getFullYear()} {t('brand')}
             </div>
           </div>
         </footer>

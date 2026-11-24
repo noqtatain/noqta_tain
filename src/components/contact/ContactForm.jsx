@@ -6,7 +6,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Send, Loader2, CheckCircle } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 
+
+// Arabic labels are kept for the CRM (Bitrix24) so leads stay consistent regardless of site language.
 const serviceOptions = [
   { value: 'digital_marketing', label: 'التسويق الرقمي' },
   { value: 'sales_automation', label: 'أتمتة المبيعات' },
@@ -15,6 +18,7 @@ const serviceOptions = [
 ];
 
 export default function ContactForm() {
+  const { t, lang } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -79,7 +83,7 @@ export default function ContactForm() {
       bitrixPayload.append('fields[NAME]', formData.name);
       bitrixPayload.append(
         'fields[COMMENTS]',
-        `${formData.message || 'بدون رسالة'}\nالشركة: ${formData.company || 'غير محددة'}\nالخدمة: ${selectedServiceLabel || 'غير محددة'}`
+        `${formData.message || 'بدون رسالة'}\nالشركة: ${formData.company || 'غير محددة'}\nالخدمة: ${selectedServiceLabel || 'غير محددة'}\nلغة الموقع: ${lang === 'en' ? 'English' : 'العربية'}`
       );
       bitrixPayload.append('fields[SOURCE_ID]', 'WEB');
       bitrixPayload.append('fields[SOURCE_DESCRIPTION]', 'website');
@@ -120,7 +124,7 @@ export default function ContactForm() {
       setIsSubmitted(true);
     } catch (error) {
       console.error('Error submitting form:', error);
-      setSubmitError('تعذر إرسال الطلب إلى نظام المتابعة. حاول مرة أخرى أو تواصل معنا مباشرة.');
+      setSubmitError(t('contact.form.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -137,10 +141,10 @@ export default function ContactForm() {
           <CheckCircle className="w-10 h-10 text-green-600 dark:text-green-400" />
         </div>
         <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-          شكرًا لتواصلك معنا!
+          {t('contact.form.successTitle')}
         </h3>
         <p className="text-slate-500 dark:text-slate-400 mb-8">
-          تم استلام طلبك بنجاح. سنتواصل معك في أقرب وقت ممكن.
+          {t('contact.form.successText')}
         </p>
         <Button
           onClick={() => {
@@ -157,7 +161,7 @@ export default function ContactForm() {
           }}
           variant="outline"
         >
-          إرسال طلب جديد
+          {t('contact.form.newRequest')}
         </Button>
       </motion.div>
     );
@@ -172,7 +176,7 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid sm:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-slate-700 dark:text-slate-300">الاسم الكامل *</Label>
+            <Label htmlFor="name" className="text-slate-700 dark:text-slate-300">{t('contact.form.name')}</Label>
             <Input
               id="name"
               name="name"
@@ -180,11 +184,11 @@ export default function ContactForm() {
               onChange={handleChange}
               required
               className="h-12 rounded-xl border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:border-violet-500 focus:ring-violet-500"
-              placeholder="محمد أحمد"
+              placeholder={t('contact.form.namePlaceholder')}
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-slate-700 dark:text-slate-300">البريد الإلكتروني *</Label>
+            <Label htmlFor="email" className="text-slate-700 dark:text-slate-300">{t('contact.form.email')}</Label>
             <Input
               id="email"
               name="email"
@@ -200,7 +204,7 @@ export default function ContactForm() {
 
         <div className="grid sm:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <Label htmlFor="phone" className="text-slate-700 dark:text-slate-300">رقم الهاتف *</Label>
+            <Label htmlFor="phone" className="text-slate-700 dark:text-slate-300">{t('contact.form.phone')}</Label>
             <Input
               id="phone"
               name="phone"
@@ -213,41 +217,41 @@ export default function ContactForm() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="company" className="text-slate-700 dark:text-slate-300">اسم الشركة</Label>
+            <Label htmlFor="company" className="text-slate-700 dark:text-slate-300">{t('contact.form.company')}</Label>
             <Input
               id="company"
               name="company"
               value={formData.company}
               onChange={handleChange}
               className="h-12 rounded-xl border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:border-violet-500 focus:ring-violet-500"
-              placeholder="اسم شركتك"
+              placeholder={t('contact.form.companyPlaceholder')}
             />
           </div>
         </div>
 
         <div className="space-y-2">
-          <Label className="text-slate-700 dark:text-slate-300">الخدمة المطلوبة *</Label>
-          <Select value={formData.service_interest} onValueChange={(val) => setFormData(prev => ({ ...prev, service_interest: val }))}>
+          <Label className="text-slate-700 dark:text-slate-300">{t('contact.form.service')}</Label>
+          <Select dir={lang === 'ar' ? 'rtl' : 'ltr'} value={formData.service_interest} onValueChange={(val) => setFormData(prev => ({ ...prev, service_interest: val }))}>
             <SelectTrigger className="h-12 rounded-xl border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white">
-              <SelectValue placeholder="اختر الخدمة" />
+              <SelectValue placeholder={t('contact.form.servicePlaceholder')} />
             </SelectTrigger>
             <SelectContent>
               {serviceOptions.map(opt => (
-                <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                <SelectItem key={opt.value} value={opt.value}>{t(`contact.form.options.${opt.value}`)}</SelectItem>
               ))}
             </SelectContent>
           </Select>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="message" className="text-slate-700 dark:text-slate-300">رسالتك</Label>
+          <Label htmlFor="message" className="text-slate-700 dark:text-slate-300">{t('contact.form.message')}</Label>
           <Textarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
             className="rounded-xl border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white min-h-[120px] focus:border-violet-500 focus:ring-violet-500"
-            placeholder="اخبرنا باحتياجاتك"
+            placeholder={t('contact.form.messagePlaceholder')}
           />
         </div>
 
@@ -258,13 +262,13 @@ export default function ContactForm() {
         <Button type="submit" className="w-full h-12 rounded-xl" disabled={isSubmitting}>
           {isSubmitting ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              جاري الإرسال...
+              <Loader2 className="me-2 h-4 w-4 animate-spin" />
+              {t('contact.form.submitting')}
             </>
           ) : (
             <>
-              <Send className="mr-2 h-4 w-4" />
-              إرسال الطلب
+              <Send className="me-2 h-4 w-4 rtl:-scale-x-100" />
+              {t('contact.form.submit')}
             </>
           )}
         </Button>

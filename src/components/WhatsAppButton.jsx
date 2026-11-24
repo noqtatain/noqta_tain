@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
+
 
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
+  const { t } = useLanguage();
   
   const phoneNumber = '966543569492';
-  const defaultMessage = 'مرحباً، أود الاستفسار عن خدماتكم';
+  const defaultMessage = t('whatsapp.defaultMessage');
 
   const handleSend = () => {
     const text = message || defaultMessage;
@@ -67,8 +70,8 @@ export default function WhatsAppButton() {
                   <MessageCircle size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold">نقطتين</h3>
-                  <p className="text-xs text-green-100">عادةً نرد خلال دقائق</p>
+                  <h3 className="font-bold">{t('brand')}</h3>
+                  <p className="text-xs text-green-100">{t('whatsapp.replyTime')}</p>
                 </div>
               </div>
             </div>
@@ -76,12 +79,12 @@ export default function WhatsAppButton() {
             {/* Body */}
             <div className="p-4 space-y-3">
               <p className="text-sm text-slate-600 dark:text-slate-400">
-                مرحباً! 👋 كيف يمكننا مساعدتك؟
+                {t('whatsapp.greeting')}
               </p>
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="اكتب رسالتك هنا..."
+                placeholder={t('whatsapp.placeholder')}
                 className="w-full h-24 p-3 border border-slate-200 dark:border-slate-700 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-green-500 text-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
               />
               <button
@@ -89,7 +92,7 @@ export default function WhatsAppButton() {
                 className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-colors"
               >
                 <Send size={18} />
-                إرسال عبر واتساب
+                {t('whatsapp.send')}
               </button>
             </div>
           </motion.div>

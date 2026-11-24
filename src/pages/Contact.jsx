@@ -2,8 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ContactForm from '../components/contact/ContactForm';
 import ContactInfo from '../components/contact/ContactInfo';
+import { useLanguage } from '@/lib/i18n';
+
 
 export default function Contact() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
       {/* Hero Section */}
@@ -15,7 +18,7 @@ export default function Contact() {
               animate={{ opacity: 1 }}
               className="text-violet-600 dark:text-violet-400 text-sm font-medium mb-4 block"
             >
-              تواصل معنا
+              {t('contact.label')}
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -23,7 +26,7 @@ export default function Contact() {
               transition={{ delay: 0.1 }}
               className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6"
             >
-              احجز استشارتك المجانية
+              {t('contact.title')}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -31,8 +34,7 @@ export default function Contact() {
               transition={{ delay: 0.2 }}
               className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed"
             >
-              نبدأ دائمًا بفهم احتياجاتك وأهدافك قبل أي شيء آخر. 
-              تواصل معنا لنبدأ معًا رحلة نموك الرقمي.
+              {t('contact.intro')}
             </motion.p>
           </div>
         </div>

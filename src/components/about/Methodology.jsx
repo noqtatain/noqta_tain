@@ -1,41 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Search, FolderKanban, PlayCircle, Cpu, TrendingUp } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 
-const steps = [
-  {
-    icon: Search,
-    number: '01',
-    title: 'الفهم',
-    description: 'نبدأ بفهم عميق لطبيعة عملك، سوقك، جمهورك المستهدف، وأهدافك الحقيقية'
-  },
-  {
-    icon: FolderKanban,
-    number: '02',
-    title: 'التنظيم',
-    description: 'نضع خطة واضحة ومنظمة تحدد الأولويات والمراحل والموارد المطلوبة'
-  },
-  {
-    icon: PlayCircle,
-    number: '03',
-    title: 'التنفيذ',
-    description: 'ننفذ الخطة بدقة مع متابعة مستمرة وتعديلات مبنية على الأداء'
-  },
-  {
-    icon: Cpu,
-    number: '04',
-    title: 'الأتمتة',
-    description: 'نحول العمليات المتكررة إلى أنظمة آلية تعمل بكفاءة على مدار الساعة'
-  },
-  {
-    icon: TrendingUp,
-    number: '05',
-    title: 'النتائج',
-    description: 'نقيس الأداء ونحلل النتائج لضمان تحقيق العائد المطلوب'
-  }
+
+const stepMeta = [
+  { icon: Search, number: '01' },
+  { icon: FolderKanban, number: '02' },
+  { icon: PlayCircle, number: '03' },
+  { icon: Cpu, number: '04' },
+  { icon: TrendingUp, number: '05' },
 ];
 
 export default function Methodology() {
+  const { t } = useLanguage();
+  const steps = t('about.methodology.steps').map((step, i) => ({ ...step, ...stepMeta[i] }));
   return (
     <section className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,7 +26,7 @@ export default function Methodology() {
             viewport={{ once: true }}
             className="text-violet-600 text-sm font-medium mb-4 block"
           >
-            منهجيتنا
+            {t('about.methodology.label')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -55,7 +34,7 @@ export default function Methodology() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4"
           >
-            كيف نعمل؟
+            {t('about.methodology.title')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -64,7 +43,7 @@ export default function Methodology() {
             transition={{ delay: 0.1 }}
             className="text-slate-500 max-w-2xl mx-auto"
           >
-            نتبع منهجية واضحة ومجربة تضمن تحقيق نتائج ملموسة
+            {t('about.methodology.subtitle')}
           </motion.p>
         </div>
 

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
-import { ArrowLeft, Sparkles, TrendingUp, Zap, ChevronLeft, ChevronRight, ChevronUp, Target, Users, BarChart3, Lightbulb, MessageCircle, ChevronDown } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
+import { ArrowLeft, ArrowRight, Sparkles, TrendingUp, Zap, ChevronLeft, ChevronRight, ChevronUp, Target, Users, BarChart3, Lightbulb, MessageCircle, ChevronDown } from 'lucide-react';
 
 const slides = [
   {
@@ -26,6 +27,7 @@ const slides = [
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
+  const { t } = useLanguage();
 
   const nextSlide = () => {
     if (currentSlide < slides.length - 1) {
@@ -108,7 +110,7 @@ export default function Home() {
             className="p-2 bg-white/70 dark:bg-slate-800/70 rounded-full shadow-md hover:bg-white dark:hover:bg-slate-700 transition-colors"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            aria-label="Previous section"
+            aria-label={t('home.slideNav.prev')}
           >
             <ChevronUp className="text-slate-900 dark:text-white" size={18} />
           </motion.button>
@@ -124,7 +126,7 @@ export default function Home() {
             className="relative group"
             whileHover={{ scale: 1.3 }}
             whileTap={{ scale: 0.9 }}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={`${t('home.slideNav.goTo')} ${index + 1}`}
           >
             {index === currentSlide ? (
               <motion.div
@@ -146,7 +148,7 @@ export default function Home() {
             className="p-2 bg-white/70 dark:bg-slate-800/70 rounded-full shadow-md hover:bg-white dark:hover:bg-slate-700 transition-colors"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            aria-label="Next section"
+            aria-label={t('home.slideNav.next')}
           >
             <ChevronDown className="text-slate-900 dark:text-white" size={18} />
           </motion.button>
@@ -159,7 +161,9 @@ export default function Home() {
 
 // Slide Components
 function HeroSlide() {
-  const steps = ['الفهم', 'التنظيم', 'التنفيذ', 'الأتمتة', 'النتائج'];
+  const { t, isRTL } = useLanguage();
+  const steps = t('home.hero.steps');
+  const ForwardArrow = isRTL ? ArrowLeft : ArrowRight;
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -177,7 +181,7 @@ function HeroSlide() {
           className="inline-flex items-center gap-2 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-400 px-4 py-2 rounded-full text-sm font-medium mb-8"
         >
           <Sparkles size={16} />
-          <span>تسويق وأتمتة</span>
+          <span>{t('home.hero.badge')}</span>
         </motion.div>
 
         <motion.h1
@@ -186,7 +190,7 @@ function HeroSlide() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-900 dark:text-white mb-6 leading-tight"
         >
-          نقطتين
+          {t('brand')}
           <span className="text-violet-500">..</span>
         </motion.h1>
 
@@ -196,7 +200,7 @@ function HeroSlide() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-2xl sm:text-3xl text-slate-600 dark:text-slate-400 mb-4 font-light"
         >
-          نبدأ من الفهم... وننتهي بنتائج قابلة للقياس
+          {t('home.hero.tagline')}
         </motion.p>
 
         <motion.p
@@ -205,8 +209,7 @@ function HeroSlide() {
           transition={{ duration: 0.6, delay: 0.55 }}
           className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-10"
         >
-          نقدم خدمات التسويق الرقمي، إدارة المحتوى، والإعلانات المدفوعة مع أتمتة ذكية وتقارير أداء واضحة. نركز على زيادة المبيعات
-          وبناء حضور قوي يميز علامتك عن المنافسين في السوق السعودي.
+          {t('home.hero.intro')}
         </motion.p>
 
         <motion.p
@@ -215,7 +218,7 @@ function HeroSlide() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-lg text-slate-500 dark:text-slate-500 mb-8 max-w-2xl mx-auto"
         >
-          شريكك في بناء حضور رقمي فعّال وتحويل جهودك التسويقية إلى نتائج حقيقية
+          {t('home.hero.sub')}
         </motion.p>
 
         {/* Methodology Flow */}
@@ -251,7 +254,7 @@ function HeroSlide() {
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.4, delay: 1.15 + index * 0.1 }}
                 >
-                  <ArrowLeft size={20} className="text-violet-400 dark:text-violet-600" />
+                  <ForwardArrow size={20} className="text-violet-400 dark:text-violet-600" />
                 </motion.div>
               )}
             </React.Fragment>
@@ -268,8 +271,8 @@ function HeroSlide() {
             to={createPageUrl('Contact')}
             className="group bg-slate-900 dark:bg-violet-600 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-slate-800 dark:hover:bg-violet-700 transition-all duration-300 hover:shadow-xl flex items-center gap-2"
           >
-            احجز استشارة مجانية
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+            {t('home.hero.cta')}
+            <ForwardArrow size={18} className="rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
 
@@ -279,7 +282,7 @@ function HeroSlide() {
           transition={{ delay: 2.2 }}
           className="mt-12 text-sm text-slate-400 dark:text-slate-600"
         >
-          استخدم الأسهم للتنقل
+          {t('home.hero.hint')}
         </motion.div>
       </div>
     </section>
@@ -288,36 +291,20 @@ function HeroSlide() {
 
 function ServicesSlide() {
   const [expandedService, setExpandedService] = useState(null);
+  const { t } = useLanguage();
+  const items = t('home.services.items');
 
   const services = [
     {
       icon: TrendingUp,
-      title: 'التسويق الرقمي',
-      description: 'من دراسة السوق إلى بناء الهوية وإدارة الحضور الرقمي بشكل متكامل',
+      ...items[0],
       color: 'violet',
-      details: [
-        'دراسة وتحليل السوق والمنافسين',
-        'إعداد الخطة التسويقية المتكاملة',
-        'تصميم الهوية البصرية',
-        'تسويق وسائل التواصل الاجتماعي',
-        'تصميم وتطوير المواقع الإلكترونية',
-        'إنشاء صفحات الهبوط الفعّالة'
-      ]
     },
     {
       icon: Zap,
-      title: 'أتمتة المبيعات',
-      description: 'تحويل العمليات اليدوية إلى أنظمة ذكية تعمل على مدار الساعة',
+      ...items[1],
       color: 'indigo',
-      details: [
-        'أتمتة التواصل عبر جميع القنوات',
-        'إدارة المجتمعات الرقمية',
-        'تنظيم رحلة العميل كاملة',
-        'تكامل التسويق مع المبيعات',
-        'تقارير وتحليلات الأداء',
-        'ربط الأنظمة والمنصات المختلفة'
-      ]
-    }
+    },
   ];
 
   return (
@@ -330,10 +317,10 @@ function ServicesSlide() {
           className="text-center mb-8 md:mb-16"
         >
           <span className="text-violet-600 dark:text-violet-400 text-sm font-medium mb-4 block">
-            خدماتنا
+            {t('home.services.label')}
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-            حلول متكاملة لنموك الرقمي
+            {t('home.services.title')}
           </h2>
         </motion.div>
 
@@ -362,7 +349,7 @@ function ServicesSlide() {
                 onClick={() => setExpandedService(expandedService === index ? null : index)}
                 className="flex items-center gap-2 text-violet-600 dark:text-violet-400 font-medium text-sm hover:gap-3 transition-all"
               >
-                <span>{expandedService === index ? 'إخفاء التفاصيل' : 'عرض التفاصيل'}</span>
+                <span>{expandedService === index ? t('home.services.hideDetails') : t('home.services.showDetails')}</span>
                 <motion.div
                   animate={{ rotate: expandedService === index ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -409,12 +396,9 @@ function ServicesSlide() {
 
 
 function WhyUsSlide() {
-  const reasons = [
-    { icon: Lightbulb, title: 'نبدأ بالفهم', description: 'لا نبيع خدمات عشوائية، بل نفهم أولاً' },
-    { icon: Target, title: 'نركز على النتائج', description: 'كل شيء مرتبط بأهداف واضحة' },
-    { icon: Users, title: 'شراكة حقيقية', description: 'نعمل معك كشريك نمو' },
-    { icon: BarChart3, title: 'قرارات مبنية على البيانات', description: 'نعتمد على التحليل لا التخمين' }
-  ];
+  const { t } = useLanguage();
+  const icons = [Lightbulb, Target, Users, BarChart3];
+  const reasons = t('home.whyUs.reasons').map((reason, i) => ({ ...reason, icon: icons[i] }));
 
   return (
     <section className="min-h-screen flex items-center py-20 bg-slate-900 dark:bg-slate-950">
@@ -426,10 +410,10 @@ function WhyUsSlide() {
           className="text-center mb-16"
         >
           <span className="text-violet-400 text-sm font-medium mb-4 block">
-            لماذا نقطتين؟
+            {t('home.whyUs.label')}
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            ما يميزنا عن الآخرين
+            {t('home.whyUs.title')}
           </h2>
         </motion.div>
 
@@ -461,6 +445,8 @@ function WhyUsSlide() {
 }
 
 function CTASlide() {
+  const { t, isRTL } = useLanguage();
+  const ForwardArrow = isRTL ? ArrowLeft : ArrowRight;
   return (
     <section className="min-h-screen flex items-center py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -483,7 +469,7 @@ function CTASlide() {
               className="inline-flex items-center gap-2 bg-white/10 text-white/80 px-4 py-2 rounded-full text-sm mb-8"
             >
               <MessageCircle size={16} />
-              <span>نبدأ بمحادثة</span>
+              <span>{t('cta.badge')}</span>
             </motion.div>
 
             <motion.h2
@@ -492,7 +478,7 @@ function CTASlide() {
               transition={{ delay: 0.3 }}
               className="text-4xl sm:text-5xl font-bold text-white mb-6"
             >
-              مستعد لبناء نمو رقمي حقيقي؟
+              {t('cta.title')}
             </motion.h2>
             
             <motion.p
@@ -501,7 +487,7 @@ function CTASlide() {
               transition={{ delay: 0.4 }}
               className="text-slate-300 text-lg mb-10 max-w-2xl mx-auto"
             >
-              احجز استشارة مجانية لنفهم احتياجاتك ونضع معًا خطة واضحة لتحقيق أهدافك
+              {t('cta.text')}
             </motion.p>
 
             <motion.div
@@ -513,8 +499,8 @@ function CTASlide() {
                 to={createPageUrl('Contact')}
                 className="group inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-full text-base font-medium hover:bg-violet-100 transition-all duration-300 hover:shadow-xl"
               >
-                احجز استشارتك المجانية
-                <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+                {t('cta.button')}
+                <ForwardArrow size={18} className="rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
           </div>

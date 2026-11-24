@@ -6,6 +6,7 @@ import { pagesConfig } from './pages.config'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
+import { LanguageProvider } from '@/lib/i18n';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Makyol from '@/pages/Makyol';
 import FeedzPlan from '@/pages/FeedzPlan';
@@ -136,6 +137,7 @@ function App() {
 
   return (
     <AuthProvider>
+      <LanguageProvider>
       <QueryClientProvider client={queryClientInstance}>
         <Router>
           <NavigationTracker />
@@ -143,6 +145,7 @@ function App() {
         </Router>
         <Toaster />
       </QueryClientProvider>
+      </LanguageProvider>
     </AuthProvider>
   )
 }

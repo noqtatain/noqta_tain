@@ -1,31 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, X } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 
-const comparisons = [
-  {
-    traditional: 'بيع خدمات جاهزة',
-    noqtatayn: 'شراكة مبنية على الفهم'
-  },
-  {
-    traditional: 'وعود مبهمة',
-    noqtatayn: 'نتائج قابلة للقياس'
-  },
-  {
-    traditional: 'تجربة عشوائية',
-    noqtatayn: 'قرارات مبنية على البيانات'
-  },
-  {
-    traditional: 'تنفيذ فقط',
-    noqtatayn: 'تخطيط وتنفيذ وأتمتة'
-  },
-  {
-    traditional: 'علاقة مزود خدمة',
-    noqtatayn: 'علاقة شريك نمو'
-  }
-];
 
 export default function WhatMakesUsDifferent() {
+  const { t } = useLanguage();
+  const comparisons = t('about.different.rows');
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,7 +18,7 @@ export default function WhatMakesUsDifferent() {
             viewport={{ once: true }}
             className="text-violet-600 text-sm font-medium mb-4 block"
           >
-            ما يميزنا
+            {t('about.different.label')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -45,7 +26,7 @@ export default function WhatMakesUsDifferent() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4"
           >
-            الفرق بيننا وبين الآخرين
+            {t('about.different.title')}
           </motion.h2>
         </div>
 
@@ -59,10 +40,10 @@ export default function WhatMakesUsDifferent() {
           {/* Header */}
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div className="bg-slate-100 rounded-2xl p-4 text-center">
-              <span className="text-slate-500 font-medium">الطريقة التقليدية</span>
+              <span className="text-slate-500 font-medium">{t('about.different.traditional')}</span>
             </div>
             <div className="bg-violet-600 rounded-2xl p-4 text-center">
-              <span className="text-white font-medium">نقطتين</span>
+              <span className="text-white font-medium">{t('about.different.us')}</span>
             </div>
           </div>
 
@@ -87,7 +68,7 @@ export default function WhatMakesUsDifferent() {
                   <div className="w-6 h-6 rounded-full bg-violet-200 flex items-center justify-center flex-shrink-0">
                     <Check className="w-4 h-4 text-violet-600" />
                   </div>
-                  <span className="text-slate-900 text-sm font-medium">{item.noqtatayn}</span>
+                  <span className="text-slate-900 text-sm font-medium">{item.us}</span>
                 </div>
               </motion.div>
             ))}

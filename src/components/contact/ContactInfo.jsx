@@ -1,35 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Clock, MessageCircle } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 
-const contactItems = [
-  {
-    icon: Mail,
-    title: 'البريد الإلكتروني',
-    value: 'info@noqtatain.com',
-    link: 'mailto:info@noqtatain.com'
-  },
-  {
-    icon: Phone,
-    title: 'الهاتف',
-    value: '+966 54 356 9492',
-    link: 'tel:+966543569492'
-  },
-  {
-    icon: MessageCircle,
-    title: 'واتساب',
-    value: '+966 54 356 9492',
-    link: 'https://wa.me/966543569492'
-  },
-  {
-    icon: Clock,
-    title: 'ساعات العمل',
-    value: 'الأحد - الخميس: 9 ص - 6 م',
-    link: null
-  }
-];
 
 export default function ContactInfo() {
+  const { t } = useLanguage();
+  const contactItems = [
+    { icon: Mail, title: t('contact.info.email'), value: 'info@noqtatain.com', link: 'mailto:info@noqtatain.com' },
+    { icon: Phone, title: t('contact.info.phone'), value: '+966 54 356 9492', link: 'tel:+966543569492' },
+    { icon: MessageCircle, title: t('contact.info.whatsapp'), value: '+966 54 356 9492', link: 'https://wa.me/966543569492' },
+    { icon: Clock, title: t('contact.info.hours'), value: t('contact.info.hoursValue'), link: null, plain: true },
+  ];
   return (
     <div className="space-y-6">
       <motion.div
@@ -38,11 +20,10 @@ export default function ContactInfo() {
         className="mb-8"
       >
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-          نبدأ بمحادثة
+          {t('contact.info.title')}
         </h2>
         <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
-          نؤمن بأن الفهم يأتي أولًا. لذلك نبدأ دائمًا باستشارة مجانية لفهم احتياجاتك 
-          وتقديم الحل الأنسب لك.
+          {t('contact.info.text')}
         </p>
       </motion.div>
 
@@ -64,7 +45,7 @@ export default function ContactInfo() {
                 </div>
                 <div>
                   <p className="text-sm text-slate-500 dark:text-slate-400">{item.title}</p>
-                  <p dir="ltr" className="font-medium text-slate-900 dark:text-white text-right">{item.value}</p>
+                  <p dir="ltr" className="font-medium text-slate-900 dark:text-white rtl:text-right">{item.value}</p>
                 </div>
               </a>
             ) : (
@@ -74,7 +55,7 @@ export default function ContactInfo() {
                 </div>
                 <div>
                   <p className="text-sm text-slate-500 dark:text-slate-400">{item.title}</p>
-                  <p dir="ltr" className="font-medium text-slate-900 dark:text-white text-right">{item.value}</p>
+                  <p className="font-medium text-slate-900 dark:text-white">{item.value}</p>
                 </div>
               </div>
             )}
@@ -89,9 +70,9 @@ export default function ContactInfo() {
         transition={{ delay: 0.4 }}
         className="bg-gradient-to-br from-violet-600 to-indigo-600 rounded-2xl p-6 text-white mt-8"
       >
-        <h3 className="font-bold mb-2">استشارة مجانية</h3>
+        <h3 className="font-bold mb-2">{t('contact.info.freeTitle')}</h3>
         <p className="text-violet-100 text-sm leading-relaxed">
-          نقدم استشارة مجانية لفهم احتياجاتك ووضع خطة عمل مبدئية دون أي التزام.
+          {t('contact.info.freeText')}
         </p>
       </motion.div>
     </div>

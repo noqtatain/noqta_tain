@@ -4,41 +4,17 @@ import { TrendingUp, Zap } from 'lucide-react';
 import ServiceCard from '../components/services/ServiceCard';
 import ServiceDetails from '../components/services/ServiceDetails';
 import CTASection from '../components/home/CTASection';
+import { useLanguage } from '@/lib/i18n';
 
-const mainServices = [
-  {
-    icon: TrendingUp,
-    title: 'التسويق الرقمي',
-    description: 'بناء حضور رقمي قوي يحقق نتائج',
-    bgGradient: 'bg-gradient-to-br from-violet-600 to-violet-700',
-    features: [
-      'دراسة وتحليل السوق والمنافسين',
-      'إعداد خطة تسويقية متكاملة',
-      'تصميم الهوية البصرية',
-      'إدارة وسائل التواصل الاجتماعي',
-      'تصميم وتطوير المواقع الإلكترونية',
-      'إنشاء صفحات الهبوط الفعّالة',
-      'تهيئة نظام استقبال الطلبات'
-    ]
-  },
-  {
-    icon: Zap,
-    title: 'أتمتة المبيعات',
-    description: 'تحويل العمليات اليدوية إلى أنظمة ذكية',
-    bgGradient: 'bg-gradient-to-br from-indigo-600 to-indigo-700',
-    features: [
-      'أتمتة التواصل عبر جميع القنوات',
-      'إدارة المجتمعات الرقمية',
-      'تنظيم رحلة العميل كاملة',
-      'تكامل التسويق مع المبيعات',
-      'تقارير وتحليلات الأداء',
-      'ربط الأنظمة والمنصات المختلفة',
-      'إشعارات وتنبيهات ذكية'
-    ]
-  }
+
+const serviceMeta = [
+  { icon: TrendingUp, bgGradient: 'bg-gradient-to-br from-violet-600 to-violet-700' },
+  { icon: Zap, bgGradient: 'bg-gradient-to-br from-indigo-600 to-indigo-700' },
 ];
 
 export default function Services() {
+  const { t } = useLanguage();
+  const mainServices = t('services.main').map((service, i) => ({ ...service, ...serviceMeta[i] }));
   return (
     <div>
       {/* Hero Section */}
@@ -56,7 +32,7 @@ export default function Services() {
               animate={{ opacity: 1 }}
               className="text-violet-600 dark:text-violet-400 text-sm font-medium mb-4 block"
             >
-              خدماتنا
+              {t('services.label')}
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -64,7 +40,7 @@ export default function Services() {
               transition={{ delay: 0.1 }}
               className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6"
             >
-              حلول متكاملة لنموك الرقمي
+              {t('services.title')}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -72,8 +48,7 @@ export default function Services() {
               transition={{ delay: 0.2 }}
               className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed"
             >
-              نقدم مجموعة شاملة من الخدمات المصممة لمساعدتك على بناء حضور رقمي قوي 
-              وتحويل جهودك التسويقية إلى نتائج ملموسة
+              {t('services.intro')}
             </motion.p>
           </div>
 

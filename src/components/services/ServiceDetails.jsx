@@ -17,29 +17,17 @@ import {
   Link2,
   BarChart3
 } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 
-const digitalMarketingServices = [
-  { icon: Search, title: 'دراسة وتحليل السوق والمنافسين', description: 'فهم عميق للسوق والفرص المتاحة' },
-  { icon: FileText, title: 'إعداد الخطة التسويقية', description: 'خطة شاملة بأهداف واضحة' },
-  { icon: Palette, title: 'تصميم الهوية البصرية', description: 'هوية مميزة تعكس قيم علامتك' },
-  { icon: Share2, title: 'تسويق وسائل التواصل الاجتماعي', description: 'إدارة احترافية لحساباتك' },
-  { icon: Globe, title: 'موقع إلكتروني احترافي', description: 'موقع يمثل علامتك بشكل مميز' },
-  { icon: FileCheck, title: 'صفحات هبوط فعّالة', description: 'صفحات مصممة للتحويل' },
-];
 
-const salesAutomationServices = [
-  { icon: Phone, title: 'أتمتة التواصل الهاتفي', description: 'مكالمات آلية ذكية' },
-  { icon: MessageCircle, title: 'أتمتة الواتساب', description: 'ردود تلقائية وحملات مستهدفة' },
-  { icon: AtSign, title: 'أتمتة وسائل التواصل', description: 'تفاعل آلي مع الجمهور' },
-  { icon: Mail, title: 'أتمتة البريد الإلكتروني', description: 'حملات بريدية مؤتمتة' },
-  { icon: Users, title: 'إدارة المجتمعات الرقمية', description: 'بناء ورعاية مجتمعك' },
-  { icon: Smartphone, title: 'تطبيقات الموبايل', description: 'إشعارات وتواصل مستمر' },
-  { icon: GitBranch, title: 'تنظيم رحلة العميل', description: 'تجربة سلسة من البداية للنهاية' },
-  { icon: Link2, title: 'تكامل التسويق والمبيعات', description: 'ربط جميع القنوات معًا' },
-  { icon: BarChart3, title: 'تقارير وقياس الأداء', description: 'بيانات دقيقة لاتخاذ القرار' },
-];
+const digitalMarketingIcons = [Search, FileText, Palette, Share2, Globe, FileCheck];
+
+const salesAutomationIcons = [Phone, MessageCircle, AtSign, Mail, Users, Smartphone, GitBranch, Link2, BarChart3];
 
 export default function ServiceDetails() {
+  const { t } = useLanguage();
+  const digitalMarketingServices = t('services.details.marketing').map((item, i) => ({ ...item, icon: digitalMarketingIcons[i] }));
+  const salesAutomationServices = t('services.details.automation').map((item, i) => ({ ...item, icon: salesAutomationIcons[i] }));
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,11 +40,11 @@ export default function ServiceDetails() {
             className="mb-12"
           >
             <span className="inline-block bg-violet-100 text-violet-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
-              أولًا
+              {t('services.details.first')}
             </span>
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">التسويق الرقمي</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">{t('services.details.marketingTitle')}</h2>
             <p className="text-slate-500 max-w-2xl">
-              حلول تسويقية متكاملة تبدأ من فهم السوق وتنتهي ببناء حضور رقمي قوي
+              {t('services.details.marketingSubtitle')}
             </p>
           </motion.div>
 
@@ -89,11 +77,11 @@ export default function ServiceDetails() {
             className="mb-12"
           >
             <span className="inline-block bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
-              ثانيًا
+              {t('services.details.second')}
             </span>
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">أتمتة المبيعات</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">{t('services.details.automationTitle')}</h2>
             <p className="text-slate-500 max-w-2xl">
-              تحويل العمليات اليدوية إلى أنظمة ذكية تعمل على مدار الساعة
+              {t('services.details.automationSubtitle')}
             </p>
           </motion.div>
 
