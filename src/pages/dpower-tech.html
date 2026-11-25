@@ -46,6 +46,8 @@
   .nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;}
   .nav-links::-webkit-scrollbar{display:none;}
   .nav-links a{color:var(--on-ink-muted);font-size:12.5px;padding:6px 10px;border-radius:8px;white-space:nowrap;transition:.2s;}
+  .nav-cta{flex-shrink:0;font-size:12.5px;font-weight:600;color:#fff;background:var(--accent);padding:7px 14px;border-radius:8px;white-space:nowrap;transition:.2s;}
+  .nav-cta:hover{background:#2459E0;}
   .nav-links a:hover,.nav-links a.on{color:#fff;background:rgba(255,255,255,.07);}
 
   /* ---------- hero ---------- */
@@ -243,6 +245,8 @@
   .step{border:1px solid var(--ink-line);border-radius:var(--r);padding:26px;background:var(--ink-2);}
   .step .sn{font-family:'IBM Plex Mono','IBM Plex Sans Arabic';font-size:40px;color:#6E9BFF;line-height:1;margin-bottom:16px;}
   .step b{display:block;font-size:17px;margin-bottom:6px;color:#fff;}
+  .step-link{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:600;color:#8FB0FF;border-bottom:1px solid rgba(143,176,255,.4);}
+  .step-link:hover{color:#fff;}
   .step p{font-size:14px;color:var(--on-ink-muted);}
   .closing{margin-top:44px;padding-top:28px;border-top:1px solid var(--ink-line);font-size:13.5px;color:var(--on-ink-muted);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;}
 
@@ -302,6 +306,7 @@
       <a href="#security">الأمان</a>
       <a href="#next">البدء</a>
     </nav>
+    <a class="nav-cta" href="/dpower-financial" target="_top">العرض المالي ←</a>
   </div>
 </header>
 
@@ -759,12 +764,12 @@
       </div>
     </div>
     <div class="steps reveal">
-      <div class="step"><div class="sn">01</div><b>اعتماد العرض الفني والمالي</b><p>مراجعة العرضين من إدارة دي باور واعتمادهما، ثم توقيع العقد واتفاقية مستوى الخدمة.</p></div>
+      <div class="step"><div class="sn">01</div><b>اعتماد العرض الفني والمالي</b><p>مراجعة العرضين من إدارة دي باور واعتمادهما، ثم توقيع العقد واتفاقية مستوى الخدمة.</p><a class="step-link" href="/dpower-financial" target="_top">اطّلع على العرض المالي ←</a></div>
       <div class="step"><div class="sn">02</div><b>اتفاقية السرية والوصول</b><p>توقيع اتفاقية عدم إفصاح، ثم منح صلاحيات الوصول للمنصتين والخوادم والمزودين.</p></div>
       <div class="step"><div class="sn">03</div><b>انطلاق العمل</b><p>تفعيل قناة الطلبات، ونسخ احتياطي ومراقبة للمنصتين، وبدء التدقيق التقني.</p></div>
     </div>
     <div class="closing">
-      <span>هذا عرض فني يوضح النطاق والمنهجية فقط. يُرسل العرض المالي بشكل منفصل، ويُعتمد العرضان معاً قبل بدء العمل.</span>
+      <span>هذا عرض فني يوضح النطاق والمنهجية فقط. التفاصيل المالية في <a href="/dpower-financial" target="_top" style="color:#8FB0FF;border-bottom:1px solid rgba(143,176,255,.4);">العرض المالي</a>، ويُعتمد العرضان معاً قبل بدء العمل.</span>
       <span class="nav-brand"><span class="dots" role="img" aria-label="نقطتين"><i></i><i></i></span><span>نقطتين · شريك التسويق والتقنية</span></span>
     </div>
   </div>

@@ -96,7 +96,8 @@
   .p-head .dom{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--muted);direction:ltr;text-align:right;}
   .p-price{text-align:left;}
   .p-price .amt{font-size:26px;}
-  .p-price small{display:block;font-size:12px;color:var(--muted);}
+  .p-price small{display:block;font-size:12px;color:var(--muted);margin-top:2px;}
+  .p-price small .amt{font-size:13px;color:var(--text);}
   .p-body{display:grid;grid-template-columns:1.3fr 1fr;gap:0;}
   .p-body > div{padding:22px 28px;}
   .p-body > div + div{border-inline-start:1px solid var(--line);background:#FAFBFD;}
@@ -109,20 +110,13 @@
   .kv div:last-child{border-bottom:none;padding-bottom:0;}
   .kv span{color:var(--muted);}
 
-  /* milestones */
-  .ms{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 28px 24px;}
-  .ms > div{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;}
-  .ms small{font-family:'IBM Plex Mono','IBM Plex Sans Arabic';font-size:11.5px;color:var(--accent);}
-  .ms b{display:block;font-size:14px;font-weight:600;margin:2px 0 6px;line-height:1.5;}
-  .ms .pct{font-size:13px;color:var(--muted);}
-  .ms-title{padding:0 28px 12px;font-size:13px;color:var(--muted);font-weight:600;}
 
   /* table */
   .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--card);}
   table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:620px;}
   th,td{padding:15px 20px;text-align:right;border-bottom:1px solid var(--line);vertical-align:middle;}
   th{font-size:12px;color:var(--muted);font-weight:600;background:#F2F4F9;}
-  td:last-child,th:last-child{text-align:left;}
+  td:not(:first-child),th:not(:first-child){text-align:left;}
   tbody tr:last-child td{border-bottom:1px solid var(--line);}
   tfoot td{font-weight:700;background:#F6F8FC;border-bottom:none;}
   tfoot tr + tr td{border-top:1px solid var(--line);}
@@ -166,7 +160,6 @@
     .totals,.grid-2,.sign{grid-template-columns:1fr;}
     .p-body{grid-template-columns:1fr;}
     .p-body > div + div{border-inline-start:none;border-top:1px solid var(--line);}
-    .ms{grid-template-columns:1fr 1fr;}
     .term{grid-template-columns:36px 1fr;}
     .term p{grid-column:2;}
   }
@@ -178,8 +171,6 @@
     .p-head{grid-template-columns:1fr;padding:20px;}
     .p-price{text-align:right;}
     .p-body > div{padding:20px;}
-    .ms{grid-template-columns:1fr;padding:0 20px 20px;}
-    .ms-title{padding:0 20px 12px;}
     .total{padding:24px;}
     .total .big{font-size:30px;}
     .btn span{display:none;}
@@ -213,12 +204,12 @@
   <div class="wrap">
     <div class="tag"><span class="dot"></span>العرض المالي · مُعد لـ دي باور لخدمات الأعمال</div>
     <h1>العرض المالي <span class="hl">للإدارة التقنية</span><br>لأدوات ومنصات شركة دي باور</h1>
-    <p class="lead">يكمّل هذا العرض <a href="/dpower-tech" target="_top">العرض الفني</a> ويعتمد على نطاقه نفسه: الدعم الفني لمنصة دي باور القديمة، واستكمال بناء المنصة الجديدة إلى أكمل جاهزية، وإدارة مزودي خدمات تقنية طرف ثالث.</p>
+    <p class="lead">يكمّل هذا العرض <a href="/dpower-tech" target="_top">العرض الفني</a> ويعتمد على نطاقه نفسه: الدعم الفني لمنصة دي باور القديمة، واستكمال بناء المنصة الجديدة إلى أكمل جاهزية، وإدارة مزودي خدمات تقنية طرف ثالث. جميع الخدمات ضمن اشتراك واحد يُدفع كل 3 أشهر.</p>
     <div class="meta">
       <div><small>الجهة</small><span>دي باور لخدمات الأعمال</span></div>
       <div><small>رقم العرض</small><span class="mono">NQ-DP-2611</span></div>
       <div><small>تاريخ الإصدار</small><span>نوفمبر 2026</span></div>
-      <div><small>صلاحية العرض</small><span data-days="validity_days"></span></div>
+      <div><small>نموذج الدفع</small><span>اشتراك يُدفع كل 3 أشهر</span></div>
     </div>
   </div>
 </section>
@@ -232,21 +223,21 @@
       <div class="ch-num">01</div>
       <div>
         <div class="ch-kicker">ملخص الاستثمار</div>
-        <h2>نوعان من الرسوم: لمرة واحدة، واشتراك شهري</h2>
-        <p class="ch-intro">استكمال بناء المنصة الجديدة مشروع له بداية ونهاية، فيُسعّر مرة واحدة على دفعات مرتبطة بالإنجاز. أما الدعم الفني وإدارة المزودين فخدمات مستمرة، فتُسعّر باشتراك شهري.</p>
+        <h2>اشتراك واحد يُدفع كل 3 أشهر</h2>
+        <p class="ch-intro">المحاور الثلاثة تُقدَّم كخدمة مستمرة باشتراك واحد، يُحسب شهرياً ويُفوتر كل ربع سنة. لا رسوم مشاريع منفصلة ولا دفعات مرتبطة بمراحل.</p>
       </div>
     </div>
 
     <div class="totals">
       <div class="total">
-        <small>إجمالي الرسوم لمرة واحدة</small>
-        <div class="big" data-total="once"></div>
-        <div class="sub">استكمال بناء المنصة الجديدة · تُدفع على 4 دفعات</div>
+        <small>قيمة الدفعة كل 3 أشهر</small>
+        <div class="big" data-total="quarterly"></div>
+        <div class="sub">تُدفع مقدماً في بداية كل ربع</div>
       </div>
       <div class="total">
-        <small>إجمالي الاشتراك الشهري</small>
+        <small>ما يعادل شهرياً</small>
         <div class="big" data-total="monthly"></div>
-        <div class="sub">دعم المنصة القديمة + إدارة المزودين. ويُضاف دعم المنصة الجديدة (<span data-price="p2_support_monthly"></span> شهرياً) من تاريخ إطلاقها.</div>
+        <div class="sub">المحاور الثلاثة مجتمعة</div>
       </div>
     </div>
     <p class="note" data-vat-note></p>
@@ -269,11 +260,11 @@
     <div class="pillar">
       <div class="p-head">
         <div>
-          <div class="k">المحور الأول · اشتراك شهري</div>
+          <div class="k">المحور الأول</div>
           <h3>استمرار الدعم الفني لمنصة دي باور القديمة</h3>
           <div class="dom">dpower.sa</div>
         </div>
-        <div class="p-price"><span data-price="p1_monthly"></span><small>شهرياً</small></div>
+        <div class="p-price"><span data-price="p1_monthly"></span><small>شهرياً · <span data-q="p1_monthly"></span> كل 3 أشهر</small></div>
       </div>
       <div class="p-body">
         <div>
@@ -302,11 +293,11 @@
     <div class="pillar">
       <div class="p-head">
         <div>
-          <div class="k">المحور الثاني · لمرة واحدة + اشتراك بعد الإطلاق</div>
+          <div class="k">المحور الثاني</div>
           <h3>استكمال بناء المنصة إلى أكمل جاهزية</h3>
           <div class="dom">app.dpower.sa</div>
         </div>
-        <div class="p-price"><span data-price="p2_project"></span><small>لمرة واحدة</small></div>
+        <div class="p-price"><span data-price="p2_monthly"></span><small>شهرياً · <span data-q="p2_monthly"></span> كل 3 أشهر</small></div>
       </div>
       <div class="p-body">
         <div>
@@ -320,27 +311,26 @@
           </ul>
         </div>
         <div>
-          <h4>بعد الإطلاق</h4>
+          <h4>التفاصيل</h4>
           <div class="kv">
-            <div><span>الدعم الفني للمنصة الجديدة</span><b data-price="p2_support_monthly" data-suffix="/ شهرياً"></b></div>
-            <div><span>بداية الاشتراك</span><b>من تاريخ الانتقال الكامل</b></div>
-            <div><span>يشمل</span><b>مستويات الخدمة P1–P4، وإصدارات كل أسبوعين، وخطة تحسين شهرية</b></div>
+            <div><span>مرحلة الاستكمال</span><b>الواجهات والانتقال وجاهزية التشغيل</b></div>
+            <div><span>بعد الإطلاق</span><b>دعم بمستويات الخدمة P1–P4، وإصدارات كل أسبوعين، وخطة تحسين شهرية</b></div>
+            <div><span>بداية الاشتراك</span><b>من تاريخ توقيع العقد</b></div>
           </div>
+          <p style="font-size:13px;color:var(--muted);margin-top:14px;">الاشتراك نفسه يغطي مرحلة الاستكمال ثم الدعم بعد الإطلاق، دون رسوم مشروع منفصلة.</p>
         </div>
       </div>
-      <div class="ms-title">دفعات رسوم الاستكمال</div>
-      <div class="ms" id="milestones"></div>
     </div>
 
     <!-- P3 -->
     <div class="pillar">
       <div class="p-head">
         <div>
-          <div class="k">المحور الثالث · اشتراك شهري</div>
+          <div class="k">المحور الثالث</div>
           <h3>إدارة مزودي خدمات تقنية طرف ثالث</h3>
           <div class="dom">Cloud · Hosting · Mail · Tools</div>
         </div>
-        <div class="p-price"><span data-price="p3_monthly"></span><small>شهرياً</small></div>
+        <div class="p-price"><span data-price="p3_monthly"></span><small>شهرياً · <span data-q="p3_monthly"></span> كل 3 أشهر</small></div>
       </div>
       <div class="p-body">
         <div>
@@ -375,15 +365,19 @@
     </div>
     <div class="tbl">
       <table>
-        <thead><tr><th>البند</th><th>النوع</th><th>المبلغ</th></tr></thead>
+        <thead><tr><th>البند</th><th>شهرياً</th><th>كل 3 أشهر</th></tr></thead>
         <tbody>
-          <tr><td>استكمال بناء المنصة الجديدة <span class="ltr">app.dpower.sa</span></td><td><span class="type once">لمرة واحدة</span></td><td data-price="p2_project"></td></tr>
-          <tr><td>الدعم الفني لمنصة دي باور القديمة <span class="ltr">dpower.sa</span></td><td><span class="type mo">شهري</span></td><td data-price="p1_monthly"></td></tr>
-          <tr><td>إدارة مزودي خدمات تقنية طرف ثالث</td><td><span class="type mo">شهري</span></td><td data-price="p3_monthly"></td></tr>
-          <tr><td>الدعم الفني للمنصة الجديدة (من تاريخ إطلاقها)</td><td><span class="type mo">شهري</span></td><td data-price="p2_support_monthly"></td></tr>
-          <tr><td>ساعة عمل إضافية خارج الساعات المشمولة</td><td><span class="type hr">حسب الطلب</span></td><td data-price="extra_hour"></td></tr>
+          <tr><td>الدعم الفني لمنصة دي باور القديمة <span class="ltr">dpower.sa</span></td><td data-price="p1_monthly"></td><td data-q="p1_monthly"></td></tr>
+          <tr><td>استكمال بناء المنصة الجديدة ودعمها <span class="ltr">app.dpower.sa</span></td><td data-price="p2_monthly"></td><td data-q="p2_monthly"></td></tr>
+          <tr><td>إدارة مزودي خدمات تقنية طرف ثالث</td><td data-price="p3_monthly"></td><td data-q="p3_monthly"></td></tr>
         </tbody>
         <tfoot id="tfoot"></tfoot>
+      </table>
+    </div>
+    <div class="tbl" style="margin-top:14px;">
+      <table>
+        <thead><tr><th>خدمة حسب الطلب</th><th></th><th>السعر</th></tr></thead>
+        <tbody><tr><td>ساعة عمل إضافية خارج الساعات المشمولة</td><td><span class="type hr">حسب الطلب</span></td><td data-price="extra_hour"></td></tr></tbody>
       </table>
     </div>
     <p class="note" data-vat-note></p>
@@ -421,11 +415,10 @@
       </div>
     </div>
     <div class="terms">
-      <div class="term"><b>الاشتراكات الشهرية</b><p>تُدفع مقدماً في بداية كل شهر ميلادي، خلال 7 أيام من تاريخ الفاتورة.</p></div>
-      <div class="term"><b>رسوم الاستكمال</b><p>تُدفع على أربع دفعات مرتبطة بالإنجاز كما هو موضح في المحور الثاني، وتُصدر فاتورة كل دفعة عند تحقق مرحلتها.</p></div>
-      <div class="term"><b>الساعات المشمولة</b><p>ساعات التطوير الشهرية المشمولة لا تُرحّل للشهر التالي. وما يزيد عنها يُحتسب بسعر الساعة الإضافية بعد موافقة دي باور المسبقة على التقدير.</p></div>
+      <div class="term"><b>دورة الفوترة</b><p>يُفوتر الاشتراك كل 3 أشهر، ويُدفع مقدماً خلال 7 أيام من تاريخ الفاتورة. الفاتورة الأولى عند توقيع العقد.</p></div>
+            <div class="term"><b>الساعات المشمولة</b><p>ساعات التطوير الشهرية المشمولة لا تُرحّل للشهر التالي. وما يزيد عنها يُحتسب بسعر الساعة الإضافية بعد موافقة دي باور المسبقة على التقدير.</p></div>
       <div class="term"><b>الحد الأدنى للتعاقد</b><p data-months="min_term_months"></p></div>
-      <div class="term"><b>الإلغاء</b><p>يحق لأي طرف إنهاء الاشتراكات الشهرية بإشعار كتابي قبل <span data-days="notice_days"></span>، مع تطبيق خطة التسليم الواردة في العرض الفني.</p></div>
+      <div class="term"><b>الإلغاء</b><p>يحق لأي طرف إيقاف التجديد بإشعار كتابي قبل نهاية الربع الجاري بـ <span data-days="notice_days"></span>، مع تطبيق خطة التسليم الواردة في العرض الفني.</p></div>
       <div class="term"><b>الضريبة</b><p data-vat-term></p></div>
       <div class="term"><b>صلاحية العرض</b><p>هذا العرض صالح لمدة <span data-days="validity_days"></span> من تاريخ إصداره.</p></div>
     </div>
@@ -480,20 +473,13 @@
 
     p1_monthly: null,           // المحور الأول: دعم dpower.sa (شهرياً)
     p1_dev_hours: null,         // ساعات التطوير المشمولة شهرياً
-    p2_project: null,           // المحور الثاني: استكمال المنصة (لمرة واحدة)
-    p2_support_monthly: null,   // المحور الثاني: دعم المنصة الجديدة بعد الإطلاق (شهرياً)
+    p2_monthly: null,           // المحور الثاني: استكمال المنصة الجديدة ودعمها (شهرياً)
     p3_monthly: null,           // المحور الثالث: إدارة المزودين (شهرياً)
     extra_hour: null,           // سعر ساعة العمل الإضافية
 
-    // دفعات رسوم الاستكمال (نسب مئوية، مجموعها 100)
-    p2_milestones: [
-      { label: 'عند توقيع العقد',              pct: null },
-      { label: 'عند اعتماد الواجهات والصلاحيات', pct: null },
-      { label: 'عند إتمام الانتقال الكامل',      pct: null },
-      { label: 'عند اعتماد استقرار المنصة',      pct: null },
-    ],
+    billing_months: 3,          // دورة الفوترة بالأشهر
 
-    min_term_months: null,      // الحد الأدنى لمدة الاشتراك الشهري
+    min_term_months: null,      // الحد الأدنى لمدة الاشتراك بالأشهر (مضاعفات 3)
     notice_days: 30,            // مدة إشعار الإلغاء
     validity_days: 30,          // صلاحية العرض
   };
@@ -516,20 +502,24 @@
   });
   document.querySelectorAll('[data-months]').forEach(el => {
     const v = P[el.dataset.months];
-    el.innerHTML = v == null ? `مدة الاشتراك الشهري الأدنى ${TBD}، وتتجدد تلقائياً شهراً بشهر بعدها.`
-      : `مدة الاشتراك الشهري الأدنى <span class="amt">${fmt(v)}</span> أشهر، وتتجدد تلقائياً شهراً بشهر بعدها.`;
+    el.innerHTML = v == null ? `مدة الاشتراك الأدنى ${TBD}، ويتجدد بعدها تلقائياً كل 3 أشهر.`
+      : `مدة الاشتراك الأدنى <span class="amt">${fmt(v)}</span> أشهر، ويتجدد بعدها تلقائياً كل 3 أشهر.`;
   });
 
+  const Q = P.billing_months;
+  const q = n => n == null ? null : n * Q;
+  document.querySelectorAll('[data-q]').forEach(el => { el.innerHTML = money(q(P[el.dataset.q])); });
+
   // totals
-  const once = P.p2_project;
-  const monthly = sum(P.p1_monthly, P.p3_monthly);
+  const monthly = sum(P.p1_monthly, P.p2_monthly, P.p3_monthly);
+  const quarterly = q(monthly);
   const vat = P.vat_rate || 0;
   const withVat = n => n == null ? null : n * (1 + vat);
-  document.querySelector('[data-total="once"]').innerHTML = money(once);
+  document.querySelector('[data-total="quarterly"]').innerHTML = money(quarterly);
   document.querySelector('[data-total="monthly"]').innerHTML = money(monthly);
   if (vat) {
     document.querySelectorAll('.total').forEach((t, i) => {
-      const base = i === 0 ? once : monthly;
+      const base = i === 0 ? quarterly : monthly;
       const d = document.createElement('div'); d.className = 'sub';
       d.innerHTML = `شامل الضريبة: ${money(withVat(base))}`;
       t.appendChild(d);
@@ -543,18 +533,9 @@
     ? `تُضاف ضريبة القيمة المضافة بنسبة ${vatPct}% على جميع الفواتير وفق الأنظمة المعمول بها في المملكة.`
     : 'المبالغ الواردة في هذا العرض نهائية.';
 
-  const tf = document.getElementById('tfoot');
-  tf.innerHTML = `
-    <tr><td>إجمالي الرسوم لمرة واحدة</td><td></td><td>${money(once)}</td></tr>
-    <tr><td>إجمالي الاشتراك الشهري (المحور الأول + الثالث)</td><td></td><td>${money(monthly)}</td></tr>`;
-
-  // milestones
-  const ms = document.getElementById('milestones');
-  ms.innerHTML = P.p2_milestones.map((m, i) => {
-    const amount = (m.pct == null || P.p2_project == null) ? null : P.p2_project * m.pct / 100;
-    return `<div><small>الدفعة ${i + 1}</small><b>${m.label}</b>
-      <div class="pct">${m.pct == null ? TBD : `<span class="amt">${m.pct}%</span>`} · ${money(amount)}</div></div>`;
-  }).join('');
+  document.getElementById('tfoot').innerHTML = `
+    <tr><td>إجمالي الاشتراك</td><td>${money(monthly)}</td><td>${money(quarterly)}</td></tr>`
+    + (vat ? `<tr><td>شامل ضريبة القيمة المضافة</td><td>${money(withVat(monthly))}</td><td>${money(withVat(quarterly))}</td></tr>` : '');
 </script>
 
 </body>
