@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دي باور · العرض المالي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0F1E;
+    --ink-2:#111830;
+    --paper:#F7F8FB;
+    --card:#FFFFFF;
+    --text:#0E1426;
+    --muted:#5B6478;
+    --line:#E3E6EE;
+    --accent:#2F6BFF;
+    --accent-2:#00B3A4;
+    --amber:#A86E05;
+    --on-ink:#E8ECF6;
+    --on-ink-muted:#97A0B8;
+    --ink-line:rgba(232,236,246,.12);
+    --r:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--text);font-family:'IBM Plex Sans Arabic',sans-serif;line-height:1.8;font-size:15.5px;overflow-x:hidden;}
+  .mono{font-family:'IBM Plex Mono','IBM Plex Sans Arabic',monospace;}
+  .ltr{direction:ltr;unicode-bidi:isolate;font-family:'IBM Plex Mono','IBM Plex Sans Arabic',monospace;font-size:.92em;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:40;background:rgba(10,15,30,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--ink-line);}
+  .nav-in{max-width:1040px;margin:0 auto;padding:12px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .nav-brand{display:flex;align-items:center;gap:12px;color:var(--on-ink);font-size:13.5px;}
+  .nav-brand .x{color:var(--on-ink-muted);}
+  .dots{display:inline-flex;gap:4px;direction:ltr;}
+  .dots i{width:13px;height:13px;border-radius:50%;background:#FFFFFF;}
+  .dots i:last-child{background:#8A5BDB;}
+  .nav-actions{display:flex;gap:8px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;padding:7px 14px;border-radius:8px;border:1px solid var(--ink-line);color:var(--on-ink);background:transparent;cursor:pointer;font-family:inherit;transition:.2s;}
+  .btn:hover{background:rgba(255,255,255,.07);}
+  .btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+
+  /* hero */
+  .hero{background:var(--ink);color:var(--on-ink);position:relative;overflow:hidden;padding:80px 0 0;}
+  .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--ink-line) 1px,transparent 1px),linear-gradient(90deg,var(--ink-line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 80% 70% at 30% 20%,#000 30%,transparent 75%);opacity:.55;}
+  .hero::after{content:"";position:absolute;width:700px;height:700px;left:-200px;top:-260px;background:radial-gradient(circle,rgba(47,107,255,.26),transparent 65%);}
+  .hero .wrap{position:relative;z-index:2;}
+  .tag{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;color:var(--on-ink-muted);border:1px solid var(--ink-line);border-radius:999px;padding:6px 14px;margin-bottom:26px;}
+  .tag .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 0 4px rgba(0,179,164,.18);}
+  .hero h1{font-size:clamp(32px,5vw,54px);line-height:1.3;font-weight:700;max-width:860px;}
+  .hero h1 .hl{color:transparent;background:linear-gradient(90deg,#6E9BFF,#3FE0D0);-webkit-background-clip:text;background-clip:text;}
+  .hero .lead{font-size:17px;color:var(--on-ink-muted);max-width:680px;margin-top:22px;font-weight:300;}
+  .hero .lead a{color:#8FB0FF;border-bottom:1px solid rgba(143,176,255,.4);}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid var(--ink-line);}
+  .meta > div{padding:20px 0;border-inline-start:1px solid var(--ink-line);padding-inline-start:22px;}
+  .meta > div:first-child{border-inline-start:none;padding-inline-start:0;}
+  .meta small{display:block;font-size:11.5px;color:var(--on-ink-muted);letter-spacing:.6px;margin-bottom:4px;}
+  .meta span{font-size:14.5px;font-weight:500;}
+
+  /* chapters */
+  .ch{padding:80px 0;border-bottom:1px solid var(--line);}
+  .ch.tint{background:#EEF2FA;}
+  .ch-head{display:grid;grid-template-columns:110px 1fr;gap:24px;margin-bottom:40px;}
+  .ch-num{font-family:'IBM Plex Mono';font-size:52px;font-weight:500;line-height:1;color:var(--accent);}
+  .ch-kicker{font-size:12.5px;letter-spacing:1px;color:var(--muted);margin-bottom:8px;}
+  .ch h2{font-size:clamp(24px,3.1vw,33px);line-height:1.35;font-weight:700;margin-bottom:12px;}
+  .ch-intro{color:var(--muted);font-size:16px;max-width:720px;}
+
+  /* amounts */
+  .amt{font-family:'IBM Plex Mono','IBM Plex Sans Arabic',monospace;font-weight:600;white-space:nowrap;}
+  .amt.tbd{font-family:'IBM Plex Sans Arabic';font-weight:500;color:var(--amber);background:rgba(227,155,27,.12);border:1px dashed rgba(168,110,5,.45);border-radius:6px;padding:0 8px;font-size:.88em;}
+  .cur{font-size:.72em;font-weight:500;color:var(--muted);margin-inline-start:4px;}
+
+  /* investment summary */
+  .totals{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .total{background:var(--ink);color:var(--on-ink);border-radius:var(--r);padding:28px 30px;position:relative;overflow:hidden;}
+  .total::after{content:"";position:absolute;width:260px;height:260px;left:-80px;bottom:-140px;background:radial-gradient(circle,rgba(47,107,255,.3),transparent 70%);}
+  .total small{display:block;font-size:12.5px;color:var(--on-ink-muted);margin-bottom:10px;}
+  .total .big{font-size:38px;line-height:1.2;position:relative;z-index:1;}
+  .total .big .amt.tbd{font-size:20px;color:#F2B84B;background:rgba(227,155,27,.12);border-color:rgba(242,184,75,.45);}
+  .total .big .cur{color:var(--on-ink-muted);}
+  .total .sub{font-size:13px;color:var(--on-ink-muted);margin-top:10px;position:relative;z-index:1;}
+  .total .sub .amt{color:var(--on-ink);font-size:13px;}
+  .total .sub .amt.tbd{color:#F2B84B;}
+
+  /* pillar price cards */
+  .pillar{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:18px;}
+  .p-head{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:24px 28px;border-bottom:1px solid var(--line);}
+  .p-head .k{font-family:'IBM Plex Mono','IBM Plex Sans Arabic';font-size:12px;color:var(--accent);margin-bottom:4px;}
+  .p-head h3{font-size:19px;font-weight:600;line-height:1.45;}
+  .p-head .dom{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--muted);direction:ltr;text-align:right;}
+  .p-price{text-align:left;}
+  .p-price .amt{font-size:26px;}
+  .p-price small{display:block;font-size:12px;color:var(--muted);}
+  .p-body{display:grid;grid-template-columns:1.3fr 1fr;gap:0;}
+  .p-body > div{padding:22px 28px;}
+  .p-body > div + div{border-inline-start:1px solid var(--line);background:#FAFBFD;}
+  .p-body h4{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:10px;letter-spacing:.3px;}
+  .ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  .ul li{font-size:14px;color:var(--text);padding-inline-start:18px;position:relative;}
+  .ul li::before{content:"";position:absolute;inset-inline-start:0;top:11px;width:7px;height:7px;border-radius:2px;background:var(--accent);opacity:.75;}
+  .kv{display:flex;flex-direction:column;gap:10px;}
+  .kv div{display:flex;justify-content:space-between;gap:12px;font-size:14px;border-bottom:1px dashed var(--line);padding-bottom:9px;}
+  .kv div:last-child{border-bottom:none;padding-bottom:0;}
+  .kv span{color:var(--muted);}
+
+  /* milestones */
+  .ms{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 28px 24px;}
+  .ms > div{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;}
+  .ms small{font-family:'IBM Plex Mono','IBM Plex Sans Arabic';font-size:11.5px;color:var(--accent);}
+  .ms b{display:block;font-size:14px;font-weight:600;margin:2px 0 6px;line-height:1.5;}
+  .ms .pct{font-size:13px;color:var(--muted);}
+  .ms-title{padding:0 28px 12px;font-size:13px;color:var(--muted);font-weight:600;}
+
+  /* table */
+  .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--card);}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:620px;}
+  th,td{padding:15px 20px;text-align:right;border-bottom:1px solid var(--line);vertical-align:middle;}
+  th{font-size:12px;color:var(--muted);font-weight:600;background:#F2F4F9;}
+  td:last-child,th:last-child{text-align:left;}
+  tbody tr:last-child td{border-bottom:1px solid var(--line);}
+  tfoot td{font-weight:700;background:#F6F8FC;border-bottom:none;}
+  tfoot tr + tr td{border-top:1px solid var(--line);}
+  .type{font-size:12px;padding:2px 10px;border-radius:999px;font-weight:600;white-space:nowrap;}
+  .type.once{background:rgba(47,107,255,.09);color:var(--accent);}
+  .type.mo{background:rgba(0,179,164,.1);color:#00877C;}
+  .type.hr{background:#EEF0F5;color:var(--muted);}
+
+  /* exclusions / terms */
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;}
+  .card h3{font-size:16.5px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+  .card h3 .ic{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(47,107,255,.08);}
+  .card h3 .ic svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .card.x h3 .ic{background:rgba(214,69,69,.08);}
+  .card.x h3 .ic svg{stroke:#D64545;}
+  .card p{font-size:14px;color:var(--muted);}
+  .terms{counter-reset:t;display:flex;flex-direction:column;}
+  .term{display:grid;grid-template-columns:44px 200px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+  .term:last-child{border-bottom:none;}
+  .term::before{counter-increment:t;content:counter(t,decimal-leading-zero);font-family:'IBM Plex Mono';font-size:13px;color:var(--accent);}
+  .term b{font-size:15px;font-weight:600;}
+  .term p{font-size:14.5px;color:var(--muted);}
+  .term p .amt{color:var(--text);}
+
+  /* approval */
+  .sign{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .sign > div{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;}
+  .sign h3{font-size:16px;font-weight:600;margin-bottom:18px;}
+  .sign .line{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;font-size:13.5px;color:var(--muted);padding:14px 0 6px;border-bottom:1px solid #C9CEDA;}
+  .sign .line + .line{margin-top:6px;}
+
+  .note{font-size:12.5px;color:var(--muted);margin-top:14px;}
+  footer{background:var(--ink);color:var(--on-ink-muted);padding:34px 0;font-size:13px;}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;}
+  footer .nav-brand{color:var(--on-ink);}
+
+  @media (max-width:900px){
+    .meta{grid-template-columns:1fr 1fr;}
+    .meta > div:nth-child(3){border-inline-start:none;padding-inline-start:0;}
+    .totals,.grid-2,.sign{grid-template-columns:1fr;}
+    .p-body{grid-template-columns:1fr;}
+    .p-body > div + div{border-inline-start:none;border-top:1px solid var(--line);}
+    .ms{grid-template-columns:1fr 1fr;}
+    .term{grid-template-columns:36px 1fr;}
+    .term p{grid-column:2;}
+  }
+  @media (max-width:600px){
+    .wrap,.nav-in{padding-left:16px;padding-right:16px;}
+    .ch{padding:60px 0;}
+    .ch-head{grid-template-columns:1fr;gap:8px;margin-bottom:28px;}
+    .ch-num{font-size:38px;}
+    .p-head{grid-template-columns:1fr;padding:20px;}
+    .p-price{text-align:right;}
+    .p-body > div{padding:20px;}
+    .ms{grid-template-columns:1fr;padding:0 20px 20px;}
+    .ms-title{padding:0 20px 12px;}
+    .total{padding:24px;}
+    .total .big{font-size:30px;}
+    .btn span{display:none;}
+  }
+  @media print{
+    .nav{display:none;}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .ch{padding:28px 0;break-inside:avoid-page;}
+    .pillar,.card,.term,.sign > div{break-inside:avoid;}
+    .hero{padding-top:40px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <div class="nav-brand">
+      <span class="dots" role="img" aria-label="نقطتين"><i></i><i></i></span>
+      <span>نقطتين</span><span class="x">×</span><span>دي باور</span>
+    </div>
+    <div class="nav-actions">
+      <a class="btn" href="/dpower-tech" target="_top"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg><span>العرض الفني</span></a>
+      <button class="btn" onclick="window.print()"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg><span>طباعة / PDF</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="tag"><span class="dot"></span>العرض المالي · مُعد لـ دي باور لخدمات الأعمال</div>
+    <h1>العرض المالي <span class="hl">للإدارة التقنية</span><br>لأدوات ومنصات شركة دي باور</h1>
+    <p class="lead">يكمّل هذا العرض <a href="/dpower-tech" target="_top">العرض الفني</a> ويعتمد على نطاقه نفسه: الدعم الفني لمنصة دي باور القديمة، واستكمال بناء المنصة الجديدة إلى أكمل جاهزية، وإدارة مزودي خدمات تقنية طرف ثالث.</p>
+    <div class="meta">
+      <div><small>الجهة</small><span>دي باور لخدمات الأعمال</span></div>
+      <div><small>رقم العرض</small><span class="mono">NQ-DP-2611</span></div>
+      <div><small>تاريخ الإصدار</small><span>نوفمبر 2026</span></div>
+      <div><small>صلاحية العرض</small><span data-days="validity_days"></span></div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- 01 SUMMARY -->
+<section class="ch" id="summary">
+  <div class="wrap">
+    <div class="ch-head">
+      <div class="ch-num">01</div>
+      <div>
+        <div class="ch-kicker">ملخص الاستثمار</div>
+        <h2>نوعان من الرسوم: لمرة واحدة، واشتراك شهري</h2>
+        <p class="ch-intro">استكمال بناء المنصة الجديدة مشروع له بداية ونهاية، فيُسعّر مرة واحدة على دفعات مرتبطة بالإنجاز. أما الدعم الفني وإدارة المزودين فخدمات مستمرة، فتُسعّر باشتراك شهري.</p>
+      </div>
+    </div>
+
+    <div class="totals">
+      <div class="total">
+        <small>إجمالي الرسوم لمرة واحدة</small>
+        <div class="big" data-total="once"></div>
+        <div class="sub">استكمال بناء المنصة الجديدة · تُدفع على 4 دفعات</div>
+      </div>
+      <div class="total">
+        <small>إجمالي الاشتراك الشهري</small>
+        <div class="big" data-total="monthly"></div>
+        <div class="sub">دعم المنصة القديمة + إدارة المزودين. ويُضاف دعم المنصة الجديدة (<span data-price="p2_support_monthly"></span> شهرياً) من تاريخ إطلاقها.</div>
+      </div>
+    </div>
+    <p class="note" data-vat-note></p>
+  </div>
+</section>
+
+<!-- 02 PILLARS -->
+<section class="ch tint" id="pricing">
+  <div class="wrap">
+    <div class="ch-head">
+      <div class="ch-num">02</div>
+      <div>
+        <div class="ch-kicker">التسعير حسب المحاور</div>
+        <h2>ما يشمله كل بند</h2>
+        <p class="ch-intro">كل محور مسعّر منفرداً، ونطاقه مطابق لما ورد في العرض الفني.</p>
+      </div>
+    </div>
+
+    <!-- P1 -->
+    <div class="pillar">
+      <div class="p-head">
+        <div>
+          <div class="k">المحور الأول · اشتراك شهري</div>
+          <h3>استمرار الدعم الفني لمنصة دي باور القديمة</h3>
+          <div class="dom">dpower.sa</div>
+        </div>
+        <div class="p-price"><span data-price="p1_monthly"></span><small>شهرياً</small></div>
+      </div>
+      <div class="p-body">
+        <div>
+          <h4>يشمل</h4>
+          <ul class="ul">
+            <li>معالجة الأعطال والعقبات التقنية حسب مستويات الأولوية P1 حتى P3</li>
+            <li>التعديلات الضرورية التي يحتاجها الفريق (P4) ضمن الساعات المشمولة</li>
+            <li>نسخ احتياطي يومي خارج الاستضافة مع اختبار استعادة شهري</li>
+            <li>تحديثات Laravel والحزم الأمنية، ومراقبة التوفّر والتنبيهات</li>
+            <li>متابعة شهادات SSL والنطاق وحدود الاستضافة</li>
+          </ul>
+        </div>
+        <div>
+          <h4>التفاصيل</h4>
+          <div class="kv">
+            <div><span>ساعات التطوير المشمولة شهرياً</span><b data-hours="p1_dev_hours"></b></div>
+            <div><span>الساعات الإضافية</span><b data-price="extra_hour" data-suffix="/ ساعة"></b></div>
+            <div><span>ساعات الدعم</span><b>أيام وساعات العمل الرسمية · P1 على مدار الساعة</b></div>
+            <div><span>بداية الاشتراك</span><b>من تاريخ توقيع العقد</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- P2 -->
+    <div class="pillar">
+      <div class="p-head">
+        <div>
+          <div class="k">المحور الثاني · لمرة واحدة + اشتراك بعد الإطلاق</div>
+          <h3>استكمال بناء المنصة إلى أكمل جاهزية</h3>
+          <div class="dom">app.dpower.sa</div>
+        </div>
+        <div class="p-price"><span data-price="p2_project"></span><small>لمرة واحدة</small></div>
+      </div>
+      <div class="p-body">
+        <div>
+          <h4>يشمل</h4>
+          <ul class="ul">
+            <li>إكمال تصميم الواجهات ونظام التصميم، بالعربية والإنجليزية ومتوافقة مع الجوال</li>
+            <li>نقل البيانات: جرد، ومطابقة، وتنظيف، ونقلتان تجريبيتان، وتقرير مطابقة، ونقل نهائي</li>
+            <li>نقل الموظفين: الحسابات، والأدلة، والتدريب، والتشغيل المتوازي</li>
+            <li>مصفوفة الأدوار والصلاحيات وسجل التدقيق</li>
+            <li>جاهزية التشغيل: سير الموافقات، والأداء، والنسخ الاحتياطي، وحوكمة المساعد الذكي، والتقارير، والتكاملات، والتوثيق</li>
+          </ul>
+        </div>
+        <div>
+          <h4>بعد الإطلاق</h4>
+          <div class="kv">
+            <div><span>الدعم الفني للمنصة الجديدة</span><b data-price="p2_support_monthly" data-suffix="/ شهرياً"></b></div>
+            <div><span>بداية الاشتراك</span><b>من تاريخ الانتقال الكامل</b></div>
+            <div><span>يشمل</span><b>مستويات الخدمة P1–P4، وإصدارات كل أسبوعين، وخطة تحسين شهرية</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="ms-title">دفعات رسوم الاستكمال</div>
+      <div class="ms" id="milestones"></div>
+    </div>
+
+    <!-- P3 -->
+    <div class="pillar">
+      <div class="p-head">
+        <div>
+          <div class="k">المحور الثالث · اشتراك شهري</div>
+          <h3>إدارة مزودي خدمات تقنية طرف ثالث</h3>
+          <div class="dom">Cloud · Hosting · Mail · Tools</div>
+        </div>
+        <div class="p-price"><span data-price="p3_monthly"></span><small>شهرياً</small></div>
+      </div>
+      <div class="p-body">
+        <div>
+          <h4>يشمل</h4>
+          <ul class="ul">
+            <li>الاتصال السحابي، والاستضافات والسيرفرات، والنطاقات وDNS وSSL</li>
+            <li>البريد الإلكتروني وإعداد SPF وDKIM وDMARC</li>
+            <li>بتركس24، وجوجل ميت وWorkspace، وChatGPT وأدوات الذكاء الاصطناعي</li>
+            <li>السجل الموحّد للأصول التقنية وتنبيهات التجديد</li>
+            <li>تجهيز حسابات الموظف الجديد وسحب حسابات المغادر</li>
+            <li>التواصل مع المزودين ومتابعة التذاكر، ومراجعة التكاليف كل ربع سنة</li>
+          </ul>
+        </div>
+        <div>
+          <h4>ملاحظة</h4>
+          <p style="font-size:14px;color:var(--muted);">رسوم هذا المحور مقابل الإدارة فقط. اشتراكات المزودين أنفسهم تبقى باسم دي باور وتُدفع لهم مباشرة، ولا تمر عبر نقطتين.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TABLE -->
+<section class="ch" id="table">
+  <div class="wrap">
+    <div class="ch-head">
+      <div class="ch-num">03</div>
+      <div>
+        <div class="ch-kicker">جدول الأسعار</div>
+        <h2>كل البنود في جدول واحد</h2>
+      </div>
+    </div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>البند</th><th>النوع</th><th>المبلغ</th></tr></thead>
+        <tbody>
+          <tr><td>استكمال بناء المنصة الجديدة <span class="ltr">app.dpower.sa</span></td><td><span class="type once">لمرة واحدة</span></td><td data-price="p2_project"></td></tr>
+          <tr><td>الدعم الفني لمنصة دي باور القديمة <span class="ltr">dpower.sa</span></td><td><span class="type mo">شهري</span></td><td data-price="p1_monthly"></td></tr>
+          <tr><td>إدارة مزودي خدمات تقنية طرف ثالث</td><td><span class="type mo">شهري</span></td><td data-price="p3_monthly"></td></tr>
+          <tr><td>الدعم الفني للمنصة الجديدة (من تاريخ إطلاقها)</td><td><span class="type mo">شهري</span></td><td data-price="p2_support_monthly"></td></tr>
+          <tr><td>ساعة عمل إضافية خارج الساعات المشمولة</td><td><span class="type hr">حسب الطلب</span></td><td data-price="extra_hour"></td></tr>
+        </tbody>
+        <tfoot id="tfoot"></tfoot>
+      </table>
+    </div>
+    <p class="note" data-vat-note></p>
+  </div>
+</section>
+
+<!-- 04 NOT INCLUDED -->
+<section class="ch tint" id="excluded">
+  <div class="wrap">
+    <div class="ch-head">
+      <div class="ch-num">04</div>
+      <div>
+        <div class="ch-kicker">حدود النطاق</div>
+        <h2>ما لا تشمله الأسعار</h2>
+        <p class="ch-intro">حتى تكون الصورة واضحة من البداية، هذه تكاليف تتحملها دي باور مباشرة أو تُسعّر منفصلة عند الحاجة.</p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card x"><h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>اشتراكات المزودين</h3><p>رسوم الاستضافة والخوادم، والنطاقات، والبريد، والاتصال السحابي، وتراخيص بتركس24 وGoogle Workspace وChatGPT.</p></div>
+      <div class="card x"><h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>تكاليف استخدام الذكاء الاصطناعي</h3><p>رسوم استهلاك واجهات API لنماذج الذكاء الاصطناعي التي يستخدمها المساعد الذكي في المنصة، وتُدفع للمزود حسب الاستخدام الفعلي.</p></div>
+      <div class="card x"><h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>وحدات أو أنظمة جديدة</h3><p>أي وحدة أو نظام جديد خارج النطاق الموصوف في العرض الفني، ويُقدّم له تقدير وعرض منفصل قبل البدء.</p></div>
+      <div class="card x"><h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>تراخيص وخدمات خارجية جديدة</h3><p>أي أداة أو خدمة مدفوعة يُتفق على إضافتها لاحقاً، مثل أدوات مراقبة متقدمة أو خدمات رسائل SMS.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 TERMS -->
+<section class="ch" id="terms">
+  <div class="wrap">
+    <div class="ch-head">
+      <div class="ch-num">05</div>
+      <div>
+        <div class="ch-kicker">الشروط التجارية</div>
+        <h2>شروط الدفع والتعاقد</h2>
+      </div>
+    </div>
+    <div class="terms">
+      <div class="term"><b>الاشتراكات الشهرية</b><p>تُدفع مقدماً في بداية كل شهر ميلادي، خلال 7 أيام من تاريخ الفاتورة.</p></div>
+      <div class="term"><b>رسوم الاستكمال</b><p>تُدفع على أربع دفعات مرتبطة بالإنجاز كما هو موضح في المحور الثاني، وتُصدر فاتورة كل دفعة عند تحقق مرحلتها.</p></div>
+      <div class="term"><b>الساعات المشمولة</b><p>ساعات التطوير الشهرية المشمولة لا تُرحّل للشهر التالي. وما يزيد عنها يُحتسب بسعر الساعة الإضافية بعد موافقة دي باور المسبقة على التقدير.</p></div>
+      <div class="term"><b>الحد الأدنى للتعاقد</b><p data-months="min_term_months"></p></div>
+      <div class="term"><b>الإلغاء</b><p>يحق لأي طرف إنهاء الاشتراكات الشهرية بإشعار كتابي قبل <span data-days="notice_days"></span>، مع تطبيق خطة التسليم الواردة في العرض الفني.</p></div>
+      <div class="term"><b>الضريبة</b><p data-vat-term></p></div>
+      <div class="term"><b>صلاحية العرض</b><p>هذا العرض صالح لمدة <span data-days="validity_days"></span> من تاريخ إصداره.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 APPROVAL -->
+<section class="ch tint" id="approval">
+  <div class="wrap">
+    <div class="ch-head">
+      <div class="ch-num">06</div>
+      <div>
+        <div class="ch-kicker">الاعتماد</div>
+        <h2>اعتماد العرض الفني والمالي</h2>
+        <p class="ch-intro">باعتماد هذا العرض مع <a href="/dpower-tech" target="_top" style="color:var(--accent);">العرض الفني</a> يُوقَّع العقد واتفاقية مستوى الخدمة، ثم يبدأ العمل.</p>
+      </div>
+    </div>
+    <div class="sign">
+      <div>
+        <h3>عن دي باور لخدمات الأعمال</h3>
+        <div class="line"><span>الاسم</span></div>
+        <div class="line"><span>المنصب</span></div>
+        <div class="line"><span>التوقيع</span><span>التاريخ</span></div>
+      </div>
+      <div>
+        <h3>عن نقطتين</h3>
+        <div class="line"><span>الاسم</span></div>
+        <div class="line"><span>المنصب</span></div>
+        <div class="line"><span>التوقيع</span><span>التاريخ</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="nav-brand"><span class="dots" role="img" aria-label="نقطتين"><i></i><i></i></span><span>نقطتين · شريك التسويق والتقنية</span></span>
+    <span>عرض مالي سري مُعد لدي باور لخدمات الأعمال · نوفمبر 2026</span>
+  </div>
+</footer>
+
+<script>
+  /* =========================================================
+     الأسعار والقيم — عدّلها هنا فقط.
+     اترك القيمة null لتظهر في الصفحة كـ «يُحدد».
+     ========================================================= */
+  const PRICES = {
+    currency: '﷼',
+    vat_rate: 0.15,             // ضريبة القيمة المضافة (ضع 0 إذا لا تنطبق)
+
+    p1_monthly: null,           // المحور الأول: دعم dpower.sa (شهرياً)
+    p1_dev_hours: null,         // ساعات التطوير المشمولة شهرياً
+    p2_project: null,           // المحور الثاني: استكمال المنصة (لمرة واحدة)
+    p2_support_monthly: null,   // المحور الثاني: دعم المنصة الجديدة بعد الإطلاق (شهرياً)
+    p3_monthly: null,           // المحور الثالث: إدارة المزودين (شهرياً)
+    extra_hour: null,           // سعر ساعة العمل الإضافية
+
+    // دفعات رسوم الاستكمال (نسب مئوية، مجموعها 100)
+    p2_milestones: [
+      { label: 'عند توقيع العقد',              pct: null },
+      { label: 'عند اعتماد الواجهات والصلاحيات', pct: null },
+      { label: 'عند إتمام الانتقال الكامل',      pct: null },
+      { label: 'عند اعتماد استقرار المنصة',      pct: null },
+    ],
+
+    min_term_months: null,      // الحد الأدنى لمدة الاشتراك الشهري
+    notice_days: 30,            // مدة إشعار الإلغاء
+    validity_days: 30,          // صلاحية العرض
+  };
+
+  const P = PRICES;
+  const TBD = '<span class="amt tbd">يُحدد</span>';
+  const fmt = n => Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 });
+  const money = (n, suffix='') => n == null ? TBD
+    : `<span class="amt">${fmt(n)}<span class="cur">${P.currency}${suffix ? ' ' + suffix : ''}</span></span>`;
+  const sum = (...xs) => xs.some(x => x == null) ? null : xs.reduce((a, b) => a + b, 0);
+
+  document.querySelectorAll('[data-price]').forEach(el => {
+    el.innerHTML = money(P[el.dataset.price], el.dataset.suffix || '');
+  });
+  document.querySelectorAll('[data-hours]').forEach(el => {
+    const v = P[el.dataset.hours]; el.innerHTML = v == null ? TBD : `<span class="amt">${fmt(v)}</span> ساعة`;
+  });
+  document.querySelectorAll('[data-days]').forEach(el => {
+    const v = P[el.dataset.days]; el.innerHTML = v == null ? TBD : `${fmt(v)} يوماً`;
+  });
+  document.querySelectorAll('[data-months]').forEach(el => {
+    const v = P[el.dataset.months];
+    el.innerHTML = v == null ? `مدة الاشتراك الشهري الأدنى ${TBD}، وتتجدد تلقائياً شهراً بشهر بعدها.`
+      : `مدة الاشتراك الشهري الأدنى <span class="amt">${fmt(v)}</span> أشهر، وتتجدد تلقائياً شهراً بشهر بعدها.`;
+  });
+
+  // totals
+  const once = P.p2_project;
+  const monthly = sum(P.p1_monthly, P.p3_monthly);
+  const vat = P.vat_rate || 0;
+  const withVat = n => n == null ? null : n * (1 + vat);
+  document.querySelector('[data-total="once"]').innerHTML = money(once);
+  document.querySelector('[data-total="monthly"]').innerHTML = money(monthly);
+  if (vat) {
+    document.querySelectorAll('.total').forEach((t, i) => {
+      const base = i === 0 ? once : monthly;
+      const d = document.createElement('div'); d.className = 'sub';
+      d.innerHTML = `شامل الضريبة: ${money(withVat(base))}`;
+      t.appendChild(d);
+    });
+  }
+  const vatPct = Math.round(vat * 100);
+  document.querySelectorAll('[data-vat-note]').forEach(el => {
+    el.textContent = vat ? `جميع المبالغ غير شاملة ضريبة القيمة المضافة (${vatPct}%).` : 'جميع المبالغ نهائية.';
+  });
+  document.querySelector('[data-vat-term]').textContent = vat
+    ? `تُضاف ضريبة القيمة المضافة بنسبة ${vatPct}% على جميع الفواتير وفق الأنظمة المعمول بها في المملكة.`
+    : 'المبالغ الواردة في هذا العرض نهائية.';
+
+  const tf = document.getElementById('tfoot');
+  tf.innerHTML = `
+    <tr><td>إجمالي الرسوم لمرة واحدة</td><td></td><td>${money(once)}</td></tr>
+    <tr><td>إجمالي الاشتراك الشهري (المحور الأول + الثالث)</td><td></td><td>${money(monthly)}</td></tr>`;
+
+  // milestones
+  const ms = document.getElementById('milestones');
+  ms.innerHTML = P.p2_milestones.map((m, i) => {
+    const amount = (m.pct == null || P.p2_project == null) ? null : P.p2_project * m.pct / 100;
+    return `<div><small>الدفعة ${i + 1}</small><b>${m.label}</b>
+      <div class="pct">${m.pct == null ? TBD : `<span class="amt">${m.pct}%</span>`} · ${money(amount)}</div></div>`;
+  }).join('');
+</script>
+
+</body>
+</html>

@@ -216,50 +216,6 @@
   .sec h3{font-size:16px;margin-bottom:8px;color:#fff;}
   .sec p{font-size:13.5px;color:var(--on-ink-muted);}
 
-  /* team + raci */
-  .team{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
-  .role{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 16px;}
-  .role .av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-family:'IBM Plex Mono','IBM Plex Sans Arabic';font-size:12px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
-  .role b{display:block;font-size:14px;font-weight:600;margin-bottom:4px;}
-  .role p{font-size:12.5px;color:var(--muted);line-height:1.65;}
-  .raci td:not(:first-child),.raci th:not(:first-child){text-align:center;}
-  .raci .r{display:inline-block;min-width:26px;padding:2px 6px;border-radius:6px;font-family:'IBM Plex Mono','IBM Plex Sans Arabic';font-size:12px;font-weight:600;}
-  .r.R{background:rgba(47,107,255,.12);color:var(--accent);}
-  .r.A{background:rgba(10,15,30,.9);color:#fff;}
-  .r.C{background:rgba(0,179,164,.12);color:#00877C;}
-  .r.I{background:#EEF0F5;color:var(--muted);}
-  .rituals{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px;}
-  .rituals > div{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--card);}
-  .rituals small{font-family:'IBM Plex Mono','IBM Plex Sans Arabic';font-size:11.5px;color:var(--accent);}
-  .rituals b{display:block;font-size:14.5px;margin:2px 0 4px;}
-  .rituals p{font-size:12.5px;color:var(--muted);}
-
-  /* gantt */
-  .gantt{border:1px solid var(--line);border-radius:var(--r);background:var(--card);overflow-x:auto;}
-  .g-in{min-width:820px;}
-  .g-row{display:grid;grid-template-columns:200px repeat(12,1fr);align-items:center;border-bottom:1px solid var(--line);min-height:46px;}
-  .g-row:last-child{border-bottom:none;}
-  .g-row.head{min-height:36px;background:#F2F4F9;}
-  .g-row.head div{font-family:'IBM Plex Mono','IBM Plex Sans Arabic';font-size:11px;color:var(--muted);text-align:center;}
-  .g-row.head div:first-child{text-align:right;padding-inline-start:16px;font-family:'IBM Plex Sans Arabic';}
-  .g-name{font-size:13.5px;font-weight:600;padding:0 16px;}
-  .g-name small{display:block;font-weight:400;font-size:11.5px;color:var(--muted);}
-  .bar{height:18px;border-radius:5px;margin:0 2px;}
-  .b1{background:var(--accent);} .b2{background:#6E9BFF;} .b3{background:var(--accent-2);} .b4{background:#7FD9CF;} .b5{background:var(--amber);} .b6{background:#8B93A8;}
-  .ms{display:flex;justify-content:center;}
-  .ms i{width:14px;height:14px;background:var(--ink);transform:rotate(45deg);border-radius:2px;}
-  .ms-list{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px;}
-  .ms-list > div{border-inline-start:3px solid var(--ink);padding:4px 0 4px 0;padding-inline-start:12px;}
-  .ms-list small{font-family:'IBM Plex Mono','IBM Plex Sans Arabic';font-size:11.5px;color:var(--muted);}
-  .ms-list b{display:block;font-size:13.5px;font-weight:600;line-height:1.5;}
-
-  /* first 14 days */
-  .days{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;}
-  .days > div{background:var(--card);padding:20px;}
-  .days small{font-family:'IBM Plex Mono','IBM Plex Sans Arabic';font-size:11.5px;color:var(--accent);}
-  .days b{display:block;font-size:14.5px;margin:4px 0 6px;font-weight:600;}
-  .days p{font-size:13px;color:var(--muted);}
-
   /* risks */
   .sev{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap;}
   .sev.h{background:rgba(214,69,69,.1);color:var(--red);}
@@ -295,10 +251,8 @@
 
   @media (max-width:960px){
     .outcomes,.grid-3,.sec-grid,.steps,.kpi{grid-template-columns:1fr;}
-    .implic,.vd,.own,.rituals,.days{grid-template-columns:1fr 1fr;}
-    .team{grid-template-columns:1fr 1fr;}
+    .implic,.vd,.own{grid-template-columns:1fr 1fr;}
     .pipe{grid-template-columns:1fr 1fr;}
-    .ms-list{grid-template-columns:1fr 1fr;}
     .arch{grid-template-columns:1fr;gap:12px;}
     .arch-arrow svg{transform:rotate(-90deg);}
     .meta{grid-template-columns:1fr 1fr;}
@@ -314,7 +268,7 @@
     .ch{padding:64px 0;}
     .ch-head{grid-template-columns:1fr;gap:10px;margin-bottom:32px;}
     .ch-num{font-size:40px;}
-    .find-grid,.grid-2,.implic,.vd,.own,.rituals,.days,.team,.pipe,.ms-list,.row-nodes{grid-template-columns:1fr;}
+    .find-grid,.grid-2,.implic,.vd,.own,.pipe,.row-nodes{grid-template-columns:1fr;}
     .nav-links{display:none;}
     .hero{padding-top:64px;}
     .hero .lead{font-size:16px;}
@@ -346,7 +300,6 @@
       <a href="#p2">app.dpower.sa</a>
       <a href="#p3">المزودون</a>
       <a href="#security">الأمان</a>
-      <a href="#roadmap">الخطة</a>
       <a href="#next">البدء</a>
     </nav>
   </div>
@@ -448,7 +401,7 @@
       <div class="ch-num">03</div>
       <div>
         <div class="ch-kicker">من الوضع الحالي إلى المستهدف</div>
-        <h2>شكل التقنية في دي باور بعد 90 يوماً</h2>
+        <h2>شكل التقنية في دي باور عند الاستقرار</h2>
         <p class="ch-intro">اليوم كل منصة وكل مزود جزيرة مستقلة. المستهدف أن تكون المنصة الجديدة هي المركز، وحولها طبقات مشتركة للأمان والمراقبة والنسخ الاحتياطي، وجهة واحدة مسؤولة عن الكل.</p>
       </div>
     </div>
@@ -641,7 +594,7 @@
         <div class="mx-row"><div class="mx-name">التوثيق والتدريب</div><div class="mx-desc">أدلة استخدام لكل دور، وتوثيق تقني كامل للمنصة.</div><div class="mx-bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="later"></i></div></div>
       </div>
       <div class="mx-legend">
-        <span><i style="background:var(--accent);"></i>يُنجز ضمن 90 يوماً</span>
+        <span><i style="background:var(--accent);"></i>ضمن نطاق الاستكمال</span>
         <span><i style="background:repeating-linear-gradient(45deg,rgba(47,107,255,.35) 0 3px,transparent 3px 6px);border:1px solid rgba(47,107,255,.3);"></i>تطوير لاحق</span>
       </div>
     </div>
@@ -727,120 +680,11 @@
   </div>
 </section>
 
-<!-- ============ 08 GOVERNANCE ============ -->
-<section class="ch" id="team">
-  <div class="wrap">
-    <div class="ch-head reveal">
-      <div class="ch-num">08</div>
-      <div>
-        <div class="ch-kicker">نموذج العمل والحوكمة</div>
-        <h2>من يعمل، ومن يقرر، وكيف تتابعون</h2>
-        <p class="ch-intro">فريق متكامل من نقطتين مقابل نقطة اتصال واحدة لديكم، ومسؤوليات واضحة لكل طرف.</p>
-      </div>
-    </div>
-
-    <div class="team reveal">
-      <div class="role"><div class="av">TL</div><b>مدير الحساب التقني</b><p>نقطة الاتصال الوحيدة لكم، والمسؤول عن الأولويات والتقارير.</p></div>
-      <div class="role"><div class="av">FS</div><b>مطوّر Full-stack رئيسي</b><p>Laravel للمنصة الحالية وNext.js للمنصة الجديدة.</p></div>
-      <div class="role"><div class="av">UX</div><b>مصمم واجهات</b><p>نظام التصميم، والنماذج التفاعلية، وتجربة المستخدم.</p></div>
-      <div class="role"><div class="av">OP</div><b>مهندس بنية تحتية</b><p>الخوادم والنسخ والمراقبة والأمان والانتقال.</p></div>
-      <div class="role"><div class="av">SP</div><b>الدعم والمزودون</b><p>فرز الطلبات، والتواصل مع المزودين، والسجل الموحّد.</p></div>
-    </div>
-
-    <div class="block reveal">
-      <div class="block-title"><span class="k">RACI</span>توزيع المسؤوليات</div>
-      <div class="tbl raci">
-        <table>
-          <thead><tr><th>النشاط</th><th>نقطتين</th><th>دي باور</th></tr></thead>
-          <tbody>
-            <tr><td>ترتيب أولويات الطلبات</td><td><span class="r R">R</span></td><td><span class="r A">A</span></td></tr>
-            <tr><td>تنفيذ الإصلاحات والتعديلات</td><td><span class="r R">R</span> <span class="r A">A</span></td><td><span class="r C">C</span></td></tr>
-            <tr><td>اعتماد الواجهات ومصفوفة الصلاحيات</td><td><span class="r R">R</span></td><td><span class="r A">A</span></td></tr>
-            <tr><td>اعتماد تقرير مطابقة البيانات وقرار الانتقال</td><td><span class="r R">R</span></td><td><span class="r A">A</span></td></tr>
-            <tr><td>العلاقة اليومية مع المزودين</td><td><span class="r R">R</span> <span class="r A">A</span></td><td><span class="r I">I</span></td></tr>
-            <tr><td>التعاقد مع المزودين ودفع الفواتير</td><td><span class="r C">C</span></td><td><span class="r R">R</span> <span class="r A">A</span></td></tr>
-            <tr><td>اعتماد خطة التحسينات الشهرية</td><td><span class="r R">R</span></td><td><span class="r A">A</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="fine">R = منفّذ · A = صاحب القرار النهائي · C = يُستشار · I = يُبلَّغ</p>
-    </div>
-
-    <div class="rituals reveal">
-      <div><small>يومياً</small><b>متابعة الطلبات</b><p>حالة كل طلب ظاهرة لكم على بتركس24.</p></div>
-      <div><small>أسبوعياً</small><b>اجتماع 30 دقيقة</b><p>ما أُنجز، والعوائق، وأولويات الأسبوع.</p></div>
-      <div><small>شهرياً</small><b>تقرير الأداء</b><p>الالتزام بمستويات الخدمة، وتقدّم المنصة، والمزودون.</p></div>
-      <div><small>ربع سنوي</small><b>مراجعة استراتيجية</b><p>خارطة الطريق، والتكاليف، والمخاطر.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 09 ROADMAP ============ -->
-<section class="ch tint" id="roadmap">
-  <div class="wrap">
-    <div class="ch-head reveal">
-      <div class="ch-num">09</div>
-      <div>
-        <div class="ch-kicker">خارطة الطريق</div>
-        <h2>اثنا عشر أسبوعاً من التدقيق إلى الاستقرار</h2>
-        <p class="ch-intro">تسير المسارات بالتوازي، ولكل مرحلة نقطة اعتماد واضحة من دي باور قبل الانتقال للتي بعدها.</p>
-      </div>
-    </div>
-
-    <div class="gantt reveal">
-      <div class="g-in">
-        <div class="g-row head"><div>المسار</div><div>W1</div><div>W2</div><div>W3</div><div>W4</div><div>W5</div><div>W6</div><div>W7</div><div>W8</div><div>W9</div><div>W10</div><div>W11</div><div>W12</div></div>
-        <div class="g-row"><div class="g-name">التدقيق والاستلام<small>الوصول، والتدقيق، والسجل</small></div><div class="bar b6" style="grid-column:2 / span 2;"></div></div>
-        <div class="g-row"><div class="g-name">دعم dpower.sa<small>مستمر</small></div><div class="bar b1" style="grid-column:2 / span 12;"></div></div>
-        <div class="g-row"><div class="g-name">الواجهات<small>تصميم، اعتماد، تنفيذ</small></div><div class="bar b2" style="grid-column:3 / span 5;"></div></div>
-        <div class="g-row"><div class="g-name">الانتقال<small>مطابقة، نقل تجريبي، نهائي</small></div><div class="bar b3" style="grid-column:4 / span 9;"></div></div>
-        <div class="g-row"><div class="g-name">جاهزية التشغيل<small>صلاحيات، تقارير، تكاملات</small></div><div class="bar b4" style="grid-column:6 / span 8;"></div></div>
-        <div class="g-row"><div class="g-name">المزودون والأمان<small>بريد، تحصين، 2FA</small></div><div class="bar b5" style="grid-column:2 / span 6;"></div></div>
-        <div class="g-row"><div class="g-name">نقاط الاعتماد</div>
-          <div class="ms" style="grid-column:3;"><i></i></div>
-          <div class="ms" style="grid-column:7;"><i></i></div>
-          <div class="ms" style="grid-column:9;"><i></i></div>
-          <div class="ms" style="grid-column:12;"><i></i></div>
-          <div class="ms" style="grid-column:13;"><i></i></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ms-list reveal">
-      <div><small>M1 · W2</small><b>تقرير التدقيق التقني وقائمة الأولويات</b></div>
-      <div><small>M2 · W6</small><b>اعتماد الواجهات ومصفوفة الصلاحيات</b></div>
-      <div><small>M3 · W8</small><b>اعتماد تقرير مطابقة النقل التجريبي</b></div>
-      <div><small>M4 · W11</small><b>الانتقال الكامل إلى المنصة الجديدة</b></div>
-      <div><small>M5 · W12</small><b>تقرير الاستقرار وخطة التحسين التالية</b></div>
-    </div>
-    <p class="fine" style="margin-top:20px;">نراجع الجدول بعد M1، لأنه يعتمد على حجم ما تبقى فعلياً في المنصة الجديدة وحالة بيانات المنصة الحالية.</p>
-  </div>
-</section>
-
-<!-- ============ 10 FIRST 14 DAYS ============ -->
-<section class="ch" id="first">
-  <div class="wrap">
-    <div class="ch-head reveal">
-      <div class="ch-num">10</div>
-      <div>
-        <div class="ch-kicker">أول 14 يوماً</div>
-        <h2>ما ستلاحظونه قبل نهاية الأسبوع الثاني</h2>
-      </div>
-    </div>
-    <div class="days reveal">
-      <div><small>اليوم 1–2</small><b>قناة الطلبات تعمل</b><p>مشروع على بتركس24 بمستويات الأولوية، ومسؤول واضح لكل طلب.</p></div>
-      <div><small>اليوم 3–5</small><b>شبكة أمان</b><p>نسخة احتياطية كاملة للمنصتين خارج الاستضافة، ومراقبة توفّر مع تنبيهات.</p></div>
-      <div><small>اليوم 5–10</small><b>معالجة المتراكم</b><p>البدء بالطلبات الحرجة والعالية المتراكمة لدى الفريق.</p></div>
-      <div><small>اليوم 14</small><b>تقرير التدقيق</b><p>حالة المنصتين والخوادم والمزودين، وقائمة أولويات مرتبة ومقدّرة.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 11 RISKS ============ -->
+<!-- ============ 08 RISKS ============ -->
 <section class="ch tint" id="risks">
   <div class="wrap">
     <div class="ch-head reveal">
-      <div class="ch-num">11</div>
+      <div class="ch-num">08</div>
       <div>
         <div class="ch-kicker">إدارة المخاطر</div>
         <h2>ما قد يحدث، وكيف نستعد له</h2>
@@ -862,11 +706,11 @@
   </div>
 </section>
 
-<!-- ============ 12 OWNERSHIP ============ -->
+<!-- ============ 09 OWNERSHIP ============ -->
 <section class="ch dark" id="ownership">
   <div class="wrap">
     <div class="ch-head reveal">
-      <div class="ch-num">12</div>
+      <div class="ch-num">09</div>
       <div>
         <div class="ch-kicker">ضمانات الملكية</div>
         <h2>بياناتكم وحساباتكم ملك لدي باور</h2>
@@ -882,11 +726,11 @@
   </div>
 </section>
 
-<!-- ============ 13 KPIs ============ -->
+<!-- ============ 10 KPIs ============ -->
 <section class="ch" id="kpi">
   <div class="wrap">
     <div class="ch-head reveal">
-      <div class="ch-num">13</div>
+      <div class="ch-num">10</div>
       <div>
         <div class="ch-kicker">مؤشرات النجاح</div>
         <h2>أرقام تحاسبوننا عليها</h2>
@@ -904,23 +748,23 @@
   </div>
 </section>
 
-<!-- ============ 14 NEXT ============ -->
+<!-- ============ 11 NEXT ============ -->
 <section class="ch dark" id="next">
   <div class="wrap">
     <div class="ch-head reveal">
-      <div class="ch-num">14</div>
+      <div class="ch-num">11</div>
       <div>
         <div class="ch-kicker">الخطوات التالية</div>
         <h2>ثلاث خطوات للبدء</h2>
       </div>
     </div>
     <div class="steps reveal">
-      <div class="step"><div class="sn">01</div><b>اجتماع مراجعة النطاق</b><p>ساعة واحدة مع الإدارة والفريق لتأكيد الأولويات ومستويات الخدمة.</p></div>
+      <div class="step"><div class="sn">01</div><b>اعتماد العرض الفني والمالي</b><p>مراجعة العرضين من إدارة دي باور واعتمادهما، ثم توقيع العقد واتفاقية مستوى الخدمة.</p></div>
       <div class="step"><div class="sn">02</div><b>اتفاقية السرية والوصول</b><p>توقيع اتفاقية عدم إفصاح، ثم منح صلاحيات الوصول للمنصتين والخوادم والمزودين.</p></div>
-      <div class="step"><div class="sn">03</div><b>انطلاق الأسبوع الأول</b><p>قناة الطلبات، وشبكة الأمان، وبدء التدقيق، وأول تقرير بعد 14 يوماً.</p></div>
+      <div class="step"><div class="sn">03</div><b>انطلاق العمل</b><p>تفعيل قناة الطلبات، ونسخ احتياطي ومراقبة للمنصتين، وبدء التدقيق التقني.</p></div>
     </div>
     <div class="closing">
-      <span>هذا عرض فني يوضح النطاق والمنهجية فقط. يُرسل العرض المالي بشكل منفصل بعد اجتماع مراجعة النطاق، ويمكن تسعير كل محور منفرداً أو ضمن باقة شهرية واحدة.</span>
+      <span>هذا عرض فني يوضح النطاق والمنهجية فقط. يُرسل العرض المالي بشكل منفصل، ويُعتمد العرضان معاً قبل بدء العمل.</span>
       <span class="nav-brand"><span class="dots" role="img" aria-label="نقطتين"><i></i><i></i></span><span>نقطتين · شريك التسويق والتقنية</span></span>
     </div>
   </div>
